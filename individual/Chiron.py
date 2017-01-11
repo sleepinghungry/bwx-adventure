@@ -30,12 +30,7 @@ darkpassageway = game.new_location(
     "Dark Passageway",
 """You can go forward to the North or back into the torture room to the South.""")
 
-game.new_connection("Arched Doorway", tortureroom, darkpassageway [IN, WEST], [OUT, SOUTH])
-
-
-
-
-
+game.new_connection("Arched Doorway", tortureroom, darkpassageway, [IN, WEST], [OUT, SOUTH])
 
 
 
@@ -43,11 +38,6 @@ game.new_connection("Arched Doorway", tortureroom, darkpassageway [IN, WEST], [O
 
 
 player = game.new_player(sidewalk)
-
-
-
-
-
 
 
 
