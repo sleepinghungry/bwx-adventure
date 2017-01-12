@@ -26,6 +26,8 @@ tortureroom = game.new_location(
 """You see multiple horrifying torture devices in a small stone brick room.
 There is an arched doorway leading into a dark passageway to the West.""")
 
+game.new_connection("Glass Door", vestibule, tortureroom, [IN, EAST], [OUT, WEST])
+
 darkpassageway = game.new_location(
     "Dark Passageway",
 """You can go forward to the North or back into the torture room to the South.""")
