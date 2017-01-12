@@ -13,6 +13,7 @@ game = Game("Lucky Day")
 out_of_village = game.new_location(
   "out_of_Village",
   "Out of the village Nothing is happening!'")
+key = sidewalk.new_object("key", "a small tarnished key")
 
 village  = game.new_location(
   "Village",
@@ -26,10 +27,18 @@ game.new_connection("Glass Door", out_of_village, village, [IN, EAST], [OUT, WES
 
 player = game.new_player(out_of_village)
 
+key = sidewalk.new_object("key", "a small tarnished key")
 
+office_door.set_flag('locked')
+def pick_lock(game, thing):
+  game.output("you slip the hairpin into the lock and skillfully pick it open")
+  thing.unset_flag('locked')
+office_door.add_phrase('pick lock', pick_lock, [hairpin])
 
-
-
-
+def flip_coin(game, thing):
+  if random.random() > 0.5:
+    game.output("The coin shows heads.");
+  else:
+    game.output("The coin shows tails.");
 
 game.run()
