@@ -20,7 +20,7 @@ corridor = game.new_location(
 
 courtyard = game.new_location(
   "Courtyard",
-  "You are in a large empty courtyard with dead people littering the floor, there seems to be some kind of lethal disease. There is a large grating to the west and a pathway leading east.")
+  "You are in a large empty courtyard with dead people littering the floor, there seems to be some kind of lethal disease. There is a large grating to the west and a pathway leading north.")
 
 
 cell_door = game.new_connection("Cell Door", dungeon, corridor, [IN, NORTH], [OUT, SOUTH])
