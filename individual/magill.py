@@ -16,7 +16,7 @@ inside_the_house = game.new_location(
 
 outside_the_house = game.new_location(
   "outside the house",
-"""it is fine right here but the blizard lay to the west.""")
+"""it is fine right here but the blizard lay to the east.""")
   
 in_the_middle_of_the_blizard = game.new_location(
   "in the middle of the blizard",
@@ -25,6 +25,13 @@ in_the_middle_of_the_blizard = game.new_location(
 game.new_connection("Glass door", inside_the_house, outside_the_house, [IN, EAST], [OUT, WEST])
 
 game.new_connection("Glass door", outside_the_house, in_the_middle_of_the_blizard, [IN, EAST], [OUT, WEST])
+
 player = game.new_player(inside_the_house)
 
+coat = inside_the_house.new_object("coat", "a warm winter coat")
+
+wolf = Animal("wolf")
+wolf.set_location("in_the_middle_of_the_blizzard")
+
 game.run()
+
