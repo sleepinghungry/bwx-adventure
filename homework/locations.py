@@ -42,4 +42,8 @@ game = Game("Brightworks Adventure")
 # START CODING HERE #
 #####################
 
+#################
+# END CODE HERE #
+#################
+
 game.run()
