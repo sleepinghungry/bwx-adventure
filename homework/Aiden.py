@@ -42,8 +42,14 @@ game = Game("Brightworks Adventure")
 # START CODING HERE #
 #####################
 
-#################
-# END CODE HERE #
-#################
+
+
+game.new_location("Forest"),"A dark dense forest. there is one tall tree with some small branches that are in reach."
+
+game.new_location("Lava world"),"you are standing on a little ledge lava all around you and you see a little bridge across the lava. Watch out for ogars!" 
+
+game.new_location("Giant bird nest"),"Three portals to the north, south, and east are accessible from this bird nest."
+
+game.new_location("Evil base"),"There is a mess of blood on the floor and an Axe"
 
 game.run()

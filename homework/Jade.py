@@ -41,9 +41,17 @@ game = Game("Brightworks Adventure")
 #####################
 # START CODING HERE #
 #####################
+desert = game.new_location("desert",
+"It is hot and dry with miles of sand")
 
-#################
-# END CODE HERE #
-#################
+sea = game.new_location("sea",
+"Thousands of fish swim in the blue ocean")
+
+ice = game.new_location("ice world",
+"evrey thing is ice and snow")                  
+
+fire = game.new_location("fire world",
+"evrey thing is lava and fire")
+
 
 game.run()

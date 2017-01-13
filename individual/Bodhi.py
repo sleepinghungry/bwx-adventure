@@ -12,7 +12,8 @@ game = Game("Lucky Day")
 
 street = game.new_location(
   "street",
-  "There is a large wood door to the east. The sign says 'Come In!'")
+  "There is a wood door to the east. The sign says 'Come In!'")
+
 cellar = game.new_location(
   "cellar",
 """A small area at the bottom of a flight of stairs.
@@ -22,7 +23,10 @@ Torture_Room = game.new_location(
 """A small area at the bottom of a flight of stairs.
 There is a pot of hot water with electric eels swimming in it.""")
 
-game.new_connection(""wood door""),street,cellar, [IN, EAST], [OUT, WEST]
+dog = Animal("dog")
+dog.set_location(Torture_Room)
+
+game.new_connection("wood door",street,cellar, [IN, EAST], [OUT, WEST])
 
 player = game.new_player(street)
 

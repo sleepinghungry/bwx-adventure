@@ -41,9 +41,20 @@ game = Game("Brightworks Adventure")
 #####################
 # START CODING HERE #
 #####################
+in_front_of_yellow_biulding = game.new_location("In Front of Yellow Building","There is a bright yellow biulding to the north, its door wide open. The only souds you hear come from the chirping birds aroud you")
 
-#################
-# END CODE HERE #
-#################
+vestibule = game.new_location("Vestibule","A kinda dark drabby brown looking area. There is a door to the east leading to an office and a staircase leading up.")
+
+upstairs_hallway = game.new_location("Upstairs Hallway"," Three doors to the north, south, and east are accessible from this hallway.")
+
+office = game.new_location("Office","There is a mess of papers scattered on the floor. A broken computer screen lies on a desk.")
+
+game.new_connection("Door",in_front_of_yellow_biulding,vestibule,NORTH,SOUTH)
+
+game.new_connection("Vestibule",vestibule,upstairs_hallway,UP,DOWN)
+
+game.new_connection("Upstairs Hallway",upstairs_hallway,in_front_of_yellow_biulding,DOWN,SOUTH)
+
+game.new_player(in_front_of_yellow_biulding)
 
 game.run()

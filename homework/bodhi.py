@@ -40,10 +40,18 @@ game = Game("Brightworks Adventure")
 
 #####################
 # START CODING HERE #
-#####################
+##################### an office and a staircase leading up.
+game.new_player(Building)
 
-#################
-# END CODE HERE #
-#################
+game.new_location("Building",
+"There is a bright yellow building to the north, its door wide open.  The only sounds you hear come from the chirping birds around you.")
 
+game.new_location("Vestibule",
+"A kinda dark drabby brown looking area.  There is a door to the east leading to an office and a staircase leading up.")
+
+game.new_location("Upstairs Hallway",
+"Three doors to the north, south, and east are accessible from this hallway.")
+
+game.new_location("Office",
+"There is a mess of papers scattered on the floor.  A broken computer screen lies on a desk.")
 game.run()

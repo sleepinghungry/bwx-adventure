@@ -13,18 +13,22 @@ game = Game("Lucky Day")
 curtain = game.new_location(
   "curtain",
   "there is a shadow of a large animal'")
-
+dress = curtain.new_object(" dress", "an old torn dress")
 on_stage = game.new_location(
   "on stage",
-"""strange animal is very real. He tries to kill you """)
+"""The strange animal is very real. He tries to kill you """)
 
+
+microphone = on_stage.new_object("microphone", "a rusty microphone")
 under_stage = game.new_location(
   "under stage",
 """You escaped the monster. There is a narrow stair case leading down """)
-
+slipper = under_stage.new_object("slipper", "a pink slipper")
 game.new_connection("Glass Door",curtain, on_stage, [IN, EAST], [OUT, WEST])
-
+person = Actor("person")
+person.set_location(under_stage)
 game.new_connection("Glass Door",on_stage, under_stage, [IN, NORTH], [OUT, SOUTH])
+game.new_connection("Glass Door",under_stage, curtain, [UP], [DOWN])
 
 player = game.new_player(curtain)
 
