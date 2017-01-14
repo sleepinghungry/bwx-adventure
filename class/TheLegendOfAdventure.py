@@ -68,6 +68,11 @@ shack = new.game_location(
 "Shack",
 """You're in a shack""")
 
+porch = game.new_location(
+"Porch"
+"""You are on a porch""")
+
+
  
 
 #game connections
@@ -80,8 +85,16 @@ game.new_connection("gardenpath", field, garden,
 
 player = game.new_player(driveway)
 
-
 game.run()
+
+
+
+
+
+
+
+
+
 
 
 
