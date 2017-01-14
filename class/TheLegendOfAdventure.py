@@ -46,7 +46,7 @@ blacktop = game.new_location(
 
 room4 = game.new_location(
 "Room 4",
-"""You are now in the room 4 classroom there is a ruler and test on the teacher's desk"""")
+"""You are now in the room 4 classroom there is a ruler and test on the teacher's desk""")
 
 computerlab = new.game_location(
 "Computer lab",
@@ -56,7 +56,7 @@ room5 = new.game_location(
 "Room 5",
 """You are in room 5 you can see a face down piece of paper on the ground""")
 
-room 6 = new.game_location(
+room6 = new.game_location(
 "Room 6",
 """You are in room 6, there is a match box on the ground and a piece of paper that appears to be a math test""")
 
@@ -79,6 +79,7 @@ game.new_connection("gardenpath", field, garden,
 
 
 player = game.new_player(driveway)
+
 
 game.run()
 
