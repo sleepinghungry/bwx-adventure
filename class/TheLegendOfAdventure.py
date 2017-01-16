@@ -10,6 +10,8 @@ from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT
 
 game = Game("The Legend of Adventure")
 
+#Willowwind game part
+
 driveway = game.new_location(
   "Driveway",
   "You see a large field to the West and a parking lot to the North")
@@ -74,12 +76,31 @@ porch = game.new_location(
 
  
 
-#game connections
+#WW game connections
 game.new_connection("Pathway", driveway, parkinglot, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("pathway2", driveway, field, [IN, WEST], [OUT, EAST])
 
 game.new_connection("gardenpath", field, garden, [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("toplayground", parkinglot, playground, [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("playgroundtoblacktop", playground, blacktop, [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("blacktoptocomputerlab", blacktop, computerlab [IN, NORTH_EAST], [OUT, SOUTH_WEST])
+
+game.new_connection("blacktoptoroom4", blacktop, room4 [IN, EAST], [OUT, WEST])
+
+game.new_connection("playgroundtoporch", playground, porch [IN, WEST], [OUT, WEST])
+
+game.new_connection
+
+#WW game objets
+
+
+#end of willow Wind
+#------------------
+#start of the MINE
 
 
 player = game.new_player(driveway)
