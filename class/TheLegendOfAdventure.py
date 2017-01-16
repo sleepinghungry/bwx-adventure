@@ -129,11 +129,11 @@ game.new_connection("
 #start of the MINE
 
 Central mine = game.new_location(
-"
+"Central Mine
 Mineroom1 = game.new_location(
-"
+"Mine Room 1"
 Mineroom2 = game.new_location(
-"
+"Mine Room
 Mineroom3 = game.new_location(
 "
 Mineroom4 = game.new_location(
@@ -157,19 +157,19 @@ Gemroom = game.new_location(
 Mineshaftelevatorroom = game.new_location(
 "
 Warmroom = game.new_location(
-"
+"Warm room"
 Generatorroom = game.new_location(
-"
+"Generator Room"
 Loudroom = game.new_location(
-"
+"Loud room"
 Maintenanceroom = game.new_location(
-"
+"Maintace Room"
 Goldroom = game.new_location(
-"
+"Gold Room" 
 Minecartroom = game.new_location(
-"
+"Minecart Room"
 Storageroom3 = game.new_location(
-"
+"Storage Room 3"
 Mineshaft
 "Mine Shaft"
 smallroom = game.new_location(
