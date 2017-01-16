@@ -107,9 +107,9 @@ game.new_connection("porchtobarn", porch, barn, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("blacktoptobarn", blacktop, barn, [IN, WEST], [OUT, EAST])
 
-game.new_connection("
+game.new_connection("")
 
-game.new_connection("
+game.new_connection("")
 
 #maze game connections
 
@@ -130,78 +130,152 @@ game.new_connection("
 
 Central mine = game.new_location(
 "Central Mine
+
+
 Mineroom1 = game.new_location(
 "Mine Room 1"
+
+
 Mineroom2 = game.new_location(
 "Mine Room
+
+
 Mineroom3 = game.new_location(
-"
+"mine Room 3"
+
+
 Mineroom4 = game.new_location(
-"
+"Mine Room 4"
+
+
 E/WTunnel = game.new_location(
-"
+"East West Tunnel"
+
+
 Blockedroom = game.new_location(
-"
+"Blocked Room"
+
+
 Cyclopsroom = game.new_location(
-"
+"Cyclops Room
+
+
 breakroom = game.new_location(
-"
+"Break Room"
+
+
 Dimtunnel = game.new_location(
-" 
+"Dim Tunnel"
+
+
 Keyroom = game.new_location(
-"
+"Key Room"
+
+
 Storageroom4 = game.new_location(
-"
+"Storage Room"
+
+
 Gemroom = game.new_location(
-"
+"Gem Room"
+
+
 Mineshaftelevatorroom = game.new_location(
-"
+"Mineshaft Elavator Room" 
+
+
 Warmroom = game.new_location(
 "Warm room"
+
+
 Generatorroom = game.new_location(
 "Generator Room"
+
+
 Loudroom = game.new_location(
 "Loud room"
+
+
 Maintenanceroom = game.new_location(
 "Maintace Room"
+
+
 Goldroom = game.new_location(
 "Gold Room" 
+
+
 Minecartroom = game.new_location(
 "Minecart Room"
+
+
 Storageroom3 = game.new_location(
 "Storage Room 3"
+
+
 Mineshaft
 "Mine Shaft"
+
+
 smallroom = game.new_location(
 "small Room"    
+
+
 Glowingroom = game.new_location(
 "Glowing Room"
+
+
 Magiclanternroom = game.new_location(
 "Magic Lantern Room"
+
+
 Darkroom = game.new_location(
 "Dark Room"
+
+
 Storageroom2 = game.new_location(
 "Storage Room 2"
+
+
 Damproom = game.new_location(
 "Damp Room"
+
+
 Helmetroom = game.new_location(
 "Helmet Room"
+
+
 Widetunnel = game.new_location(
 "Wide tunnel" 
+
+
 Minekitchen = game.new_location(
 "Mine kitchen"
+
+
 Supplyroom = game.new_location(
 "Supply Room"
+
+
 Coatroom = game.new_location(
 "Coat Room" 
+
+
 Largeroom = game.new_location(
 "Large Room"
+
+
 Storageroom1 = game.new_location(
 "Storage Room 1
+
+
 Goblinroom = game.new_location(
 "Goblin Room"
+
+
 Coldroom = game.new_location(
 "Cold Room"
+
+
 Mineexit = game.new_location(
 "Mine Exit"
                     
