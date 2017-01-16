@@ -72,8 +72,6 @@ shack = game.new_location(
 porch = game.new_location(
 "Porch",
 """You are on a porch""")
-
-
  
 
 #WW game connections
@@ -93,7 +91,35 @@ game.new_connection("blacktoptoroom4", blacktop, room4 [IN, EAST], [OUT, WEST])
 
 game.new_connection("playgroundtoporch", playground, porch [IN, WEST], [OUT, WEST])
 
-game.new_connection
+game.new_connection("playgroundtofoodforest",playground, foodforest [IN, WEST], [OUT, EAST])
+
+game.new_connection("parkinglottofoodforest",parkinglot, foodforest [IN, NORTH_EAST], [OUT,SOUTH], [OUT,SOUTH_WEST])
+
+game.new_connection("foodforesttooffice" , foodforest, office [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("playgroundtooffice", playground, office [IN, NORTH_EAST], [OUT, SOUTH_WEST])
+
+game.new_connection("officetospplyroom", office, sppulyroom, [IN, UP], [OUT, DOWN])
+
+game.new_connection("spplyroomtoteacherroom", spplyroom, teacherroom,[IN, EAST], [OUT, WEST])
+
+game.new_connection("porchtobarn", porch, barn, [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("blacktoptobarn", blacktop, barn, [IN, WEST], [OUT, EAST])
+
+game.new_connection("
+
+game.new_connection("
+
+#maze game connections
+
+game.new_connection("
+
+game.new_connection("
+
+game.new_connection("
+
+game.new_connection("                    
 
 #WW game objets
 
