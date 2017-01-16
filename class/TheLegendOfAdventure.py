@@ -128,6 +128,86 @@ game.new_connection("
 #------------------
 #start of the MINE
 
+Central mine = game.new_location(
+"
+Mineroom1 = game.new_location(
+"
+Mineroom2 = game.new_location(
+"
+Mineroom3 = game.new_location(
+"
+Mineroom4 = game.new_location(
+"
+E/WTunnel = game.new_location(
+"
+Blockedroom = game.new_location(
+"
+Cyclopsroom = game.new_location(
+"
+breakroom = game.new_location(
+"
+Dimtunnel = game.new_location(
+" 
+Keyroom = game.new_location(
+"
+Storageroom4 = game.new_location(
+"
+Gemroom = game.new_location(
+"
+Mineshaftelevatorroom = game.new_location(
+"
+Warmroom = game.new_location(
+"
+Generatorroom = game.new_location(
+"
+Loudroom = game.new_location(
+"
+Maintenanceroom = game.new_location(
+"
+Goldroom = game.new_location(
+"
+Minecartroom = game.new_location(
+"
+Storageroom3 = game.new_location(
+"
+Mineshaft
+"Mine Shaft"
+smallroom = game.new_location(
+"small Room"    
+Glowingroom = game.new_location(
+"Glowing Room"
+Magiclanternroom = game.new_location(
+"Magic Lantern Room"
+Darkroom = game.new_location(
+"Dark Room"
+Storageroom2 = game.new_location(
+"Storage Room 2"
+Damproom = game.new_location(
+"Damp Room"
+Helmetroom = game.new_location(
+"Helmet Room"
+Widetunnel = game.new_location(
+"Wide tunnel" 
+Minekitchen = game.new_location(
+"Mine kitchen"
+Supplyroom = game.new_location(
+"Supply Room"
+Coatroom = game.new_location(
+"Coat Room" 
+Largeroom = game.new_location(
+"Large Room"
+Storageroom1 = game.new_location(
+"Storage Room 1
+Goblinroom = game.new_location(
+"Goblin Room"
+Coldroom = game.new_location(
+"Cold Room"
+Mineexit = game.new_location(
+"Mine Exit"
+                    
+
+                    
+
 
 player = game.new_player(driveway)
 
