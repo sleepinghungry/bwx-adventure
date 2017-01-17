@@ -253,7 +253,11 @@ class Base(object):
     print("Adding phrase to self:",self.name)
     if isinstance(f, BaseVerb):
       f.bind_to(self)
-    self.phrases[' '.join(phrase.split())] = (f, set(requirements))
+    if isinstance(phrase, (list, tuple)):
+      for phr in phrase:
+        self.phrases[' '.join(phr.split())] = (f, set(requirements))
+    else:
+      self.phrases[' '.join(phrase.split())] = (f, set(requirements))
 
   def get_phrase(self, phrase, things_present):
     phrase = phrase.strip()
