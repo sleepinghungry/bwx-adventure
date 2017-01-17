@@ -250,6 +250,7 @@ class Base(object):
       return None
 
   def add_phrase(self, phrase, f, requirements = []):
+    print("Adding phrase to self:",self.name)
     if isinstance(f, BaseVerb):
       f.bind_to(self)
     self.phrases[' '.join(phrase.split())] = (f, set(requirements))
@@ -307,9 +308,17 @@ class Say(BaseVerb):
   def __init__(self, string, name = ""):
     BaseVerb.__init__(self, None, name)
     self.string = string
+    self.index = 0
 
   def act(self, actor, noun, words):
-    self.bound_to.game.output(self.string, FEEDBACK)
+    result = self.string
+    if isinstance(self.string, (list, tuple)):
+      if self.index < len(self.string):
+        result = self.string[self.index]
+        self.index += 1
+      else:
+        result = self.string[-1]
+    self.bound_to.game.output(result, FEEDBACK)
     return True
 
 class SayOnNoun(Say):    
@@ -335,7 +344,6 @@ class Verb(BaseVerb):
   # explicitly pass in self to the unbound function
   def act(self, actor, noun, words):
     return self.function(self.bound_to, actor, noun, words)
-
 
 def list_prefix(a, b):  # is a a prefix of b
   if not a:
