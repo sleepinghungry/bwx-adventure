@@ -14,28 +14,27 @@ game = Game("The Legend of Adventure")
 
 driveway = game.new_location(
   "Driveway",
-  "You see a large field to the West and a parking lot to the North")
+  """You are standing at the top of a long driveway leading to what appears to be a school. The school must have once been a farm because one of the buildings is a big red barn. All of the other buildings are yellow. There is a parking lot to the north and a large feild to the west.""")
 
 parkinglot = game.new_location(
   "Parking Lot",
-"""You are in a parking lot. You see a playground to the North and a driveway to the South""")
+"""You are in the parking lot of the school. You see a playground to the North and a driveway to the South. To the northeast is a food forest.""")
 
 foodforest = game.new_location(
 "Food_Forest",
-"""You are in the food forest you can see garden beds all around you but the office to the 
-north""")
+"""You are in the school's food forest. There are lots of fruit trees and other edible foods growing here. There is a apple tree with a juicy looking apple hanging just within reach. There is a parking lot to the southeast and a playground to the west. To the north is a building which appears to be the schools office.""")
 
 office = game.new_location(
 "Office",
-"""You are in the office with a staircase leading upstairs""")
+"""You are in the office of the school. There is a teachers office room to the east and a stairway leading upwards.""")
 
 field = game.new_location(
 "Field",
-"""You are in a field with grass as tall as your knees and you can see a garden in the distance""")
+"""You are in a field with grass as tall as your knees. To the west is a driveway and there is a garden to the north.""")
 
 garden = game.new_location(
 "Garden",
-"""You are in a garden with an apple on the ground""")
+"""You are in the schools garden. There are garden beds all around and a pile of compost against one fence. There is a feild to the south.""")
 
 playground = game.new_location(
 "Playground",
