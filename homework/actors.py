@@ -33,9 +33,11 @@ game = Game("Willow Wind Adventure")
 #    1 add_phrase command that uses a Verb command instead of a Say command
 #
 #
-# Handy Dandy Reference:
+# Handy Dandy Step-by-Step Reference:
 #  https://github.com/sleepinghungry/wwif/wiki/Handy-Dandy-Guide-to-Actors
 #
+# Handy Dandy Quick Reference to Everything:
+#  https://github.com/sleepinghungry/wwif/wiki/Handy-Dandy-Quick-Reference-Guide-to-Everything
 #############################################################
 
 game = Game("Willow Wind Adventure Demo")

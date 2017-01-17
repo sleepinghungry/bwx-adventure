@@ -4,7 +4,7 @@
 import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from bwx_adventure.advent import Game, Location, Connection, Object, Animal, Robot, Pet, Player, Say, SayOnNoun, SayOnSelf, Food, Drink, Container, Die
+bfrom bwx_adventure.advent import Game, Location, Connection, Object, Actor, Animal, Robot, Pet, Player, Say, SayOnNoun, SayOnSelf, Verb, Food, Drink, Container, Die
 from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, OUT, FORWARD, BACK, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, NOT_DIRECTION
 
 game = Game("Willow Wind Adventure")
@@ -18,9 +18,11 @@ game = Game("Willow Wind Adventure")
 #          1 make required commands (key required to open office door)
 #          1 add phrase commands (bounce ball)
 #
-# Handy Dandy Reference:
+# Handy Dandy Step-by-Step Reference:
 #  https://github.com/sleepinghungry/wwif/wiki/Handy-Dandy-Guide-to-Items
 #
+# Handy Dandy Quick Reference to Everything:
+#  https://github.com/sleepinghungry/wwif/wiki/Handy-Dandy-Quick-Reference-Guide-to-Everything
 #############################################################
 
 # Locations
