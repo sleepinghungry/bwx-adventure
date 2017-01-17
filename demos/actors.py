@@ -41,16 +41,39 @@ key = upstairs.new_object("key","a worn out bronze key")
 office_door.make_requirement(key)
 
 # Actors
-
+principal = Actor("principal")
 # show creation of a single Actor
 
 # that stays in one location
+principal.set_location(office)
+principal.health = 3
 
 # Show adding a phrase to that actor.  (Same as adding a phrase to an item)
+principal.add_phrase("chat", Say("The principal looks severely injured. She says, \"I'm glad someone made it out alive.\""))
 
 # Show creation of actor/animal that moves to multiple locations.
+enemy = Animal("soldier of fortune")
+enemy.set_location(upstairs)
+enemy.set_allowed_locations([office, vestibule, upstairs])
 
-# Show adding phrase with Verb to actor (Advanced!)
+game.add_actor(enemy)
+game.add_actor(principal)
+
+
+# Show adding phrase with custom action
+def final_words(game, thing):
+  thing.health -= 1
+  if thing.health == 2:
+    game.output("The principal looks severly injured.  She says, \"I'm glad someone made it out alive.\"")
+  elif thing.health == 1:
+    game.output("The principal closes her eyes and struggles, blah, blah, blah")
+  elif thing.health == 0:
+    game.output("The principal's last words are: \"I should have been a game designer.\"")
+  elif thing.health < 0:
+    game.output("The principal has died.")
+
+
+enemy.add_phrase("fight", final_words)    
 
 # Fini
 
