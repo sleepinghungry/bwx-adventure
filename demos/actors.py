@@ -9,6 +9,7 @@
 #  - add_phrase() command with Verb()
 #  - Animal() command
 #  - set_allowed_locations() command
+#  - don't forget the game.add_actor commands
 
 import os
 import sys

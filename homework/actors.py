@@ -12,7 +12,7 @@ game = Game("Willow Wind Adventure")
 #############################################################
 # HOMEWORK STARTS HERE
 #
-# 1. Add an Actor to the game and attached a special phrase using:
+# 1. Add an Actor to the game and attach a special phrase using:
 #    1 Actor command
 #    1 set_location command
 #    1 add_phrase command
@@ -29,8 +29,8 @@ game = Game("Willow Wind Adventure")
 #    1 add_actor command
 #
 # Optional (Advanced): Add a custom action to the character using
-#    1 def custom_action() definition
-#    1 add_phrase plus Verb command
+#    1 def custom_action definition
+#    1 add_phrase command that uses a Verb command instead of a Say command
 #
 #
 # Handy Dandy Reference:
