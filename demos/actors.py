@@ -42,24 +42,15 @@ office_door.make_requirement(key)
 
 # Actors
 
-# show creation of a single Actor that stays in one location Actor()
+# show creation of a single Actor
 
-
-
+# that stays in one location
 
 # Show adding a phrase to that actor.  (Same as adding a phrase to an item)
 
+# Show creation of actor/animal that moves to multiple locations.
 
-
-
-# Show adding adding phrase with Verb to actor.
-
-
-
-
-# Show creation of actor that moves to multiple locations.
-
-
+# Show adding phrase with Verb to actor (Advanced!)
 
 # Fini
 
