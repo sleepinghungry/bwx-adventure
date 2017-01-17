@@ -3,6 +3,7 @@
 #
 import os
 import sys
+import random
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from bwx_adventure.advent import *
 from bwx_adventure.advent import Game, Location, Connection, Object, Animal, Robot, Pet, Player
@@ -45,6 +46,7 @@ wooden_door = game.new_connection("Wooden Door", corridor, courtyard, [IN, WEST]
 grate = game.new_connection("Grate", courtyard, sewer, NOT_DIRECTION, [OUT, EAST])
 
 player = game.new_player(dungeon)
+player.health = 3
 
 guard = Actor("guard")
 guard.set_location(dungeon)
@@ -53,7 +55,7 @@ guard.set_allowed_locations([dungeon])
 
 torch = Object("torch", "a recently lit torch")
 torch = corridor.new_object("torch", "a recently lit torch")
-
+written_parchment
 dagger = Object("dwarven dagger", "a polished dwarven dagger")
 key_chain = Object("key chain", "a rusty ring of old keys")
 cell_door.make_requirement (key_chain)
@@ -76,15 +78,22 @@ grate.add_phrase('move grate', move_grate, [])
 sharp_bone = dungeon.new_object("sharp bone", "a sharp bone lies in the corner to the left of you")
 
 def kill_guard(game, thing):
-  if not "sharp bone" in game.player.inventory:
-    game.output("You try to attack the guard with your bare hands, but he wacks you with the bunt of his blade.")
-    player.terminate()
-  else:
-    game.output("You stab the guard from behind at the base of his neck, and he drops to the ground dead. The guard had a key chain, a dwarven dagger, and a written parchment, they could be useful.")
+  if "sharp bone" in game.player.inventory:
+    if random.random() > 0.6:
+      # player has bone and failed to kill guard
+      game.output("You try to kill the guard but you miss.")
+      player.health -= 1
+    else:
+      # player has bone and successfully killed guard
+      game.output("You stab the guard from behind at the base of his neck, and he drops to the ground dead. The guard had a key chain, a dwarven dagger, and a written parchment, they could be useful.")
 
-    guard.terminate()
-    guard.act_drop1(player,"key chain","The guard dropped a key chain.")
-    guard.act_drop1(player,"dwarven dagger","The guard dropped a dwarven dagger")
+      guard.terminate()
+      guard.act_drop1(player,"key chain","The guard dropped a key chain.")
+      guard.act_drop1(player,"dwarven dagger","The guard dropped a dwarven dagger")
+  else:
+    # player does not have sharp bone and ends up getting killed.
+      game.output("You try to attack the guard with your bare hands, but he wacks you with the bunt of his blade.")
+
 guard.add_phrase("kill guard", kill_guard)
 
 #unset locations
