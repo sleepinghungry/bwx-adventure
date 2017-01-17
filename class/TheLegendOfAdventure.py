@@ -278,6 +278,11 @@ Coldroom = game.new_location(
 
 Mineexit = game.new_location(
 "Mine Exit"
+
+
+#mine connections
+
+
                     
 
                     
@@ -286,8 +291,6 @@ Mineexit = game.new_location(
 player = game.new_player(driveway)
 
 game.run()
-
-
 
 
 
