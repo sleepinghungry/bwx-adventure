@@ -282,10 +282,15 @@ Mineexit = game.new_location(
 
 #mine connections
 
+game.new_connection("centralminetomineroom1",centralmine, mineroom1, [IN, SOUTH],[OUT, NORTH]) 
 
-                    
+game.new_connection("centralminetomineroom2",centralmine, mineroom2, [IN, NORTH],[OUT, SOUTH])
 
-                    
+game.new_connection("centralminetomineroom3",centralmine, mineroom3, [IN, WEST],[OUT, EAST])
+
+game.new_connection("centralminetomineroom4",centralmine, mineroom4, [IN, EAST],[OUT, WEST])
+
+game.new_connection("
 
 
 player = game.new_player(driveway)
