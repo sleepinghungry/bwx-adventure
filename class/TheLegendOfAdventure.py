@@ -169,10 +169,19 @@ sciencetest = room4.new_object("Science Test", "an uncompleated science test")
 dullpencil = supplyroom.new_object("Unsharpened Pencil", "an unsharpened pencil lying on the floor")
 
 #pencil sharpener
+def sharpen_pencil(game,thing):
+  thing.name = "Sharpened Pencil"
+  thing.description = ""
+  
+teacheroffice.add_phrase("sharpen pencil", sharpen_pencil, dullpencil)
+#teacheroffice.add_phrase("sharpen pencil", sharpen_pencil, [dullpencil])
 
 
-#end of willow Wind
-#------------------
+
+
+                        
+#end of willow Wind     
+#------------------     
 #start of the MINE
 
 central mine = game.new_location(
@@ -187,23 +196,23 @@ mineroom1 = game.new_location(
 
 mineroom2 = game.new_location(
 "Mine Room 2"
-"""You are in a dirty, dimly lit mining room. You see exits to the""")
+"""You are in a dirty, dimly lit mining room with exits to the Northeast and Northwest""")
 
 mineroom3 = game.new_location(
 "mine Room 3"
-"""You are in a dirty, dimly lit mining room with exits to the Northeast and Northwest""")
+"""You are in a dirty, dimly lit mining room. You see exits to the Northwest and Southwest.""")
 
 mineroom4 = game.new_location(
 "Mine Room 4"
-"""enter""")
+"""A hungry troll looms over you. You see a pickaxe in the corner.""")
 
 ewTunnel = game.new_location(
 "East West Tunnel"
-"""enter""")
+"""You are in a tunnel. There are exits to the East and West.""")
 
 blockedroom = game.new_location(
 "Blocked Room"
-"""enter""")
+"""""")
 
 cyclopsroom = game.new_location(
 "Cyclops Room
@@ -219,7 +228,7 @@ dimtunnel = game.new_location(
 
 keyroom = game.new_location(
 "Key Room"
-"""enter""")
+"""There is a dimly glowing key siting on a pedestal.""")
 
 storageroom4 = game.new_location(
 "Storage Room"
@@ -235,7 +244,7 @@ mineshaftelevatorroom = game.new_location(
 
 warmroom = game.new_location(
 "Warm room"
-"""enter""")
+"""""")
 
 generatorroom = game.new_location(
 "Generator Room"
@@ -259,7 +268,7 @@ minecartroom = game.new_location(
 
 storageroom3 = game.new_location(
 "Storage Room 3"
-"""enter""")
+"""""")
 
 mineshaft = game.new_location(
 "Mine Shaft"
@@ -346,7 +355,7 @@ puddleroom = game.new_location(
 "puddleroom"
 """enter""")
 
-giantbat = game.new_location(
+batroom = game.new_location(
 "giant bat room"
 """enter""")
 
@@ -464,33 +473,32 @@ game.new_connection("puddleroomtominntorroom", puddleroom, minnatarroom, [SOUTH_
 
 game.new_connection("minnatarroomtonarowglowinpassage", minnatarroom, narrowglowingpassage, [NORTH_EAST], [SOUTH_WEST])
 
-game.new_connection("narrowglowingpassagetomagicsheildroom", narrowglowingpassage, magicshelidroom, [NORTH], [SOUTH])
+game.new_connection("batroom", narrowglowingpassage, magicshelidroom, [NORTH], [SOUTH])
 
 
 
 
 #mine monsters
                     
-goblin = Animal("Goblin")
+goblin = Animal("goblin")
   enemy.set_location(goblinroom)
   enemy.set_allowed_locations([goblinroom])                    
 
-crazyminer = Animal("Crazy Miner")
+crazyminer = Animal("crazy Miner")
   enemy.setlocation_(genoratorroom)
   enemy.set_allowed_locations([genoratorroom])
                     
-troll = Animal("Troll")
+troll = Animal("troll")
   enemy.set_location(trollroom)
   enemy.set_allowed_locations([trollroom])
                     
-cyclops = Animal("Cyclops")
+cyclops = Animal("cyclops")
  enemy.set_location(cyclopsroom)
  enemy.set_allowed_locations([cyclopsroom])                   
              
-                   
-
-
-
+giantbat = Animal("bat")
+  enemy.set_location(batroom)
+  enemy.set_allowed_locations([batroom])
 
 #mine keys
 
@@ -501,7 +509,7 @@ cyclopsroom.make_requirement(pick_axekey)
 
 #mine items
 
-                    
+                   
 
 
 
@@ -510,7 +518,8 @@ cyclopsroom.make_requirement(pick_axekey)
 #mine genaroter
 
 
-minegenerator = generatorroom.new_object("generator"," 
+
+
 
 
 
@@ -524,4 +533,3 @@ minegenerator = generatorroom.new_object("generator","
 player = game.new_player(driveway)
 
 game.run()
-
