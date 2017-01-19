@@ -58,39 +58,45 @@ ghoul_room = game.new_location(
 
 cave = game.new_location(
   "Cave",
-  "A well lit cave with a vicious looking bat holding an ancient spell tome. You may be able to scare off the bat with garlic.")
+  "A well lit cave with a vicious looking bat holding an ancient spell tome, you may be able to scare off the bat with garlic.")
 
 dead_end = game.new_location(
   "Dead End",
-  "A dark caved in passage.")
+  "A dark caved in passage, it seems to be a dead end.")
 
 #Connections
 cell_door = game.new_connection("Cell Door", dungeon, corridor, [IN, NORTH], [OUT, SOUTH])
-
 pathway = game.new_connection("Pathway", courtyard, cliff, [IN, NORTH], [OUT, SOUTH])
-
 narrow_pathway = game.new_connection("Narrow Pathway", cliff, tower, [IN, NORTHEAST], [OUT, SOUTHWEST])
-
 wooden_door = game.new_connection("Wooden Door", corridor, courtyard, [IN, WEST], [OUT, EAST])
-
 grate = game.new_connection("Grate", courtyard, sewer, NOT_DIRECTION, [OUT, EAST])
 
 player = game.new_player(dungeon)
 player.health = 3
 
+#Creatures
 guard = Actor("guard")
 guard.set_location(dungeon)
 guard.set_allowed_locations([dungeon])
+
+ghoul = Actor("ghoul")
+ghoul.set_location(ghoul_room)
+ghoul.set_allowed_locations([ghoul_room])
 
 #Items
 torch = Object("torch", "a recently lit torch")
 torch = corridor.new_object("torch", "a recently lit torch")
 dagger = Object("dwarven dagger", "a polished dwarven dagger")
 arcane_keystone = Object("arcane keystone", "a arcane keystone")
-cell_door.make_requirement (arcane_keystone)
+dirty_rag = Object("dirty rag", "a wet tattered dirty rag")
+spell_tome = Object("spell tome", "")
 guard.add_to_inventory(arcane_keystone)
 guard.add_to_inventory(dagger)
 
+#Misc
+cave_entrance.make_requirement (dirty_rag)
+
+#Custom Commands
 cell_door.set_flag('locked')
 def unlock_door(game, thing):
   game.output("you stick one of the keys on the key chain into the key hole and it clicks open")
@@ -105,7 +111,12 @@ def move_grate(game, thing):
 grate.add_phrase('move grate', move_grate, [])
 
 sharp_bone = dungeon.new_object("sharp bone", "a sharp bone lies in the corner to the left of you")
+def enchant_rag(game, thing):
+ thing.name = "Enchanted Fabric"
+ thing.description = "A shiny sparkling piece of fabric, looks like it has magical properties."
 
+dirty_rag.add_phrase("enchant rag", enchant_rag)
+  
 def kill_guard(game, thing):
   if "sharp bone" in game.player.inventory:
     if random.random() > 0.5 :
@@ -124,9 +135,6 @@ def kill_guard(game, thing):
       game.output("You try to attack the guard with your bare hands, but he wacks you with the bunt of his blade.")
 
 guard.add_phrase("kill guard", kill_guard)
-
-#unset locations
-
 
 game.run()
 
