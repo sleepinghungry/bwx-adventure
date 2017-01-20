@@ -17,8 +17,13 @@ player = game.new_player (topofdriveway)
 
 #Willowwind game part
 
+<<<<<<< HEAD
 topofdriveway = game.new_location(
   "Top Of Driveway",
+=======
+driveway = game.new_location(
+  "Driveway",
+>>>>>>> origin/master
   """You are standing at the top of a long driveway leading to what appears to be a school. The school must have once been a farm because one of the buildings is a big red barn. All of the other buildings are yellow. There is a parking lot to the north and a large feild to the west.""")
 
 parkinglot = game.new_location(
