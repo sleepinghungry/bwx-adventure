@@ -10,16 +10,13 @@ from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT
 
 game = Game("Lky day")
 
-sidewalk = game.new_location(
-  "Eye of a snow storm",
-  "it is 
+sidewalk = game.new_location("willow wind", "this is a school")                                                                       
 
-vestibule = game.new_locatione
-  "Eye of a sand storm ",
-it is vary sandy.
+under_water =  game.new_location("under water land","the under water land is under water.") 
+portal =game.new_location("portal"," you can go to a difrent place")
 
-
-game.new_connection("Glass Door", sidewalk, vestibule, [IN, EAST], [OUT, WEST])
+game.new_connection("Glass Door", sidewalk, under_water, [IN, EAST], [OUT, WEST])
+game.new_connection("Entrance", under_water, portal, [IN, EAST], [OUT, WEST])
 
 player = game.new_player(sidewalk)
 
