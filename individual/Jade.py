@@ -10,24 +10,42 @@ from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT
 
 game = Game("Lucky Day")
 
-out_of_village = game.new_location(
-  "out_of_Village",
-  "Out of the village Nothing is happening!'")
-key = sidewalk.new_object("key", "a small tarnished key")
+forest = game.new_location(
+  "forest",
+  "you are in a dark forest with a axe that looks like it was form a lumber jack!'")
+axe = axe.new_object("axe", "a double bladed axe")
 
-village  = game.new_location(
-  "Village",
-"in the village it is loud ")
+willow_wind  = game.new_location(
+  "willow wind",
+"you see lots of kids here ")
 
-house  = game.new_location(
-  "house",
-"It is dark.")
+creek side = game.new_location(
+  "creek side",
+"there is wierd creek here.")
 
-game.new_connection("Glass Door", out_of_village, village, [IN, EAST], [OUT, WEST])
+fantasy forest = game.new_location(
+ "fantasy forest"
+"there are lots of fantastic monsters here!")
 
-player = game.new_player(out_of_village)
+fantasy forest = game.new_location(
+  "fantasy forest"
+  "it is dark here")
 
-key = sidewalk.new_object("key", "a small tarnished key")
+fantasy forest = game.new_location(
+  "fantasy forest"
+  "a dark forest, there is a key here"
+
+ice world = game.new_location(
+   "brrr"
+
+ice world =game.new_location( 
+"ice world"
+
+game.new_connection("glass door", forest, willow wind,fantasy forest, [IN, EAST], [OUT, WEST])
+
+player = game.new_player(forest)
+
+key = fantasy forest.new_object("key", "a small tarnished key")
 
 office_door.set_flag('locked')
 def pick_lock(game, thing):
@@ -35,10 +53,9 @@ def pick_lock(game, thing):
   thing.unset_flag('locked')
 office_door.add_phrase('pick lock', pick_lock, [hairpin])
 
-def flip_coin(game, thing):
+def (game, thing):
   if random.random() > 0.5:
     game.output("The coin shows heads.");
-  else:
-    game.output("The coin shows tails.");
-
+  else:.");game.output("The coin shows tails
 game.run()
+    
