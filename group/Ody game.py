@@ -22,7 +22,7 @@ dungeon = game.new_location(
 
 corridor = game.new_location(
   "Corridor",
-  "You are in long corridor, there is a large open wooden door to the west.")
+  "You are in a long corridor, there is a large open wooden door to the west.")
 
 tower = game.new_location(
   "Shadowy Tower",
@@ -44,7 +44,7 @@ tunnel_2 = game.new_location(
   "Tunnel",
   "A poorly lit sewer passage, the noise becomes more clear.")
 
-tnnnel_3  = game.new_location(
+tunnel_3  = game.new_location(
   "Tunnel",
   "A poorly lit sewer passage, the noise beccomes louder.")
   
@@ -70,6 +70,14 @@ pathway = game.new_connection("Pathway", courtyard, cliff, [IN, NORTH], [OUT, SO
 narrow_pathway = game.new_connection("Narrow Pathway", cliff, tower, [IN, NORTHEAST], [OUT, SOUTHWEST])
 wooden_door = game.new_connection("Wooden Door", corridor, courtyard, [IN, WEST], [OUT, EAST])
 grate = game.new_connection("Grate", courtyard, sewer, NOT_DIRECTION, [OUT, EAST])
+cave_entrance = game.new_connection("Cave Entrance", sewer, cave, [NORTHWEST], [OUT, SOUTHEAST])
+cave_entrance = game.new_connection("Cave Entrance", tunnel_1, cave, [IN, NORTH], [OUT, SOUTH])
+sewer_tunnel_1 = game.new_connection("Tunnel", sewer, tunnel_1, [IN, NORTH], [OUT, SOUTH])
+sewer_tunnel_2 = game.new_connection("Tunnel", tunnel_1, tunnel_2, [IN, SOUTH], [OUT, NORTH])
+sewer_tunnel_3 = game.new_connection("Tunnel", tunnel_2, tunnel_3, [IN, EAST], [OUT, EAST])
+cave_end = game.new_connection("Tunnel", cave, dead_end, [IN, NORTH], [OUT, SOUTH])
+sewer_tunnel_4 = game.new_connection("Tunnel", tunnel_3, tunnel_4, [IN, WEST], [OUT, SOUTH])
+ghoul_room_entrance = game.new_connection("Ghoul Room Entrance", tunnel_4, ghoul_room, [IN, WEST], [OUT, DOWN])
 
 player = game.new_player(dungeon)
 player.health = 3
@@ -99,7 +107,7 @@ cave_entrance.make_requirement (dirty_rag)
 #Custom Commands
 cell_door.set_flag('locked')
 def unlock_door(game, thing):
-  game.output("you stick one of the keys on the key chain into the key hole and it clicks open")
+  game.output("you point the keystone at the lock and it clicks open.")
   thing.unset_flag('locked')
 cell_door.add_phrase('unlock door', unlock_door, [arcane_keystone])
 
@@ -116,7 +124,13 @@ def enchant_rag(game, thing):
  thing.description = "A shiny sparkling piece of fabric, looks like it has magical properties."
 
 dirty_rag.add_phrase("enchant rag", enchant_rag)
-  
+
+def enchant_rag(game, thing):
+ thing.name = "Enchanted Fabric"
+ thing.description = "A shiny sparkling piece of fabric, looks like it has magical properties."
+
+dirty_rag.add_phrase("enchant dirty rag", enchant_rag)
+
 def kill_guard(game, thing):
   if "sharp bone" in game.player.inventory:
     if random.random() > 0.5 :
