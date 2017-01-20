@@ -1,4 +1,3 @@
-
 #!/user/bin/python
 # vim: et sw=2 ts=2 sts=2
 #
@@ -11,19 +10,12 @@ from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT
 
 game = Game("The Legend of Adventure")
 
-player = game.new_player (topofdriveway)
-
 
 
 #Willowwind game part
 
-<<<<<<< HEAD
 topofdriveway = game.new_location(
   "Top Of Driveway",
-=======
-driveway = game.new_location(
-  "Driveway",
->>>>>>> origin/master
   """You are standing at the top of a long driveway leading to what appears to be a school. The school must have once been a farm because one of the buildings is a big red barn. All of the other buildings are yellow. There is a parking lot to the north and a large feild to the west.""")
 
 parkinglot = game.new_location(
@@ -103,9 +95,11 @@ creek = game.new_location(
   """You are standing by a clear creek. You can hear the chirping of birds and trickle of running water. The forest is to the southwest.""")
   
 teacheroffice = game.new_location(
-  "Teacher's Office"
-  """You are in a room in which each of the teachers have a desk. There is a bathroom in the corner and a pencil sharpener on the wall. The office is to the east."""
-
+  "Teacher's Office",
+  """You are in a room in which each of the teachers have a desk. There is a bathroom in the corner and a pencil sharpener on the wall. The office is to the east.""")
+supplyroom = game.new_location(
+  "Supply Room",
+  """You are in an upstairs supply room. There are boxes os school supplies around the edge of the room. The only exit is down the way you came from.""")
 #WW game connections
 game.new_connection("Driveway", topofdriveway, parkinglot, [NORTH], [SOUTH])
 
@@ -115,7 +109,7 @@ game.new_connection("Path To Garden", field, garden, [NORTH], [SOUTH])
 
 game.new_connection("Gravel Walkway", parkinglot, playground, [NORTH], [SOUTH])
 
-game.new_connection("Food Forest Gate", parkinglot, foodforest, [NORTH_EAST] [SOUTH_WEST,SOUTH])
+game.new_connection("Food Forest Gate", parkinglot, foodforest, [SOUTH_WEST], [SOUTH])
 
 game.new_connection("Path To Playground",foodforest, playground, [WEST], [EAST])
 
@@ -161,7 +155,7 @@ game.new_connection("Forest Path", forest4, forest3, [NORTH, WEST], [NORTH])
 
 game.new_connection("Forest Path", forest3, creek, [NORTH_EAST], [SOUTH_WEST])
 
-game.new_connection("Forest Path", forest2, blacktop, [SOUTH], [NOT_DIRECTION]
+game.new_connection("Forest Path", forest2, blacktop, [SOUTH], [NOT_DIRECTION])
 
 #WW game objets
 
@@ -177,6 +171,8 @@ dullpencil = supplyroom.new_object("Unsharpened Pencil", "an unsharpened pencil 
 def sharpen_pencil(game,thing):
   thing.name = "Sharpened Pencil"
   thing.description = ""
+  game.player.inventory["Sharpened Pencil"] = thing
+  del(game.player.inventory["Unsharpened Pencil"])
   
 teacheroffice.add_phrase("sharpen pencil", sharpen_pencil, dullpencil)
 #teacheroffice.add_phrase("sharpen pencil", sharpen_pencil, [dullpencil])
@@ -189,171 +185,163 @@ teacheroffice.add_phrase("sharpen pencil", sharpen_pencil, dullpencil)
 #------------------     
 #start of the MINE
 
-central mine = game.new_location(
+centralmine = game.new_location(
 "Central Mine",
 """You fall onto the ground and the portal shuts behind you. You get up and look around. You see exits in all four directions and an old rusty sword in a corner.""")
-
 
 mineroom1 = game.new_location(
 "Mine Room 1",
 """You are in a dirty, dimly lit mining room. There are exits to the East and Southwest.""")
 
-
 mineroom2 = game.new_location(
-"Mine Room 2"
+"Mine Room 2",
 """You are in a dirty, dimly lit mining room with exits to the Northeast and Northwest""")
 
 mineroom3 = game.new_location(
-"mine Room 3"
+"mine Room 3",
 """You are in a dirty, dimly lit mining room. You see exits to the Northwest and Southwest.""")
 
 mineroom4 = game.new_location(
-"Mine Room 4"
+"Mine Room 4",
 """A hungry troll looms over you. You see a pickaxe in the corner.""")
 
 ewTunnel = game.new_location(
-"East West Tunnel"
-"""You are in a tunnel. There are exits to the East and West.""")
+"East West Tunnel",
+"""You are in dimly light a tunnel. There are exits to the East and West.""")
 
 blockedroom = game.new_location(
-"Blocked Room"
-"""""")
+"Blocked Room",
+"""You see a blockade to the South of the room. There is an exit to the West.""")
 
 cyclopsroom = game.new_location(
-"Cyclops Room
-"""enter""")
+"Cyclops Room",
+"""A giant cyclops looms over you with it's single giant eye. There are exits to the Southeast, South, and Southwest.""")
 
 breakroom = game.new_location(
-"Break Room"
+"Break Room",
 """enter""")
 
 dimtunnel = game.new_location(
-"Dim Tunnel"
+"Dim Tunnel",
 """enter""")
 
 keyroom = game.new_location(
-"Key Room"
+"Key Room",
 """There is a dimly glowing key siting on a pedestal.""")
 
 storageroom4 = game.new_location(
-"Storage Room"
+"Storage Room",
 """enter""")
 
 gemroom = game.new_location(
-"Gem Room"
+"Gem Room",
 """enter""")
 
 mineshaftelevatorroom = game.new_location(
-"Mineshaft Elavator Room" 
+"Mineshaft Elavator Room",
 """enter""")
-
-warmroom = game.new_location(
-"Warm room"
-"""""")
 
 generatorroom = game.new_location(
-"Generator Room"
-"""enter""")
-
-loudroom = game.new_location(
-"Loud room"
-"""enter""")
+"Generator Room",
+"""thair is large machrrinry infront of you and a large red button with a sighn that says /"atharized persons only"/""")
 
 maintenanceroom = game.new_location(
-"Maintace Room"
+"Maintace Room",
 """enter""")
 
 goldroom = game.new_location(
-"Gold Room" 
+"Gold Room", 
 """enter""")
 
 minecartroom = game.new_location(
-"Minecart Room"
-"""enter""")
+"Minecart Room",
+"""There is a mine cart here not much to look at.""")
 
 storageroom3 = game.new_location(
-"Storage Room 3"
+"Storage Room 3",
 """""")
 
 mineshaft = game.new_location(
-"Mine Shaft"
-"""enter""")
+"Mine Shaft",
+"""You are in a mine shaft, it's kind of dirty""")
 
 smallroom = game.new_location(
-"small Room"    
-"""enter""")
+"small Room",    
+"""You are in a small room, there,s not much space to move around.""")
 
 glowingroom = game.new_location(
-"Glowing Room"
+"Glowing Room",
 """enter""")
 
 magiclanternroom = game.new_location(
-"Magic Lantern Room"
+"Magic Lantern Room",
 """enter""")
 
 darkroom = game.new_location(
-"Dark Room"
-"""enter""")
+"Dark Room",
+"""""")
 
 storageroom2 = game.new_location(
-"Storage Room 2"
+"Storage Room 2",
 """enter""")
 
 damproom = game.new_location(
-"Damp Room"
-"""enter""")
+"Damp Room",
+"""""")
 
 helmetroom = game.new_location(
-"Helmet Room"
+"Helmet Room",
 """enter""")
 
 widetunnel = game.new_location(
-"Wide tunnel" 
+"Wide tunnel",  
 """enter""")
 
 minekitchen = game.new_location(
-"Mine kitchen"
+"Mine kitchen",
 """enter""")
 
 supplyroom = game.new_location(
-"Supply Room"
+"Supply Room",
 """enter""")
 
 coatroom = game.new_location(
-"Coat Room" 
+"Coat Room", 
 """enter""")
 
 largeroom = game.new_location(
-"Large Room"
+"Large Room",
 """enter""")
 
 storageroom1 = game.new_location(
-"Storage Room 1
+"Storage Room 1",
 """enter""")
 
 goblinroom = game.new_location(
-"Goblin Room"
+"Goblin Room",
 """enter""")
 
 coldroom = game.new_location(
-"Cold Room"
+"Cold Room",
 """enter""")
 
 mineexit = game.new_location(
-"Mine Exit"
+"Mine Exit",
 """enter""")
 
 #lowerminelocations
 #----------------
  
-lowerelavatormineshaft = game.new_location( 
-
-emptyroom1 = game.new_location( 
+lowerelavatormineshaft = game.new_location(
 "emptyroom"
 """enter""")
 
+emptyroom1 = game.new_location( 
+"emptyroom",
+"""enter""")
+
 emptyroom2 = game.new_location(
-"emptyroom"
+"emptyroom",
 """enter""")
 
 puddleroom = game.new_location(
@@ -405,17 +393,13 @@ game.new_connection("cyclopsroomtokeyroom", cyclopseroom, keyroom, [SOUTH_EAST],
 
 game.new_connection("mineroom1tomineshaftelavator", mineroom1, mineshaftelavatorroom, [SOUTH_WEST], [NORTH_EAST])
 
-game.new_connection("elavatorroomtowarmroom", mineshaftelavatorroom, warmroom, [SOUTH], [NORTH])
+game.new_connection("elavatorroomtowarmroom", mineshaftelavatorroom, cold_or_warm_room, [SOUTH], [NORTH])
 
-game.new_connection("warmroomtogeneratorroom", warmroom, generatorroom, [SOUTH_WEST], [NORTH_EAST])
-
-game.new_connection("generatorroomtoloudroom", generatorroom, loudroom, [NORTH], [SOUTH])
-
-game.new_connection("loudroomtomantaceroom", loudroom, matenaceroom, [SOUTH_WEST], [NORTH_EAST])
+game.new_connection("loudroomtomantaceroom", loud_or_quite_room, matenaceroom, [SOUTH_WEST], [NORTH_EAST])
 
 game.new_connection("matenaceroomtogoldroom", matenaceroom, goldroom, [NORTH], [SOUTH])
 
-game.new_connection("loudroomtonwtunnel", loudroom, nstunnel, [SOUTH], [NORTH])
+game.new_connection("loudroomtonwtunnel", loud_or_quite_room, nstunnel, [SOUTH], [NORTH])
 
 game.new_connection("nstunneltomineroom3", nstunnel, mineroom3, [EAST], [WEST])
 
@@ -455,7 +439,7 @@ game.new_connection("helmetroomtosupplyroom", helmetroom, supply, [EAST], [WEST]
 
 game.new_connection("supplyroomtocoatroom", supplyroom, coatroom, [EAST], [WEST])
 
-game.new_connection("supplyroomtolargeroom", supplyroom, largeroom, [NORTH], [SOUTH]
+game.new_connection("supplyroomtolargeroom", supplyroom, largeroom, [NORTH], [SOUTH])
 
 game.new_connection("storageroom2tofoblin", storageroom2, goblinroom, [SOUTH], [NORTH])
 
@@ -464,6 +448,7 @@ game.new_connection("largeroomtogoblinroom", largeroom, goblinroom, [NORTH_EAST]
 game.new_connection("goblinroomtocoldroom", goblinroom, coldroom, [EAST], [WEST])
 
 game.new_connection("ccoldroomtomineexit", coldroom, mineexit, [SOUTH], [NORTH])
+
 
 #lowermineconnections
 #------------
@@ -486,24 +471,24 @@ game.new_connection("batroom", narrowglowingpassage, magicshelidroom, [NORTH], [
 #mine monsters
                     
 goblin = Animal("goblin")
-  enemy.set_location(goblinroom)
-  enemy.set_allowed_locations([goblinroom])                    
+enemy.set_location(goblinroom)
+enemy.set_allowed_locations([goblinroom])                    
 
 crazyminer = Animal("crazy Miner")
-  enemy.setlocation_(genoratorroom)
-  enemy.set_allowed_locations([genoratorroom])
+enemy.setlocation_(genoratorroom)
+enemy.set_allowed_locations([genoratorroom])
                     
 troll = Animal("troll")
-  enemy.set_location(trollroom)
-  enemy.set_allowed_locations([trollroom])
+enemy.set_location(trollroom)
+enemy.set_allowed_locations([trollroom])
                     
 cyclops = Animal("cyclops")
- enemy.set_location(cyclopsroom)
- enemy.set_allowed_locations([cyclopsroom])                   
+enemy.set_location(cyclopsroom)
+enemy.set_allowed_locations([cyclopsroom])                   
              
 giantbat = Animal("bat")
-  enemy.set_location(batroom)
-  enemy.set_allowed_locations([batroom])
+enemy.set_location(batroom)
+enemy.set_allowed_locations([batroom])
 
 #mine keys
 
@@ -514,13 +499,50 @@ cyclopsroom.make_requirement(pick_axekey)
 
 #mine items
 
-                   
 
+ 
 
 
 
 
 #mine genaroter
+redbutton = false
+
+def push_red_button(game.thing):
+  if button_on:
+    
+    cold_or_warm_room = game.new_location(
+"Warm room",
+"""You are in a warm room.""")
+
+ loud_or_quite_room = game.new_location(
+"Loud room",
+"""You are in a loud room.""")
+
+    
+    
+    redbutton = true
+    
+else:
+  
+  cold_or_warm_room = game.new_location(
+"Cold Room",
+"""You are in a eri cold room""")
+
+loud_or_quite_room = game.new_location(
+"Quite room",
+"""You are in a Quite room.""")
+
+  
+  
+  redbutton = false
+  
+  
+#mine genreator room to war/cold room (connection) and mine genreator room to loud/noise room (connection)
+  
+game.new_connection("warmroomtogeneratorroom", warm_or_cold_room, generatorroom, [SOUTH_WEST], [NORTH_EAST])
+
+game.new_connection("generatorroomtoloudroom", generatorroom, loud_or_quite_room, [NORTH], [SOUTH])
 
 
 
@@ -533,8 +555,6 @@ cyclopsroom.make_requirement(pick_axekey)
 
 
 
-
-
-player = game.new_player(driveway)
+player = game.new_player(topofdriveway)
 
 game.run()
