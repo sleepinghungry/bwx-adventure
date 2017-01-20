@@ -1,3 +1,4 @@
+
 #!/user/bin/python
 # vim: et sw=2 ts=2 sts=2
 #
@@ -533,6 +534,7 @@ loud_or_quite_room = game.new_location(
 "Quite room",
 """You are in a Quite room.""")
 
+
   
   
   redbutton = false
@@ -543,10 +545,6 @@ loud_or_quite_room = game.new_location(
 game.new_connection("warmroomtogeneratorroom", warm_or_cold_room, generatorroom, [SOUTH_WEST], [NORTH_EAST])
 
 game.new_connection("generatorroomtoloudroom", generatorroom, loud_or_quite_room, [NORTH], [SOUTH])
-
-
-
-
 
 
 
