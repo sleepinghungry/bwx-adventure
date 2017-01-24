@@ -20,7 +20,7 @@ Death = game.new_location(
 
 
 
-game.new_connection("Glass Door", Local_1, Death, [IN, EAST], [OUT, WEST])
+game.new_connection("Glass Door", Local_1, Death, [IN, ], [OUT, WEST])
 
 
 
