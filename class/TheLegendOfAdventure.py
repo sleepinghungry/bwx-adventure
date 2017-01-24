@@ -1,5 +1,3 @@
-
-
 #!/user/bin/python
 # vim: et sw=2 ts=2 sts=2
 #
@@ -15,7 +13,7 @@ import threading
 
 def worker():
     """"""
-    print 'worker'
+    print 'worker'  
     
       import time
         def countdown(n) :
@@ -23,7 +21,7 @@ def worker():
            print (n)
              n = n - 1
              if n ==0:
-            print('you hear very light foot steps, you feel a chunk of your flesh getting riped of your bone on your leg. You try to move but you can not. You lose your vision. You can no longer think. ')
+            print("you hear very light foot steps, you feel a chunk of your flesh getting riped of your bone on your leg. You try to move but you can not. You lose your vision. You can no longer think. ")
           countdown(30)
 return
 
@@ -231,7 +229,7 @@ def do_math_test(game,thing):
       game.player.inventory["math test"].description = "a compleated math test"
       game.output("The test is now finished.")
   
-pencil.add_phrase("do math test", do_math_test, [dullpencil])
+dullpencil.add_phrase("do math test", do_math_test, [mathtest])
                         
 
 def do_science_test(game,thing):
@@ -244,7 +242,7 @@ def do_science_test(game,thing):
       game.player.inventory["science test"].description = "a compleated science test"
       game.output("The test is now finished.")
   
-pencil.add_phrase("do science test", do_science_test, [dullpencil])
+dullpencil.add_phrase("do science test", do_science_test, [sciencetest])
 
 
 def do_LA_test(game,thing):
@@ -257,24 +255,23 @@ def do_LA_test(game,thing):
       game.player.inventory["science test"].description = "a compleated LA test"
       game.output("The test is now finished.")
   
-pencil.add_phrase("do LA science", do_LA_test, [dullpencil])
+dullpencil.add_phrase("do LA science", do_LA_test, [LAtest])
 
-pencil.add_phrase("complete math test", do_math_test, [dullpencil]
+dullpencil.add_phrase("complete math test", do_math_test, [mathteset])
 
-pencil.add_phrase("complete science test", do_science_test, [dullpencil]
+dullpencil.add_phrase("complete science test", do_science_test, [sciencetest])
 
-pencil.add_phrase("complete LA test", do_LA_test, [dullpencil]
+dullpencil.add_phrase("complete LA test", do_LA_test, [LAtest])
 
-pencil.add_phrase("fill out math test", do_math_test, [dullpencil]
+dullpencil.add_phrase("fill out math test", do_math_test, [mathtest])
 
-pencil.add_phrase("fill out science test", do_science_test, [dullpencil]
+dullpencil.add_phrase("fill out science test", do_science_test, [sciencetest])
 
-pencil.add_phrase("fill out LA test", do_LA_test, [dullpencil]
+dullpencil.add_phrase("fill out LA test", do_LA_test, [LAtest])
 
 #end of willow Wind     
 #------------------     
 #start of the MINE
-
 centralmine = game.new_location(
 "Central Mine",
 """You fall onto the ground and the portal shuts behind you. You get up and look around. You see exits in all four directions and an old rusty sword in a corner.""")
@@ -409,7 +406,7 @@ largeroom = game.new_location(
 
 storageroom1 = game.new_location(
 "Storage Room 1",
-"""You are in a room that looks like  it was holding something but not any more.""")
+"""You are in a room that looks like it was holding something but not any more.""")
 
 goblinroom = game.new_location(
 "Goblin Room",
@@ -417,7 +414,7 @@ goblinroom = game.new_location(
 
 coldroom = game.new_location(
 "Cold Room",
-"""enter""")
+"""You are in a cold room, there is an exit to the south.""")
 
 mineexit = game.new_location(
 "Mine Exit",
@@ -431,7 +428,7 @@ ravinebridge = game.new_location(
 #----------------
  
 lowerelevatormineshaft = game.new_location(
-"emptyroom",
+"lowerelevatormineshaft",
 """You are in an empty room, empty nothing nada zilch zero nutin.""")
 
 emptyroom1 = game.new_location( 
@@ -456,7 +453,7 @@ narrowglowingpassage = game.new_location(
 
 emptyroom3 = game.new_location(
 "emptyroom",
-"""enter""")
+"""Even more empty.""")
 
 
 
@@ -475,7 +472,7 @@ game.new_connection("mineroom1toewtunnel", mineroom1, ewtunnel, [EAST], [WEST])
 
 game.new_connection("ewtunneltoblockedroom", ewtunnel, blockedroom, [EAST], [WEST])
 
-game.new_connection("blockedroomtocyclopsroom", blockedroom, cyclops  room, [SOUTH], [NORTH])
+game.new_connection("blockedroomtocyclopsroom", blockedroom, cyclopsroom, [SOUTH], [NORTH])
 
 game.new_connection("cyclopsroomtodimtunnel", cyclopsroom, dimtunnel, [SOUTH], [NORTH])
 
@@ -555,13 +552,13 @@ game.new_connection("elavatorshafttoemtyroom", lowerelevatormineshaft, emptyroom
 
 game.new_connection("emptyroomtoemptyroom", emptyroom1, emptyroom2, [WEST], [EAST])
 
-game.new_connection("lowerelevatormineshafttopuddleroom", lowerelevtormineshaft, puddleroom, [EAST], [WEST])
+game.new_connection("lowerelevatormineshafttopuddleroom", lowerelevatormineshaft, puddleroom, [EAST], [WEST])
 
 game.new_connection("puddleroomtobatroom", puddleroom, batroom, [SOUTH_EAST], [NORTH_WEST])
 
 game.new_connection("batroomroomtonarowglowinpassage", batroom, narrowglowingpassage, [NORTH_EAST], [SOUTH_WEST])
 
-game.new_connection("batroom", narrowglowingpassage, magicshelidroom, [NORTH], [SOUTH])
+game.new_connection("batroom", narrowglowingpassage, emptyroom3, [NORTH], [SOUTH])
 
 
 
