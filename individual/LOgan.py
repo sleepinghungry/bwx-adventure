@@ -41,7 +41,7 @@ game = Game("Brightworks Adventure")
 
 sidewalk = game.new_location(
   "DYLANS BRAIN",
-  "U ARE DEAD BOI, GET A LIFE!DORA IS COMING FOR YOU!!!COWBELLY WILL EAT YOU.RUN BEFORE ITS TOO LATE ")
+  "Welcome to sesame street, this is a dark and dangerous place, leave before it is too late. *YOU SEE A SIGN IS SAY'S 'EXIT HEAD EAST' ")
 
 # In this case we are calling a function which is part of our game.
 # This is indicated by using a '.' after 'game' to get the function from 'game'.
@@ -66,7 +66,7 @@ sidewalk = game.new_location(
 
 vestibule = game.new_location(
   "CANADA",
-""" YOUR SO DUMB. YOU ARE TRAPPED BOI, NOW YOU WILL GET EATEN ALIVE BY UNICORNS BOI""")
+""" *evil laughter* YOU ARE TRAPPED BOI, NOW YOU WILL GET EATEN ALIVE BY UNICORNS ,RUN TO THE NORTH! """)
 
 # Again, make sure to end with """ and to close the parenthesis) and use a comma between
 # the short and long description.
@@ -75,7 +75,7 @@ vestibule = game.new_location(
 # a connection using a function.  This time we are not going to to assign it to a variable,
 # but don't worry that it will simply vanish, instead it will be stored in the game.
 
-game.new_connection("POO BRICK", sidewalk, vestibule, EAST, WEST)
+game.new_connection("POO BRICK WALL", sidewalk, vestibule, EAST, WEST)
 
 
 # The 'new_connection' function takes a name for the connection, two locations and
@@ -97,4 +97,11 @@ apocalypse = game.new_location(
     " apocalypse",
     """ whew, your not in dylan's brain. Trust me it's safer here. OH NO HE'S COMING...JOHN CENA! """)
 game.new_connection("HORSE'S BUTT", vestibule, apocalypse, NORTH, SOUTH)
+
+THE CLUB = game.new_location(
+  "THE CLUB"
+  """ *YOU ENTER A WELL LIT WINDOWLESS ROOM* you see a guide across the room""")
+game.new_connection("pot of gold", apocalypse, THE CLUB, UP, DOWN)
+  
+
 game.run() 
