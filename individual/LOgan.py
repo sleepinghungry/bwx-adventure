@@ -101,7 +101,7 @@ game.new_connection("HORSE'S BUTT", vestibule, apocalypse, NORTH, SOUTH)
 THE CLUB = game.new_location(
   "THE CLUB"
   """ *YOU ENTER A WELL LIT WINDOWLESS ROOM* you see a guide across the room""")
-game.new_connection("pot of gold", apocalypse, THE CLUB, UP, DOWN)
+game.new_connection("pot of gold", apocalypse, the club, UP, DOWN)
   
 
 game.run() 
