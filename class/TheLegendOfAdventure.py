@@ -1,3 +1,5 @@
+
+
 #!/user/bin/python
 # vim: et sw=2 ts=2 sts=2
 #
@@ -24,14 +26,12 @@ def worker():
             print("you hear very light foot steps, you feel a chunk of your flesh getting riped of your bone on your leg. You try to move but you can not. You lose your vision. You can no longer think. ")
           countdown(30)
 return
-
+s
 threads = []
 for i in range(5):
     t = threading.Thread (target=worker)
     threads.append (t)
     t.start ()
-
-
 
 
 game = Game("The Legend of Adventure")
@@ -151,11 +151,11 @@ game.new_connection("Stairs", office, supplyroom, [UP], [DOWN])
 
 game.new_connection("Door To Room 5", porch, room5, [WEST], [EAST])
 
-game.new_connection("Door To Room 6", porch, room6, [NORTH_WEST], [SOUTH_EAST])
+game.new_connection("Door To Room 6", porch, room6, [NORTH_WEST], [SOUTH_EAST, EAST])
 
 game.new_connection("Door To Room 4", blacktop, room4, [EAST], [WEST])
 
-game.new_connection("Computer Lab Door", blacktop, computerlab, [NORTH_EAST], [SOUTH_WEST])
+game.new_connection("Computer Lab Door", blacktop, computerlab, [NORTH_EAST], [SOUTH_WEST, SOUTH])
 
 game.new_connection("Door From Office", office, teacheroffice, [EAST], [WEST])
 
@@ -169,17 +169,17 @@ game.new_connection("Forest Path", blacktop, forest1, [NORTH], [NOT_DIRECTION])
 
 game.new_connection("Forest Path", forest1, forest2, [WEST], [EAST])
 
-game.new_connection("Forest Path", forest1, forest3, [NORTH],[NOT_DIRECTION])
+game.new_connection("Forest Path", forest1, forest3, [NORTH], [NOT_DIRECTION])
 
-game.new_connection("Forest Path", forest1, forest4, [WEST],[EAST])                 
+game.new_connection("Forest Path", forest1, forest4, [WEST], [EAST])                 
 
-game.new_connection("Foest Path", forest2, shack, [NORTH_WEST], [SOUTH_WEST])
+game.new_connection("Foest Path", forest2, shack, [NORTH_WEST], [SOUTH_EAST, SOUTH])
 
-game.new_connection("Forest Path", forest2, forest3, [EAST,NORTH], [NOT_DIRECTION])
+game.new_connection("Forest Path", forest2, forest3, [EAST, NORTH], [NOT_DIRECTION])
 
 game.new_connection("Forest Path", forest4, forest3, [NORTH, WEST], [NORTH])
 
-game.new_connection("Forest Path", forest3, creek, [NORTH_EAST], [SOUTH_WEST])
+game.new_connection("Forest Path", forest3, creek, [NORTH_EAST], [SOUTH, SOUTH_WEST])
 
 game.new_connection("Forest Path", forest2, blacktop, [SOUTH], [NOT_DIRECTION])
 
@@ -191,6 +191,7 @@ game.new_connection("Forest Path", forest4, forest4, [SOUTH], [SOUTH])
 
 game.new_connection("Forest Path", forest4, forest4, [EAST], [EAST])
 
+game.new_connection("Forest Path", forest3, forest3, [SOUTH], [SOUTH])
 
 #WW game objets
 
@@ -198,16 +199,16 @@ asphalt = blacktop.new_object("asphalt chunk", "a chunk of asphalt broken from t
 
 key = barn.new_object("key", "a small brass key")
 
-mathtest = room5.new_object("LA test", "an uncompleated LA test.")
+LAtest = room5.new_object("LA test", "an uncompleted LA test.")
 
-sciencetest = room4.new_object("science test", "an uncompleated science test")
+sciencetest = room4.new_object("science test", "an uncompleted science test")
 
 dullpencil = supplyroom.new_object("pencil", "an unsharpened pencil lying on the floor")
 
-file_cabinet = room6.add_object(Container("File Cabinet","an old file cabinet"))
+file_cabinet = room6.add_object(Container("file cabinet","an old file cabinet"))
 
-file_cabinet.new_object("math test",
-                          """an uncompleated math test""")
+mathtest = file_cabinet.new_object("math test",
+ """an uncompleted math test""")
 file_cabinet.make_requirement(key)
 
 
@@ -216,7 +217,7 @@ file_cabinet.make_requirement(key)
 def sharpen_pencil(game,thing):
   thing.description = "a sharpened pencil"
   game.output("You sharpen the pencil. It is now ready to use.")
-teacheroffice.add_phrase("sharpen pencil", sharpen_pencil, [dullpencil])
+dullpencil.add_phrase("sharpen pencil", sharpen_pencil, [teacheroffice])
 
 #test command
 def do_math_test(game,thing):
@@ -252,12 +253,12 @@ def do_LA_test(game,thing):
     if thing.description == "an unsharpened pencil lying on the floor":
       game.output("Your pencil is not sharp.")
     else:
-      game.player.inventory["science test"].description = "a compleated LA test"
+      game.player.inventory["LA test "].description = "a compleated LA test"
       game.output("The test is now finished.")
   
-dullpencil.add_phrase("do LA science", do_LA_test, [LAtest])
+dullpencil.add_phrase("do LA test", do_LA_test, [LAtest])
 
-dullpencil.add_phrase("complete math test", do_math_test, [mathteset])
+dullpencil.add_phrase("complete math test", do_math_test, [mathtest])
 
 dullpencil.add_phrase("complete science test", do_science_test, [sciencetest])
 
@@ -269,9 +270,28 @@ dullpencil.add_phrase("fill out science test", do_science_test, [sciencetest])
 
 dullpencil.add_phrase("fill out LA test", do_LA_test, [LAtest])
 
+
+#test grading machine
+test_counter = 0
+def grade_math_test(game, thing):
+  if game.player.inventory["math test"].description == "a compleated math test":
+    game.output ("Good job you aced the test 100%!")
+    
+
+
+
+
+
+
+
+player = game.new_player(topofdriveway)
+
+game.run()
+
 #end of willow Wind     
 #------------------     
 #start of the MINE
+
 centralmine = game.new_location(
 "Central Mine",
 """You fall onto the ground and the portal shuts behind you. You get up and look around. You see exits in all four directions and an old rusty sword in a corner.""")
@@ -314,7 +334,7 @@ breakroom = game.new_location(
 
 dimtunnel = game.new_location(
 "Dim Tunnel",
-"""You are in a dim tunnel. There are exits to the North, and South West.""")
+"""You are in a dim tunnel. There are exits to the North and South West.""")
 
 keyroom = game.new_location(
 "Key Room",
@@ -370,7 +390,7 @@ magiclanternroom = game.new_location(
 
 darkroom = game.new_location(
 "Dark Room",
-"""""")
+"""It's dark. you cant see much """)
 
 storageroom2 = game.new_location(
 "Storage Room 2",
@@ -585,7 +605,28 @@ giantbat = Animal("bat")
 crazyminer.set_location(batroom)
 crazyminer.set_allowed_locations([batroom])
 
-#mine keys
+import threading
+
+def worker():
+    """"""
+    print 'worker'  
+    
+      import time
+        def countdown(n) :
+          while n > 0:
+           print (n)
+             n = n - 1
+             if n ==0:
+            print("you hear very light foot steps, you feel a chunk of your flesh getting riped of your bone on your leg. You try to move but you can not. You lose your vision. You can no longer think. ")
+          countdown(30)
+return
+s
+threads = []
+for i in range(5):
+    t = threading.Thread (target=worker)
+    threads.append (t)
+    t.start ()
+    
 
 pickaxekey = cyclopsroom.new_object("pick-axe", "the handle has splinters and the head looks very old and rusty")
 cyclopsroom.make_requirement(pick_axekey)
@@ -600,7 +641,7 @@ cyclopsroom.make_requirement(pick_axekey)
 
 
 
-#mine genaroter
+#mine generator
 redbutton = false
 
 def push_red_button(game.thing):
@@ -630,13 +671,14 @@ loud_or_quite_room = game.new_location(
 redbutton = false
 
 
-
-
-
   
+#mine genreator room to warm/cold room (connection) and mine genreator room to loud/noise room (connection)
   
+game.new_connection("warmroomtogeneratorroom", warm_or_cold_room, generatorroom, [SOUTH_WEST], [NORTH_EAST])
 
-  
+game.new_connection("generatorroomtoloudroom", generatorroom, loud_or_quite_room, [NORTH], [SOUTH])
+
+
   
 #mine genreator room to warm/cold room (connection) and mine genreator room to loud/noise room (connection)
   
@@ -651,6 +693,369 @@ game.new_connection("generatorroomtoloudroom", generatorroom, loud_or_quite_room
 
 
 
+
+
+#outside of mine (mountans)
+
+mineentrance = game.new_location(
+"Mine Entrance",
+"""enter""")
+
+minepath = game.new_location(
+"Mine Path",
+"""enter""")
+
+centralminetrails = game.new_location(
+"Central Mine Trails",
+"""enter""")
+
+well = game.new_location(
+"Well",
+"""enter""")
+
+rockytrail1 = game.new_location(
+"Rocky Trail",
+"""enter""")
+
+rockytrail2 = game.new_location(
+"Rocky Trail",
+"""enter""")
+
+cliff = game.new_location(
+"Mountain Cliff",
+"""the rocks are crumbling under your feet, you can see bones at the bottom of the long drop.""")
+
+mt.man_shack_porch = game.new_location(
+"shack porch",
+"""puffs of smoke come out of the chimny and a light flickers from inside""")
+
+mt.man_shack = game.new_location(
+"Mountan Man Shack ",
+"""You enter the, the shack an old man is sitting in a deer skined chair, with a yedi looking head hanging behind him. the eyes of the yedi apeer to be glowing""")
+
+bunchoftrees = game.new_location(
+"Bunch of Trees",
+"""you are in a bunch of trees. thair is one tall tree with low branches""")
+
+talltree = game.new_location(
+"tall Tree",
+"""You are in a tree. you look around and can see a small town next to """)
+
+hole  = game.new_location(
+"enter",
+"""enter""")
+
+bench = game.new_location(
+"enter",
+"""enter""")
+
+frontofouthouse = game.new_location(
+"outhouse",
+"""enter""")
+
+rearofouthouse = game.new_location(
+"rear of outhouse",
+"""it semells like $#!%. there is an old keg barrle""")
+
+bush0 = game.new_location(
+"bush",
+"""a bush""")
+
+bush1 = game.new_location(
+"bush",
+"""a bush""")
+
+bush2 = game.new_location(
+"bush",
+"""a bush""")
+
+bush3 = game.new_location(
+"bush",
+"""a bush""")
+
+bush4 = game.new_location(
+"bush",
+"""a bush""")
+
+bush5 = game.new_location(
+"bush",
+"""a bush""")
+
+bush6 = game.new_location(
+"bush",
+"""a bush""")
+
+bush7 = game.new_location(
+"bush",
+"""a bush""")
+
+bushman bush = game.new_location(
+"enter",
+"""you are in avery large bush with a short looking nom""")
+
+toolshack = game.new_location(
+"enter",
+"""thair is a stick of dynomight on the ground, and a bottle of gas""")
+
+cobblestone path = game.new_location(
+"enter",
+"""enter""")
+
+cattrail = game.new_location(
+"enter",
+"""enter""")
+
+iceytrail = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+cave = game.new_location(
+"enter",
+"""enter""")
+
+
+
+
+#montain connection
+
+game.new_connection("mineentrancetominepath", mineentrance, minepath, [EAST], [WEST])
+
+game.new_connection("minepathtocentralminetrails", minepath, centralminetrails, [NORTH], [SOUTH])
+
+game.new_connection("centralminetrailstorockytrail1", centralminetrails, rockytrail1, [WEST], [EAST])
+
+game.new_connection("crockytrail1torockytrail2", rockytrail1, rockytrail2, [WEST], [EAST])
+
+game.new_connection("rockytrail2tocliff", rockytrail2, cliff, [NORTH], [SOUTH])
+
+game.new_connection("centralminetrailstotoolshack", centralminetrails, toolshack, [NORTH], [SOUTH])
+
+game.new_connection("cattrailtoiceytrail", cattrail, iceytrail, [EAST], [WEST])
+
+game.new_connection("iceytrailtoiceycave", iceytrail, iceycave, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+
+blockedpath = game.new_location(
+"enter",
+"""enter""")
+
+#behind blocked path
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+enter = game.new_location(
+"enter",
+"""enter""")
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])
+
+game.new_connection("enter", enter, enter, [enter], [enter])  
+
+#iceycave
+
+icethroneroom = game.new_location(
+"enter",
+"""enter""")
+
+
+
+#iceman
+
+Ice Man = game.new_player(icethroneroom)
+
+#gosttown
+
+street = game.new_location(
+"street",
+"""you are in a street it heads on to the north an back to the south so no riding into the sunset for you""")
+
+
+holes = game.new_location(
+"holy street",
+"""the are a lot of holes in this part of the street ironically enough there is a church here to the west""")
+
+
+ church = game.new_location(
+"church",
+"""you are in a curch""")
+
+= game.new_location(
+" ",
+""" """)
+
+= game.new_location(
+" ",
+""" """) 
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """) 
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)  
+
+= game.new_location(
+" ",
+""" """)
 
 
 
