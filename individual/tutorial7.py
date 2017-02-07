@@ -16,12 +16,12 @@ from bwx_adventure.advent_devtools import *
 
 # We'll start out with our familiar brightworks entryway:
 
-game = Game("Brightworks Adventure")
+game = Game("Willow Of Death")
 
-sidewalk = game.new_location(
-  "Sidewalk",
-  "There is a large glass door to the east. The sign says 'Come In!'")
-
+porch = game.new_location(
+  "Porch",
+  "You are on a porch. It is raining. To the North is an office door, to the west is a ramp.")
+game.new_connection(open(
 vestibule = game.new_location(
   "Vestibule",
 """A small area at the bottom of a flight of stairs.
