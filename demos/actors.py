@@ -54,7 +54,7 @@ def final_words(game, thing):
   elif thing.health == 0:
     game.output("The principal's last words are: \"I should have been a game designer.\"")
   elif thing.health < 0:
-    game.output("The principal has died.")
+    game.output("The principal has died.") 
 
 
 principal.add_phrase("chat", final_words)
@@ -65,14 +65,6 @@ soldier.set_allowed_locations([office, vestibule, upstairs])
 
 game.add_actor(soldier)
 game.add_actor(principal)
-
-
-
-
-
-
-
-
 
 
 game.run()
