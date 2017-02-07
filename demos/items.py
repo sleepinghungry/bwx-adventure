@@ -26,6 +26,14 @@ front_door = game.new_connection("Front Door",front, vestibule, IN, OUT)
 office_door = game.new_connection("Office Door", vestibule, office, IN, OUT)
 stairs = game.new_connection("Upstairs", vestibule, upstairs, UP, DOWN)
 
+# Objects
+ball = front.new_object("red ball", "a bouncy red ball that looks really fun to play with")
+key = upstairs.new_object("key", "a small silver key")
+
+ball.add_phrase("bounce ball", Say("This is really really fun!"))
+
+office_door.make_requirement(key)
+
 # Player
 player = game.new_player(front)
 
