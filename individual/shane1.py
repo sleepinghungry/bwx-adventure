@@ -16,7 +16,7 @@ local_1 = game.new_location(
 
 Death = game.new_location(
   "Dark Alley",
-"""If you go west you will get eaten by the Hord.""")
+"""If you go South you will get eaten by the Hord.""")
 
 
 

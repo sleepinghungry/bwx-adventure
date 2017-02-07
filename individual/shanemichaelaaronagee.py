@@ -16,7 +16,10 @@ vestibule = game.new_location(
   "Vestibule",
 "This is a small area at the bottom of a flight of stairs. There is an office door to the west. You have an exit from where you came.")
 
-game.new_location(
+upstairs = game.new_location(
+    "Upstairs Hallway",
+"This is a hallway with a door to the east, And stairs going down.")
+
 office = game.new_location(
   "Office",
 """A nicely organized office.
@@ -26,16 +29,16 @@ game.new_connection("Vestibule Door", porch, vestibule, [IN, NORTH], [OUT, SOUTH
 
 game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 
-cat = Pet("cat")
-cat.set_location(sidewalk)
-cat.set_allowed_locations([sidewalk])
+dog = Pet("")
+dog.set_location(sidewalk)
+dog.set_allowed_locations([sidewalk])
 
 player = game.new_player(sidewalk)
 sidewalk.add_object(Drink("vial",
                           "a small vial of dark sinister looking liquid",
                           Die("choking violently and collapsing onto the floor..."),
                           Object("empty vial", "an empty vial with an acrid odor")))
-bear = Animal("sleeping bear")
+bear = Animal("")
 bear.set_location(vestibule)
 bear.set_allowed_locations([vestibule])
 game.add_actor(bear)
