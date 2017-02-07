@@ -1,13 +1,8 @@
-
 import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-
-from bwx_adventure.advent import *
-# for cloud9
-from bwx_adventure.advent import Game, Location, Connection, Object, Animal, Robot, Pet, Player
+from bwx_adventure.advent import Game, Location, Connection, Object, Animal, Robot, Pet, Player, Actor, Verb, Say, SayOnNoun, SayOnSelf, Container, Food, Drink, Die
 from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, OUT, FORWARD, BACK, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, NOT_DIRECTION
-
 
 
 game = Game("Brightworks Adventure")
@@ -51,5 +46,4 @@ game.new_connection("HORSE'S BUTT", vestibule,ELMOS_FORT , SOUTH, UP)
 unicorn_herd.add_phrase("chat",Say("*the unicorn herd stops next to you* THE FRONT UNICORN RELEASES AN EAR PEARCING SCREECH,VRUN TINY PREEY VE VILL HUNT JOU"))
 
 
-
-game.run() 
+game.run()
