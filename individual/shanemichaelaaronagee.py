@@ -31,11 +31,15 @@ game.new_connection("Vestibule Door", porch, vestibule, [IN, NORTH], [OUT, SOUTH
 
 game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 
-game.new_location("Family Room",
-                  "")
+family = game.new_location("Family Room",
+                           "This is a large room with a fridge and an open window to the north. There is also a door to the west.")
 
-dog = Pet("")
-dog.set_location(sidewalk)
+game.new_connection("Ramp", porch, 
+
+game.new_connection("Window", family, yard, [IN, NORTH], [OUT, SOUTH])
+
+dog = Pet("Dog Friend")
+dog.set_location()
 dog.set_allowed_locations([sidewalk])
 
 player = game.new_player(sidewalk)
