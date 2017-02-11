@@ -25,9 +25,14 @@ office = game.new_location(
 """A nicely organized office.
 There is a door to the north.""")
 
+game.new_connection("Stairs", vestibule, upstairs, [IN, UP], [OUT, DOWN])
+
 game.new_connection("Vestibule Door", porch, vestibule, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
+
+game.new_location("Family Room",
+                  "")
 
 dog = Pet("")
 dog.set_location(sidewalk)
@@ -35,14 +40,14 @@ dog.set_allowed_locations([sidewalk])
 
 player = game.new_player(sidewalk)
 sidewalk.add_object(Drink("vial",
-                          "a small vial of dark sinister looking liquid",
+                          "a small vial of bright green glowing liquid",
                           Die("choking violently and collapsing onto the floor..."),
                           Object("empty vial", "an empty vial with an acrid odor")))
-bear = Animal("")
-bear.set_location(vestibule)
-bear.set_allowed_locations([vestibule])
-game.add_actor(bear)
-bear.add_phrase("wake bear",
+zombie1 = Animal("zombie")
+zombie1.set_location(yard)
+zombie1.set_allowed_locations([yard])
+game.add_actor(zombie1)
+zombie1.add_phrase("wake bear",
                 Die("mauled viciously by the angry bear who then falls back asleep."))  
 dragon = Actor("tiny dragon")
 dragon.set_location(office)
