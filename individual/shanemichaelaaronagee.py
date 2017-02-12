@@ -7,7 +7,6 @@ from bwx_adventure.advent_devtools import *
 
 game = Game("Willow Of Death")
 
-
 porch = game.new_location(
   "Porch",
   "You are on a porch. It is raining. To the North is an office door, to the west is a ramp.")
@@ -34,7 +33,10 @@ game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 family = game.new_location("Family Room",
                            "This is a large room with a fridge and an open window to the north. There is also a door to the west.")
 
-game.new_connection("Ramp", porch, 
+step = game.new_location("Stepway",
+                         "This is a stepway with a door to the north and west.")
+
+game.new_connection("Ramp", porch, step, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Window", family, yard, [IN, NORTH], [OUT, SOUTH])
 
