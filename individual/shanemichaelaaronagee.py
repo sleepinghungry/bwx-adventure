@@ -33,6 +33,9 @@ game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 family = game.new_location("Family Room",
                            "This is a large room with a fridge and an open window to the north. There is also a door to the west.")
 
+yard = game.new_location("Yard"
+                         "This is a small yard with barbed wire all around. There is only an exit from were you came.")
+
 step = game.new_location("Stepway",
                          "This is a stepway with a door to the north and west.")
 
@@ -41,10 +44,11 @@ game.new_connection("Ramp", porch, step, [IN, WEST], [OUT, EAST])
 game.new_connection("Window", family, yard, [IN, NORTH], [OUT, SOUTH])
 
 dog = Pet("Dog Friend")
-dog.set_location()
-dog.set_allowed_locations([sidewalk])
+dog.set_location(porch)
+dog.set_allowed_locations([porch])
 
 player = game.new_player(sidewalk)
+
 sidewalk.add_object(Drink("vial",
                           "a small vial of bright green glowing liquid",
                           Die("choking violently and collapsing onto the floor..."),
@@ -53,13 +57,13 @@ zombie1 = Animal("zombie")
 zombie1.set_location(yard)
 zombie1.set_allowed_locations([yard])
 game.add_actor(zombie1)
-zombie1.add_phrase("wake bear",
-                Die("mauled viciously by the angry bear who then falls back asleep."))  
-dragon = Actor("tiny dragon")
-dragon.set_location(office)
+zombie1.add_phrase("fight zombie",
+                Die("you are unarmed and the zombies kills you."))  
+miniz = Actor("tiny zombie")
+miniz.set_location()
 game.add_actor(dragon)
 shield = vestibule.new_object("shield", "a shiny bronze sheild")
-sword = office.new_object("sword", "a rusty old sword")
+knife = office.new_object("knife", "a rusty old knife")
 def fight_dragon(game, thing):
   if not "shield" in game.player.inventory:
     game.output("You try to stab the dragon with the sword, but it flames you.")
@@ -79,5 +83,7 @@ test_script = Script("test",
 > look
 > end
 """)
+
 player.add_script(test_script)
+
 game.run()
