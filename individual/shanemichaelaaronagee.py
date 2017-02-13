@@ -67,10 +67,10 @@ knife = office.new_object("knife", "a rusty old knife")
 def fight_miniz(game, thing):
   if not "shield" in game.player.inventory:
     game.output("You try to stab the zombie with the knife, but it bites you.")
-    die("
+    die("You turn to the undead.")
   else:
     game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
-    miniz.terminate(miniz dies)
+    miniz.terminate()
 miniz.add_phrase("fight zombie", fight_zombie)
 game.add_actor(player)
 game.add_actor(cat)
