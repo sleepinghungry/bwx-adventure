@@ -61,17 +61,17 @@ zombie1.add_phrase("fight zombie",
                 Die("you are unarmed and the zombies kills you."))  
 miniz = Actor("tiny zombie")
 miniz.set_location()
-game.add_actor(dragon)
-shield = vestibule.new_object("shield", "a shiny bronze sheild")
+game.add_actor(miniz)
+shield = vestibule.new_object("shield", "a shiny pair of armor")
 knife = office.new_object("knife", "a rusty old knife")
-def fight_dragon(game, thing):
+def fight_miniz(game, thing):
   if not "shield" in game.player.inventory:
-    game.output("You try to stab the dragon with the sword, but it flames you.")
-    player.terminate()
+    game.output("You try to stab the zombie with the knife, but it bites you.")
+    die("
   else:
     game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
-    dragon.terminate()
-dragon.add_phrase("fight dragon", fight_dragon)
+    miniz.terminate(miniz dies)
+miniz.add_phrase("fight zombie", fight_zombie)
 game.add_actor(player)
 game.add_actor(cat)
 test_script = Script("test",
