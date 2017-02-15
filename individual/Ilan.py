@@ -72,34 +72,6 @@ barn = game.new_location(
 "Barn",
 """You are inside the large red barn. It has been converted into what looks like a space for dancing. In the corner of the room is a drinking fountain and a closet. The porch is to the south and the blacktop is to the east.""")
 
-shack = game.new_location(
-"Shack",
-"""You're in a shack. There is not much light but you can make out a small machene in the middle of the room. It looks like it is a test grading machene.""")
-
-porch = game.new_location(
-"Porch",
-"""You are on a porch in front of two classrooms. Room 5 is to the west, and room 6 is to the northwest.""")
- 
-forest1 = game.new_location(
-  "Forest",
-  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
-  
-forest2 = game.new_location(
-  "Forest",
-  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
-
-forest3 = game.new_location(
-  "Forest",
-  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
-  
-forest4 = game.new_location(
-  "Forest",
-  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
-  
-creek = game.new_location(
-  "Creek",
-  """You are standing by a clear creek. You can hear the chirping of birds and trickle of running water. The forest is to the southwest.""")
-  
 teacheroffice = game.new_location(
   "Teacher's Office",
   """You are in a room in which each of the teachers have a desk. There is a bathroom in the corner and a pencil sharpener on the wall. The office is to the east.""")
@@ -110,6 +82,11 @@ supplyroom = game.new_location(
 inportal = game.new_location(
   "Portal",
   """You are hovering in a swerling vortex of color. Direction and time are meaningless. You fell youself drifting through a trace like state. Ahead of you appears a black doorway and behind you a white one.""")
+
+whitedeath = game.new_connection(
+  "Death",
+  """You pass through the white door and suddenly feel your body fractured into miniscule particals. You are dead.""")
+
 
 #WW game connections
 game.new_connection("Driveway", topofdriveway, parkinglot, [NORTH], [SOUTH])
@@ -149,6 +126,33 @@ game.new_connection("Ramp", porch, barn, [NORTH], [SOUTH])
 game.new_connection("Cement", blacktop, barn, [WEST], [EAST])
 
 #willowwindforest/maze
+shack = game.new_location(
+"Shack",
+"""You're in a shack. There is not much light but you can make out a small machene in the middle of the room. It looks like it is a test grading machene.""")
+
+porch = game.new_location(
+"Porch",
+"""You are on a porch in front of two classrooms. Room 5 is to the west, and room 6 is to the northwest.""")
+ 
+forest1 = game.new_location(
+  "Forest",
+  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
+  
+forest2 = game.new_location(
+  "Forest",
+  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
+
+forest3 = game.new_location(
+  "Forest",
+  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
+  
+forest4 = game.new_location(
+  "Forest",
+  """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
+  
+creek = game.new_location(
+  "Creek",
+  """You are standing by a clear creek. You can hear the chirping of birds and trickle of running water. The forest is to the southwest.""")
 
 game.new_connection("Forest Path", blacktop, forest1, [NORTH], [NOT_DIRECTION])
 
@@ -305,6 +309,11 @@ mathtest.add_phrase("put math test in machine", grade_science_test, [shack])
 def open_portal(game, thing):
   game.new_connection("portal", shack, inportal, [NORTH], [NOT_DIRECTION],)
 
+
+
+if test_counter == 3:
+  open_portal
+  game.output("The grading machine makes a soft clicking sound and a swirling blue and purple portal appears at the north end of the shack. You feel a slight breeze pull your hair toward it.")
 
 player = game.new_player(topofdriveway)
 
