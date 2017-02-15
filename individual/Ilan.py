@@ -57,7 +57,7 @@ computerlab = game.new_location(
 
 room5 = game.new_location(
 "Room 5",
-"""You are in room 5. One of the schools classrooms. There are tables all around the room and a sofa in the back. On one of the tables is an uncompleated LA test. The porch is to east.""")
+"""You are in room 5. One of the schools classrooms. There are tables all around the room and a sofa in the back. On one of the tables is an uncompleted LA test. The porch is to east.""")
 
 room6 = game.new_location(
 "Room 6",
@@ -217,39 +217,39 @@ dullpencil.add_phrase("sharpen pencil", sharpen_pencil, [teacheroffice])
 
 #test command
 def do_math_test(game,thing):
-  if  game.player.inventory["math test"].description == "a compleated math test":
+  if  game.player.inventory["math test"].description == "a completed math test":
     game.output("The test is already done.")
   else:
     if thing.description == "an unsharpened pencil lying on the floor":
       game.output("Your pencil is not sharp.")
     else:
-      game.player.inventory["math test"].description = "a compleated math test"
+      game.player.inventory["math test"].description = "a completed math test"
       game.output("The test is now finished.")
   
 dullpencil.add_phrase("do math test", do_math_test, [mathtest])
                         
 
 def do_science_test(game,thing):
-  if  game.player.inventory["science test"].description == "a compleated science test":
+  if  game.player.inventory["science test"].description == "a completed science test":
     game.output("The test is already done")
   else:
     if thing.description == "an unsharpened pencil lying on the floor":
       game.output("Your pencil is not sharp.")
     else:
-      game.player.inventory["science test"].description = "a compleated science test"
+      game.player.inventory["science test"].description = "a completed science test"
       game.output("The test is now finished.")
   
 dullpencil.add_phrase("do science test", do_science_test, [sciencetest])
 
 
 def do_LA_test(game,thing):
-  if  game.player.inventory["LA test"].description == "a compleated LA test":
+  if  game.player.inventory["LA test"].description == "a completed LA test":
     game.output("The test is already done")
   else:
     if thing.description == "an unsharpened pencil lying on the floor":
       game.output("Your pencil is not sharp.")
     else:
-      game.player.inventory["LA test"].description = "a compleated LA test"
+      game.player.inventory["LA test"].description = "a completed LA test"
       game.output("The test is now finished.")
   
 dullpencil.add_phrase("do LA test", do_LA_test, [LAtest])
@@ -270,12 +270,12 @@ dullpencil.add_phrase("fill out LA test", do_LA_test, [LAtest])
 #test grading machine
 test_counter = 0
 def grade_math_test(game, thing):
-  if game.player.inventory["math test"].description == "a compleated math test":
+  if game.player.inventory["math test"].description == "a completed math test":
     game.output ("Good job you aced the test 100%!")
     del(game.player.inventory["math test"])
     test_counter += 1
   else:
-    game.output ("The grading machine spits out the test. It is not compleated.")
+    game.output ("The grading machine spits out the test. It is not completed.")
 
 mathtest.add_phrase("grade math test", grade_math_test, [shack])
 mathtest.add_phrase("put math test in machine", grade_math_test, [shack])
@@ -283,24 +283,24 @@ mathtest.add_phrase("put math test in machine", grade_math_test, [shack])
 
 
 def grade_LA_test(game, thing):
-  if game.player.inventory["LA test"].description == "a compleated LA test":
+  if game.player.inventory["LA test"].description == "a completed LA test":
     game.output ("Good job you aced the test 100%!")
     del(game.player.inventory["LA test"])
     test_counter += 1
   else:
-    game.output ("The grading machine spits out the test. It is not compleated.")
+    game.output ("The grading machine spits out the test. It is not completed.")
 
 mathtest.add_phrase("grade LA test", grade_LA_test, [shack])
 mathtest.add_phrase("put LA test in machine", grade_LA_test, [shack])
 
 
 def grade_science_test(game, thing):
-  if game.player.inventory["science test"].description == "a compleated science test":
+  if game.player.inventory["science test"].description == "a completed science test":
     game.output ("Good job you aced the test 100%!")
     del(game.player.inventory["science test"])
     test_counter += 1
   else:
-    game.output ("The grading machine spits out the test. It is not compleated.")
+    game.output ("The grading machine spits out the test. It is not completed.")
 
 mathtest.add_phrase("grade science test", grade_science_test, [shack])
 mathtest.add_phrase("put math test in machine", grade_science_test, [shack])
