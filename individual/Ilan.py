@@ -1,8 +1,3 @@
-
-
-
-
-
 #!/user/bin/python
 # vim: et sw=2 ts=2 sts=2
 #
@@ -87,6 +82,9 @@ whitedeath = game.new_connection(
   "Death",
   """You pass through the white door and suddenly feel your body fractured into miniscule particals. You are dead.""")
 
+centralmine = game.new_location(
+"Central Mine",
+"""You are in a dimly lit dusty room. It appears to be a room in a long abbandoned mine. There are exits in all four directions.""") 
 
 #WW game connections
 game.new_connection("Driveway", topofdriveway, parkinglot, [NORTH], [SOUTH])
@@ -124,6 +122,11 @@ game.new_connection("Door From Office", office, teacheroffice, [EAST], [WEST])
 game.new_connection("Ramp", porch, barn, [NORTH], [SOUTH])
 
 game.new_connection("Cement", blacktop, barn, [WEST], [EAST])
+
+game.new_connection("White Door", inportal, whitedeath, [OUT], [NOT_DIRECTION])
+
+game.new_connection("Black door", inportal, centralmine, [IN], [NOT_DIRECTION])
+
 
 #willowwindforest/maze
 shack = game.new_location(
