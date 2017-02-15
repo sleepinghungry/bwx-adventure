@@ -63,6 +63,10 @@ room6 = game.new_location(
 "Room 6",
 """You are in room 6. One of the school's classrooms. There are tables and a few desks around the room. On the side of the room is a large green sheet of fabric suspended on a frame. It appears to be a greenscreen. Against the wall is an old file cabinet. The porch is to the southeast.""")
 
+porch = game.new_location(
+"Porch",
+"""You are on a porch in front of two classrooms. Room 5 is to the west, and room 6 is to the northwest.""")
+
 barn = game.new_location(
 "Barn",
 """You are inside the large red barn. It has been converted into what looks like a space for dancing. In the corner of the room is a drinking fountain and a closet. The porch is to the south and the blacktop is to the east.""")
@@ -78,7 +82,7 @@ inportal = game.new_location(
   "Portal",
   """You are hovering in a swerling vortex of color. Direction and time are meaningless. You fell youself drifting through a trace like state. Ahead of you appears a black doorway and behind you a white one.""")
 
-whitedeath = game.new_connection(
+whitedeath = game.new_location(
   "Death",
   """You pass through the white door and suddenly feel your body fractured into miniscule particals. You are dead.""")
 
@@ -133,10 +137,6 @@ shack = game.new_location(
 "Shack",
 """You're in a shack. There is not much light but you can make out a small machene in the middle of the room. It looks like it is a test grading machene.""")
 
-porch = game.new_location(
-"Porch",
-"""You are on a porch in front of two classrooms. Room 5 is to the west, and room 6 is to the northwest.""")
- 
 forest1 = game.new_location(
   "Forest",
   """You are in a forest filled with trees and tall dry grass. It is hard to tell which way is which. Eveything looks the same.""")
