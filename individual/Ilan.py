@@ -305,3 +305,7 @@ mathtest.add_phrase("put math test in machine", grade_science_test, [shack])
 def open_portal(game, thing):
   game.new_connection("portal", shack, inportal, [NORTH], [NOT_DIRECTION],)
 
+
+player = game.new_player(topofdriveway)
+
+game.run()
