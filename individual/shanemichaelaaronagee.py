@@ -33,7 +33,7 @@ game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 family = game.new_location("Family Room",
                            "This is a large room with a fridge and an open window to the north. There is also a door to the west.")
 
-yard = game.new_location("Yard"
+yard = game.new_location("Yard",
                          "This is a small yard with barbed wire all around. There is only an exit from were you came.")
 
 step = game.new_location("Stepway",
@@ -47,9 +47,9 @@ dog = Pet("Dog Friend")
 dog.set_location(porch)
 dog.set_allowed_locations([porch])
 
-player = game.new_player(sidewalk)
+player = game.new_player(porch)
 
-sidewalk.add_object(Drink("vial",
+yard.add_object(Drink("vial",
                           "a small vial of bright green glowing liquid",
                           Die("choking violently and collapsing onto the floor..."),
                           Object("empty vial", "an empty vial with an acrid odor")))
@@ -58,9 +58,11 @@ zombie1.set_location(yard)
 zombie1.set_allowed_locations([yard])
 game.add_actor(zombie1)
 zombie1.add_phrase("fight zombie",
-                Die("you are unarmed and the zombies kills you."))  
+                   "you kill the zombie.")
+Die("you are unarmed and the zombies kills you.")  
+
 miniz = Actor("tiny zombie")
-miniz.set_location()
+miniz.set_location(family)
 game.add_actor(miniz)
 shield = vestibule.new_object("shield", "a shiny pair of armor")
 knife = office.new_object("knife", "a rusty old knife")
@@ -71,15 +73,15 @@ def fight_miniz(game, thing):
   else:
     game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
     miniz.terminate()
-miniz.add_phrase("fight zombie", fight_zombie)
+miniz.add_phrase("fight zombie", fight_miniz)
 game.add_actor(player)
-game.add_actor(cat)
+game.add_actor(dog)
 test_script = Script("test",
 """
 > look
 > take vial
-> give cat vial
-> tell cat drink vial
+> give dog vial
+> tell dog drink vial
 > look
 > end
 """)
