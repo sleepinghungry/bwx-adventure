@@ -1,6 +1,3 @@
-#!/user/bin/python
-# vim: et sw=2 ts=2 sts=2
-#
 import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
@@ -53,7 +50,7 @@ room4 = game.new_location(
 
 computerlab = game.new_location(
 "Computer lab",
-"""You are rein the computer lab of the school. There are computers on tables all around the room. The blacktop is to the southwest.""")
+"""You are in the computer lab of the school. There are computers on tables all around the room. The blacktop is to the southwest.""")
 
 room5 = game.new_location(
 "Room 5",
@@ -273,6 +270,7 @@ def grade_math_test(game, thing):
   if game.player.inventory["math test"].description == "a completed math test":
     game.output ("Good job you aced the test 100%!")
     del(game.player.inventory["math test"])
+    global test_counter
     test_counter += 1
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
@@ -286,24 +284,26 @@ def grade_LA_test(game, thing):
   if game.player.inventory["LA test"].description == "a completed LA test":
     game.output ("Good job you aced the test 100%!")
     del(game.player.inventory["LA test"])
+    global test_counter
     test_counter += 1
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
-mathtest.add_phrase("grade LA test", grade_LA_test, [shack])
-mathtest.add_phrase("put LA test in machine", grade_LA_test, [shack])
+LAtest.add_phrase("grade LA test", grade_LA_test, [shack])
+LAtest.add_phrase("put LA test in machine", grade_LA_test, [shack])
 
 
 def grade_science_test(game, thing):
   if game.player.inventory["science test"].description == "a completed science test":
     game.output ("Good job you aced the test 100%!")
     del(game.player.inventory["science test"])
+    global test_counter
     test_counter += 1
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
-mathtest.add_phrase("grade science test", grade_science_test, [shack])
-mathtest.add_phrase("put math test in machine", grade_science_test, [shack])
+sciencetest.add_phrase("grade science test", grade_science_test, [shack])
+sciencetest.add_phrase("put math test in machine", grade_science_test, [shack])
 
 
 
