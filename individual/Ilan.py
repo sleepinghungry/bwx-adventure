@@ -306,17 +306,19 @@ sciencetest.add_phrase("grade science test", grade_science_test, [shack])
 sciencetest.add_phrase("put math test in machine", grade_science_test, [shack])
 
 
-
-
-
 def open_portal(game, thing):
   game.new_connection("portal", shack, inportal, [NORTH], [NOT_DIRECTION],)
-
 
 
 if test_counter == 3:
   open_portal
   game.output("The grading machine makes a soft clicking sound and a swirling blue and purple portal appears at the north end of the shack. You feel a slight breeze pull your hair toward it.")
+
+
+
+
+
+
 
 player = game.new_player(topofdriveway)
 
