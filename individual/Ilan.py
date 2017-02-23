@@ -272,6 +272,7 @@ def grade_math_test(game, thing):
     del(game.player.inventory["math test"])
     global test_counter
     test_counter += 1
+    print(test_counter)
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
@@ -286,6 +287,7 @@ def grade_LA_test(game, thing):
     del(game.player.inventory["LA test"])
     global test_counter
     test_counter += 1
+    print(test_counter)
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
@@ -299,6 +301,7 @@ def grade_science_test(game, thing):
     del(game.player.inventory["science test"])
     global test_counter
     test_counter += 1
+    print(test_counter)
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
