@@ -272,7 +272,6 @@ def grade_math_test(game, thing):
     del(game.player.inventory["math test"])
     global test_counter
     test_counter += 1
-    print(test_counter)
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
@@ -287,7 +286,6 @@ def grade_LA_test(game, thing):
     del(game.player.inventory["LA test"])
     global test_counter
     test_counter += 1
-    print(test_counter)
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
@@ -301,7 +299,6 @@ def grade_science_test(game, thing):
     del(game.player.inventory["science test"])
     global test_counter
     test_counter += 1
-    print(test_counter)
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
 
@@ -309,12 +306,9 @@ sciencetest.add_phrase("grade science test", grade_science_test, [shack])
 sciencetest.add_phrase("put math test in machine", grade_science_test, [shack])
 
 
-def open_portal(game, thing):
-  game.new_connection("portal", shack, inportal, [NORTH], [NOT_DIRECTION],)
-
 
 if test_counter == 3:
-  open_portal
+  game.new_connection("enterportal", shack, inportal, [IN, NORTH], [NOT_DIRECTION])
   game.output("The grading machine makes a soft clicking sound and a swirling blue and purple portal appears at the north end of the shack. You feel a slight breeze pull your hair toward it.")
 
 
