@@ -9,4 +9,7 @@ print("So your favorite number is", first_number, "and your favorite color is", 
 
 first_place = input("Give me your favorite place.")
 
-print("So your favorite place is", first_place
+print("So your favorite place is", first_place, "your favorite color is", first_color, "and your favorite number is", first_number,)
+
+answer_to_all = input("Did i get that all corect?")
+

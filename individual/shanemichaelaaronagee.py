@@ -7,6 +7,8 @@ from bwx_adventure.advent_devtools import *
 
 game = Game("Willow Of Death")
 
+player = game.new_player("porch")
+
 porch = game.new_location(
   "Porch",
   "You are on a porch. It is raining. To the North is an office door, to the west is a ramp.")
@@ -24,30 +26,39 @@ office = game.new_location(
 """A nicely organized office.
 There is a door to the north.""")
 
+family = game.new_location(
+  "Family Room",
+  "This is a large room with a fridge and an open window to the north. There is also a door to the west.")
+
+yard = game.new_location(
+  "Yard"
+  "This is a small yard with barbed wire all around. There is only an exit from were you came.")
+
+step = game.new_location(
+  "Stepway",
+  "This is a stepway with a door to the north and west.")
+
+computer = game.new_location(
+  "Computer Lab",
+  "This is a small room with tables spread out in the room.")
+  
+
+
+game.new_connection("Vestibule Door Outside", step, vestibule, [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("Ramp", porch, step, [IN, WEST], [OUT, EAST])
+
+game.new_connection("Window", family, yard, [IN, NORTH], [OUT, SOUTH])
+
 game.new_connection("Stairs", vestibule, upstairs, [IN, UP], [OUT, DOWN])
 
 game.new_connection("Vestibule Door", porch, vestibule, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 
-family = game.new_location("Family Room",
-                           "This is a large room with a fridge and an open window to the north. There is also a door to the west.")
-
-yard = game.new_location("Yard",
-                         "This is a small yard with barbed wire all around. There is only an exit from were you came.")
-
-step = game.new_location("Stepway",
-                         "This is a stepway with a door to the north and west.")
-
-game.new_connection("Ramp", porch, step, [IN, WEST], [OUT, EAST])
-
-game.new_connection("Window", family, yard, [IN, NORTH], [OUT, SOUTH])
-
 dog = Pet("Dog Friend")
 dog.set_location(porch)
 dog.set_allowed_locations([porch])
-
-player = game.new_player(porch)
 
 yard.add_object(Drink("vial",
                           "a small vial of bright green glowing liquid",
