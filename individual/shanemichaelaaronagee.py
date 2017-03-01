@@ -49,6 +49,12 @@ lindas_room = game.new_location(
   "Room Four",
   "This is a skinny but tall room. There is a whitebourd here.")
 
+storage_room1 = game.new_location(
+  "Storage Room 1"
+  "This is a large room with boxes of school suplys.")
+
+game.new_connection("Storage1door", upstairs, storage_room1, [IN, EAST], [OUT, WEST])
+
 game.new_connection("Linda Lab", computer, lindas_room, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Lab Door", step, computer, [IN, WEST], [OUT, EAST])
