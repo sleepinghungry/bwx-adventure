@@ -90,7 +90,7 @@ game.add_actor(zombie1)
 zombie.add_phrase("fight zombie",
                    "you kill the zombie.")
 
-Die("The zombies kills you.")  
+Die("The zombies kills you.")
 
 miniz = Actor("tiny zombie")
 miniz.set_location(family)
