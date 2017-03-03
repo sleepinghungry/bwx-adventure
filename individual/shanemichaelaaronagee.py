@@ -93,13 +93,15 @@ game.add_actor(miniz)
 shield = vestibule.new_object("shield", "a shiny pair of armor")
 knife = office.new_object("knife", "a rusty old knife")
 def fight_miniz(game, thing):
-  if not "shield" in game.player.inventory:
-    game.output("You try to stab the zombie with the knife, but it bites you.")
-    game.output("You turn to the undead.")
-    player.terminate()
+    if not "shield" in game.player.inventory:
+game.output("You try to stab the zombie with the knife, but it bites you.")
+
+game.output("You turn to the undead.")
+
+player.terminate()
     else:
-    game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
-    miniz.terminate()
+game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
+miniz.terminate()
 miniz.add_phrase("fight zombie", fight_miniz)
 game.add_actor(player)
 game.add_actor(dog)
