@@ -7,14 +7,11 @@ from bwx_adventure.advent_devtools import *
 
 game = Game("Willow Of Death")
 
-game.add_actor
-
-player = game.new_player
-  
-
 porch = game.new_location(
   "Porch",
   "You are on a porch. It is raining. To the North is an office door to the west is a ramp.")
+
+player = game.new_player(porch)
 
 vestibule = game.new_location(
   "Vestibule",
@@ -50,7 +47,7 @@ lindas_room = game.new_location(
   "This is a skinny but tall room. There is a whitebourd here.")
 
 storage_room1 = game.new_location(
-  "Storage Room 1"
+  "Storage Room 1",
   "This is a large room with boxes of school suplys.")
 
 game.new_connection("Storage1door", upstairs, storage_room1, [IN, EAST], [OUT, WEST])
@@ -75,7 +72,7 @@ dog = Pet("Dog Friend")
 dog.set_location(porch)
 dog.set_allowed_locations([porch])
 
-yard.add_object(Drink("vial",
+yard.new_object(Drink("vial",
                           "a small vial of bright green glowing liquid",
                           Die("choking violently and collapsing onto the floor..."),
                           Object("empty vial", "an empty vial with an acrid odor")))
@@ -86,11 +83,9 @@ lindas_room.add_object("dry erase marker",
 zombie = Animal("zombie")
 zombie.set_location(yard)
 zombie.set_allowed_locations([yard])
-game.add_actor(zombie1)
+game.add_actor(zombie)
 zombie.add_phrase("fight zombie",
                    "you kill the zombie.")
-
-Die("The zombies kills you.")
 
 miniz = Actor("tiny zombie")
 miniz.set_location(family)
@@ -100,8 +95,9 @@ knife = office.new_object("knife", "a rusty old knife")
 def fight_miniz(game, thing):
   if not "shield" in game.player.inventory:
     game.output("You try to stab the zombie with the knife, but it bites you.")
-    die("You turn to the undead.")
-  else:
+    game.output("You turn to the undead.")
+    player.terminate()
+    else:
     game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
     miniz.terminate()
 miniz.add_phrase("fight zombie", fight_miniz)
