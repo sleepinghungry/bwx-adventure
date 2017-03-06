@@ -250,7 +250,6 @@ class Base(object):
       return None
 
   def add_phrase(self, phrase, f, requirements = []):
-    print("Adding phrase to self:",self.name)
     if isinstance(f, BaseVerb):
       f.bind_to(self)
     if isinstance(phrase, (list, tuple)):
