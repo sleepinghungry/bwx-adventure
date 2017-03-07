@@ -79,8 +79,8 @@ inportal = game.new_location(
   "Portal",
   """You are hovering in a swerling vortex of color. Direction and time are meaningless. You fell youself drifting through a trace like state. Ahead of you appears a black doorway and behind you a white one.""")
 
-def wdt (game, thing):
-  player.terminate()
+def wdt (self):
+  game.player.terminate()
   return "You pass through the white door and feel your body seperate into billions of tiny particals. You are dead."
   
 whitedeath = game.add_location(
