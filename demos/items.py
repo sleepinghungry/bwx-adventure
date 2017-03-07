@@ -1,32 +1,32 @@
-#!/user/bin/python
-# vim: et sw=2 ts=2 sts=2
+#quiz
+score = 0
+q_1 = input("What is the capitol of Argentina?")
+q_2 = input("What is the capitol of Macedonia")
+q_3 = input("What is the capitol of Indosisia")
+a_1 = "Buenos Aires"
+a_2 = "Skopje"
+a_3 = "Jakarta"
 
-# Demo file for adding items to a game.
-# Add the following commands to the file during a class demonstration
-#  - new_object() command
-#  - add_phrase() command
-#  - make_requirement() command
+if q_1 == a_1:
+    print ("Question 1 - Correct")
+    score += 1
+else:
+    print ("Question 1 - Wrong")
 
-import os
-import sys
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from bwx_adventure.advent import Game, Location, Connection, Object, Animal, Robot, Pet, Player, Say, SayOnNoun, SayOnSelf, Container, Food, Drink, Die
-from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, OUT, FORWARD, BACK, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, NOT_DIRECTION
 
-game = Game("Brightworks Adventure")
 
-# Locations
-front = game.new_location("Front of Yellow Building", "There is a bright yellow building here.")
-vestibule = game.new_location("Vestibule","This is a brown drab room.  There are stairs leading up, and an door leading to an office.")
-office = game.new_location("Office", "This place is a mess.")
-upstairs = game.new_location("Upstairs Hall", "You are upstairs")
+if q_2 == a_2:
+    print ("Question 2 - Correct")
+    score += 1
+else:
+    print ("Question 2 - Wrong")
 
-# Connections
-front_door = game.new_connection("Front Door",front, vestibule, IN, OUT)
-office_door = game.new_connection("Office Door", vestibule, office, IN, OUT)
-stairs = game.new_connection("Upstairs", vestibule, upstairs, UP, DOWN)
 
-# Player
-player = game.new_player(front)
 
-game.run()
+
+if q_3 == a_3:
+    print ("Question 3 - Correct")
+    score += 1
+else:
+    print ("Question 3 - Wrong")
+print("Your score is", score)

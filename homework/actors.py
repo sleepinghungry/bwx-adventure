@@ -38,6 +38,9 @@ game = Game("Willow Wind Adventure")
 #
 # Handy Dandy Quick Reference to Everything:
 #  https://github.com/sleepinghungry/wwif/wiki/Handy-Dandy-Quick-Reference-Guide-to-Everything
+#
+# Handy Dandy Examples for Difficult Code:
+#  https://github.com/sleepinghungry/wwif/wiki/Handy-Dandy-Examples-for-Difficult-Code
 #############################################################
 
 game = Game("Willow Wind Adventure Demo")

@@ -10,18 +10,17 @@ from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT
 
 game = Game("World Warp-Z")
 
-local_1 = game.new_location(
-  "Office Door",
-  "There is a door that has red stains on the handle, to the East.")
+office = game.new_location(
+  "Office",
+  "You are in the office. The door shus behind you, you are locked in.")
 
 Death = game.new_location(
   "Dark Alley",
 """If you go South you will get eaten by the Hord.""")
+game.new_connection("office door", , , [IN, ], [OUT, ])
 
-
-
-game.new_connection("Glass Door", Local_1, Death, [IN, ], [OUT, WEST])
-
+office.add_object("key pair",
+                          "this is a small bronze key, maybe used to open something.")
 
 
 player = game.new_player(Local_1)

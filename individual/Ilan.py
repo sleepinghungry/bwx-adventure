@@ -1,6 +1,3 @@
-#!/user/bin/python
-# vim: et sw=2 ts=2 sts=2
-#
 import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
@@ -277,7 +274,9 @@ def grade_math_test(game, thing):
     test_counter += 1
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
-
+  if test_counter == 3:
+    game.new_connection("enterportal", shack, inportal, [IN, NORTH], [NOT_DIRECTION])
+    game.output("The grading machine makes a soft clicking sound and a swirling blue and purple portal appears at the north end of the shack. You feel a slight breeze pull your hair toward it.")
 mathtest.add_phrase("grade math test", grade_math_test, [shack])
 mathtest.add_phrase("put math test in machine", grade_math_test, [shack])
 
@@ -291,9 +290,11 @@ def grade_LA_test(game, thing):
     test_counter += 1
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
-
-mathtest.add_phrase("grade LA test", grade_LA_test, [shack])
-mathtest.add_phrase("put LA test in machine", grade_LA_test, [shack])
+  if test_counter == 3:
+    game.new_connection("enterportal", shack, inportal, [IN, NORTH], [NOT_DIRECTION])
+    game.output("The grading machine makes a soft clicking sound and a swirling blue and purple portal appears at the north end of the shack. You feel a slight breeze pull your hair toward it.")
+LAtest.add_phrase("grade LA test", grade_LA_test, [shack])
+LAtest.add_phrase("put LA test in machine", grade_LA_test, [shack])
 
 
 def grade_science_test(game, thing):
@@ -304,22 +305,21 @@ def grade_science_test(game, thing):
     test_counter += 1
   else:
     game.output ("The grading machine spits out the test. It is not completed.")
-
-mathtest.add_phrase("grade science test", grade_science_test, [shack])
-mathtest.add_phrase("put math test in machine", grade_science_test, [shack])
-
-
-
-
-
-def open_portal(game, thing):
-  game.new_connection("portal", shack, inportal, [NORTH], [NOT_DIRECTION],)
+  if test_counter == 3:
+    game.new_connection("enterportal", shack, inportal, [IN, NORTH], [NOT_DIRECTION])
+    game.output("The grading machine makes a soft clicking sound and a swirling blue and purple portal appears at the north end of the shack. You feel a slight breeze pull your hair toward it.")
+sciencetest.add_phrase("grade science test", grade_science_test, [shack])
+sciencetest.add_phrase("put math test in machine", grade_science_test, [shack])
 
 
 
-if test_counter == 3:
-  open_portal
-  game.output("The grading machine makes a soft clicking sound and a swirling blue and purple portal appears at the north end of the shack. You feel a slight breeze pull your hair toward it.")
+
+
+
+
+
+
+
 
 player = game.new_player(topofdriveway)
 
