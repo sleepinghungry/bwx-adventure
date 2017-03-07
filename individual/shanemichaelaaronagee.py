@@ -48,7 +48,7 @@ lindas_room = game.new_location(
 
 storage_room1 = game.new_location(
   "Storage Room 1",
-  "This is a large room with boxes of school suplys.")
+  "This is a large room with boxes of school suplies.")
 
 game.new_connection("Storage1door", upstairs, storage_room1, [IN, EAST], [OUT, WEST])
 
@@ -72,13 +72,37 @@ dog = Pet("Dog Friend")
 dog.set_location(porch)
 dog.set_allowed_locations([porch])
 
-yard.new_object(Drink("vial",
+yard.add_object(Drink("vial",
                           "a small vial of bright green glowing liquid",
                           Die("choking violently and collapsing onto the floor..."),
                           Object("empty vial", "an empty vial with an acrid odor")))
 
-lindas_room.add_object("dry erase marker",
-                       "small red marker")
+
+whiteboard_markedup = False
+
+marker = Object("dry erase marker", "small red marker")
+
+def draw_on_whiteboard(game,thing):
+    global whiteboard_markedup
+    whiteboard_markedup = True
+    game.output("You write on the bourd without thinking, it seems you wrote some sort of spell. !ERAD TI!")
+
+marker.add_phrase("draw on white board", draw_on_whiteboard)
+
+
+
+lindas_room.add_object(marker)
+
+def read_board(game,thing):
+    global whiteboard_markedup
+    if whitebourd_markedup:
+        game.output("")
+    else:
+        morokunda = Actor("Huge Three Headed Monster.")
+        morokunda.set_location(thing)
+        game.add_actor(morkunda)
+lindas_room.add_phrase("read", read_board)
+
 
 zombie = Animal("zombie")
 zombie.set_location(yard)
@@ -94,15 +118,17 @@ shield = vestibule.new_object("shield", "a shiny pair of armor")
 knife = office.new_object("knife", "a rusty old knife")
 def fight_miniz(game, thing):
     if not "shield" in game.player.inventory:
-game.output("You try to stab the zombie with the knife, but it bites you.")
+        game.output("You try to stab the zombie with the knife, but it bites you.")
 
-game.output("You turn to the undead.")
-
-player.terminate()
+        game.output("You turn to the undead.")
+    
+        player.terminate()
     else:
-game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
-miniz.terminate()
+        game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
+        miniz.terminate()
+
 miniz.add_phrase("fight zombie", fight_miniz)
+
 game.add_actor(player)
 game.add_actor(dog)
 test_script = Script("test",
