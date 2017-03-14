@@ -87,7 +87,7 @@ def draw_on_whiteboard(game,thing):
     whiteboard_markedup = True
     game.output("You write on the bourd without thinking, it seems you wrote some sort of spell. !ERAD TI!")
 
-marker.add_phrase("draw on white board", draw_on_whiteboard)
+marker.add_phrase("draw on whiteboard", draw_on_whiteboard)
 
 
 
@@ -96,12 +96,13 @@ lindas_room.add_object(marker)
 def read_board(game,thing):
     global whiteboard_markedup
     if whitebourd_markedup:
-        game.output("")
-    else:
         morokunda = Actor("Huge Three Headed Monster.")
         morokunda.set_location(thing)
         game.add_actor(morkunda)
-lindas_room.add_phrase("read", read_board)
+        game.output("A giant 3 headed monster has appeared in the room!")
+    else:
+        game.output("There is nothing to read.")
+lindas_room.add_phrase("read board", read_board)
 
 
 zombie = Animal("zombie")
