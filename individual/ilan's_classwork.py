@@ -1,15 +1,14 @@
 import random
-number = random.randint(0,20)
-game_over = False
-while not game_over:
-    guess = int( input("guess a number between 1 and 20"))
-    if guess == number:
-        game_over = True
-        print ("Good job! You got it!")
-    elif guess > number:
-        print("Too High")
-    elif guess < number:
-        print("Too Low")
-    else:
-        print ("LOSER you are wrong. Guess again")
+import turtle
+turtle.colormode(255)
+
+turtle.speed(0)
+
+while True:
+    turtle.goto(random.randint(0,200), random.randint(0,200))
+    turtle.pencolor(random.randint(0,155), random.randint(0,155), random.randint(0,155))
+    turtle.pensize(random.randint(1,50))
+    for i in range(random.randint(1,360)):
+        turtle.forward(random.randint(1,300))
+        turtle.right(random.randint(1,500))
         
