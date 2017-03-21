@@ -50,9 +50,18 @@ storage_room1 = game.new_location(
   "Storage Room 1",
   "This is a large room with boxes of school suplies.")
 
+storage_room2 = game.new_location(
+    "Storage Room 2",
+    "More boxes and more boxes...")
+
+key = office.new_object("bronze key",
+                        "this is a bronze small key")
+
 game.new_connection("Storage1door", upstairs, storage_room1, [IN, EAST], [OUT, WEST])
 
-game.new_connection("Linda Lab", computer, lindas_room, [IN, WEST], [OUT, EAST])
+andre = game.new_connection("Linda Lab", computer, lindas_room, [IN, WEST], [OUT, EAST])
+
+andre.make_requirement(key)
 
 game.new_connection("Lab Door", step, computer, [IN, WEST], [OUT, EAST])
 
@@ -68,7 +77,7 @@ game.new_connection("Vestibule Door", porch, vestibule, [IN, NORTH], [OUT, SOUTH
 
 game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 
-dog = Pet("Dog Friend")
+dog = Pet("Dog")
 dog.set_location(porch)
 dog.set_allowed_locations([porch])
 
@@ -80,14 +89,14 @@ yard.add_object(Drink("vial",
 
 whiteboard_markedup = False
 
-marker = Object("dry erase marker", "small red marker")
+marker = Object("marker", "small red marker")
 
 def draw_on_whiteboard(game,thing):
     global whiteboard_markedup
     whiteboard_markedup = True
-    game.output("You write on the bourd without thinking, it seems you wrote some sort of spell. !ERAD TI!")
+    game.output("You write on the board without thinking, it seems you wrote some sort of spell. !ERAD TI!")
 
-marker.add_phrase("draw on whiteboard", draw_on_whiteboard)
+marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
 
 
@@ -95,14 +104,14 @@ lindas_room.add_object(marker)
 
 def read_board(game,thing):
     global whiteboard_markedup
-    if whitebourd_markedup:
+    if whiteboard_markedup:
         morokunda = Actor("Huge Three Headed Monster.")
         morokunda.set_location(thing)
-        game.add_actor(morkunda)
+        game.add_actor(morokunda)
         game.output("A giant 3 headed monster has appeared in the room!")
     else:
         game.output("There is nothing to read.")
-lindas_room.add_phrase("read board", read_board)
+lindas_room.add_phrase(["read board", "read whiteboard"], read_board)
 
 
 zombie = Animal("zombie")
