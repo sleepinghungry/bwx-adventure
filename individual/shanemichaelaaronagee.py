@@ -19,7 +19,7 @@ vestibule = game.new_location(
 
 upstairs = game.new_location(
     "Upstairs Hallway",
-  "This is a hallway with a door to the east, And stairs going down.")
+    "This is a hallway with a door to the east, And stairs going down.")
 
 office = game.new_location(
   "Office",
@@ -56,6 +56,8 @@ storage_room2 = game.new_location(
 
 key = office.new_object("bronze key",
                         "this is a bronze small key")
+
+game.new_connection("Storage2door", upstairs, storage_room2, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Storage1door", upstairs, storage_room1, [IN, EAST], [OUT, WEST])
 
