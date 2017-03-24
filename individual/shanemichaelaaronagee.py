@@ -57,6 +57,12 @@ storage_room2 = game.new_location(
 key = office.new_object("bronze key",
                         "this is a bronze small key")
 
+linda_porch = game.new_location(
+    "Small Blacktop Porch",
+    "This is a small porch outside. Broken, crashed cars, all around the blacktop")
+
+
+
 game.new_connection("Storage2door", upstairs, storage_room2, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Storage1door", upstairs, storage_room1, [IN, EAST], [OUT, WEST])
@@ -140,6 +146,19 @@ def fight_miniz(game, thing):
         miniz.terminate()
 
 miniz.add_phrase("fight zombie", fight_miniz)
+
+def fight_morokunda(game, thing):
+    if not "ninja_sword" in game.player.inventory:
+        game.output("You try to stab the zombie with the ninja sword, but it bites you.")
+
+        game.output("You have died.")
+    
+        player.terminate()
+    else:
+        game.output("Using the ninja sword to avoid it's giant tenticles, and stab the giant beast.")
+        morokunda.terminate()
+
+miniz.add_phrase("fight zombie", fight_morokunda)
 
 game.add_actor(player)
 game.add_actor(dog)
