@@ -61,13 +61,13 @@ linda_porch = game.new_location(
     "Small Blacktop Porch",
     "This is a small porch outside. Broken, crashed cars, all around the blacktop")
 
-
+game.new_connection("Lindas porch door", lindas_room, linda_porch, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Storage2door", upstairs, storage_room2, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Storage1door", upstairs, storage_room1, [IN, EAST], [OUT, WEST])
 
-andre = game.new_connection("Linda Lab", computer, lindas_room, [IN, WEST], [OUT, EAST])
+andre = game.new_connection("Linda Lab", computer, lindas_room, [IN, SOUTH], [OUT, NORTH])
 
 andre.make_requirement(key)
 
