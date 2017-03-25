@@ -61,6 +61,34 @@ linda_porch = game.new_location(
     "Small Blacktop Porch",
     "This is a small porch outside. Broken, crashed cars, all around the blacktop")
 
+blacktop = game.new_location(
+    "Blacktop Pathway"
+    "There is one small pathway to a room leading North.")
+
+split_RLS = game.new_location(
+    "Three way fork",
+    "There are three rooms here. One to the West saying SUE, another to the North saying ROBIN, and the final to the East saying LACY.")
+
+robins_room = game.new_location(
+    "Robins room",
+    "This is an all around large room, with a nice opening to the East.")
+
+sues_room = game.new_location(
+    "Sues room",
+    "A small well organized room.")
+
+lacys_room = game.new_location(
+    "Lacys room",
+    "It's to dark to see anything in here.")
+
+game.new_connection("Robins door", three way fork, robins_room, [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("Sues door", split_RLS, sues_room, [IN, WEST], [OUT, EAST])
+
+game.new_connection("Lacys door", split_RLS, lacys_room, [IN, EAST], [OUT, WEST])
+
+game.new_connection("Blacktop to RLS.", blacktop, split_RLS, [IN, NORTH], [OUT, SOUTH])
+
 game.new_connection("Lindas porch door", lindas_room, linda_porch, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Storage2door", upstairs, storage_room2, [IN, WEST], [OUT, EAST])
