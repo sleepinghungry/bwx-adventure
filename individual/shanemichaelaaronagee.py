@@ -54,7 +54,7 @@ storage_room2 = game.new_location(
     "Storage Room 2",
     "More boxes and more boxes...")
 
-key = office.new_object("bronze key",
+key = office.new_object("key",
                         "this is a bronze small key")
 
 linda_porch = game.new_location(
@@ -143,6 +143,7 @@ def fight_miniz(game, thing):
         player.terminate()
     else:
         game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
+
         miniz.terminate()
 
 miniz.add_phrase("fight zombie", fight_miniz)
@@ -156,9 +157,10 @@ def fight_morokunda(game, thing):
         player.terminate()
     else:
         game.output("Using the ninja sword to avoid it's giant tenticles, and stab the giant beast.")
+
         morokunda.terminate()
 
-miniz.add_phrase("fight zombie", fight_morokunda)
+morokunda.add_phrase("fight monster", fight_morokunda)
 
 game.add_actor(player)
 game.add_actor(dog)
