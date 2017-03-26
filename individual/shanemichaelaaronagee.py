@@ -81,7 +81,15 @@ lacys_room = game.new_location(
     "Lacys room",
     "It's to dark to see anything in here.")
 
-game.new_connection("Robins door", three way fork, robins_room, [IN, NORTH], [OUT, SOUTH])
+secretrd = game.new_location(
+    "Robins room prt2",
+    "This is a very tight space, with tons of book shelfs. There is a trap door under a wooden chair.")
+
+
+
+game.new_connection("Robins pathway", robins_room, secretrd, [IN, EAST], [OUT, WEST])
+
+game.new_connection("Robins door", split_RLS, robins_room, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("Sues door", split_RLS, sues_room, [IN, WEST], [OUT, EAST])
 
