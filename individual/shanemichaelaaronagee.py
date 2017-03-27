@@ -85,9 +85,17 @@ secretrd = game.new_location(
     "Robins room prt2",
     "This is a very tight space, with tons of book shelfs. There is a trap door under a wooden chair.")
 
+mazelol = game.new_location(
+    "Maze rom one LOL"
+    "This is a roo going in four different directions.")
 
-
-game.new_connection("Robins pathway", robins_room, secretrd, [IN, EAST], [OUT, WEST])
+def move_chair(game,thing):
+    global movingchair
+    if movingchair:
+    game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
+    else:
+    game.output("The chair is in the way.")
+    secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.new_connection("Robins door", split_RLS, robins_room, [IN, NORTH], [OUT, SOUTH])
 
@@ -129,7 +137,6 @@ yard.add_object(Drink("vial",
                           "a small vial of bright green glowing liquid",
                           Die("choking violently and collapsing onto the floor..."),
                           Object("empty vial", "an empty vial with an acrid odor")))
-
 
 whiteboard_markedup = False
 
