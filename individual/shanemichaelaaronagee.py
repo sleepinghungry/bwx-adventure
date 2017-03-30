@@ -54,8 +54,9 @@ storage_room2 = game.new_location(
     "Storage Room 2",
     "More boxes and more boxes...")
 
-key = office.new_object("key",
-                        "this is a bronze small key")
+key = office.new_object(
+    "key",
+    "this is a bronze small key")
 
 linda_porch = game.new_location(
     "Small Blacktop Porch",
@@ -90,12 +91,14 @@ mazelol = game.new_location(
     "This is a roo going in four different directions.")
 
 def move_chair(game,thing):
-    global movingchair
-    if movingchair:
-    game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
-    else:
-    game.output("The chair is in the way.")
-    secretrd.add_phrase(["move chair", "pull chair"], move_chair)
+   global movingchair
+   global secretrd
+   global mazelol
+   if movingchair:
+       game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
+   else:
+       game.output("The chair is in the way.")
+secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.new_connection("Robins door", split_RLS, robins_room, [IN, NORTH], [OUT, SOUTH])
 
