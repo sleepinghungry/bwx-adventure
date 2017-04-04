@@ -63,7 +63,7 @@ linda_porch = game.new_location(
     "This is a small porch outside. Broken, crashed cars, all around the blacktop")
 
 blacktop = game.new_location(
-    "Blacktop Pathway"
+    "Blacktop Pathway",
     "There is one small pathway to a room leading North.")
 
 split_RLS = game.new_location(
@@ -87,17 +87,13 @@ secretrd = game.new_location(
     "This is a very tight space, with tons of book shelfs. There is a trap door under a wooden chair.")
 
 mazelol = game.new_location(
-    "Maze rom one LOL"
+    "Maze rom one LOL",
     "This is a roo going in four different directions.")
 
 def move_chair(game,thing):
-  global movingchair
-  global secretrd
-  global mazelol
-    if movingchair:
-            game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
-    else:
-            game.output("The chair is in the way.")
+    global secretrd
+    global mazelol
+    game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.new_connection("Robins door", split_RLS, robins_room, [IN, NORTH], [OUT, SOUTH])
@@ -156,11 +152,15 @@ marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
 lindas_room.add_object(marker)
 
+morokunda = None
+
 def read_board(game,thing):
     global whiteboard_markedup
+    global morokunda
     if whiteboard_markedup:
         morokunda = Actor("Huge Three Headed Monster.")
         morokunda.set_location(thing)
+        morokunda.add_phrase("fight monster", fight_morokunda)
         game.add_actor(morokunda)
         game.output("A giant 3 headed monster has appeared in the room!")
     else:
@@ -205,8 +205,6 @@ def fight_morokunda(game, thing):
         game.output("Using the ninja sword to avoid it's giant tenticles, and stab the giant beast.")
 
         morokunda.terminate()
-
-morokunda.add_phrase("fight monster", fight_morokunda)
 
 game.add_actor(player)
 game.add_actor(dog)
