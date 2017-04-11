@@ -24,7 +24,7 @@ upstairs = game.new_location(
 office = game.new_location(
   "Office",
   """A nicely organized office.
-  There is a door to the north.""")
+  There is a door to the east.""")
 
 family = game.new_location(
   "Family Room",
@@ -87,14 +87,26 @@ secretrd = game.new_location(
     "This is a very tight space, with tons of book shelfs. There is a trap door under a wooden chair.")
 
 mazelol = game.new_location(
-    "Maze rom one LOL",
-    "This is a roo going in four different directions.")
+    "Maze room one LOL",
+    "This is a room going in four different directions no ends to be seen.")
+
+secret_maze = game.new_location(
+    "Secret Room In Maze",
+    "This is a room with very nice decorations.")
+
+secret_maze.new_object(
+    "Ninja Sword",
+    "ancient ninja sword")
 
 def move_chair(game,thing):
     global secretrd
     global mazelol
     game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
+
+game.new_connection("secret robin", robins_room, secretrd, [IN, NORTH], [OUT, SOUTH])
+
+game.new_connection("Porch Top", linda_porch, blacktop, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("Robins door", split_RLS, robins_room, [IN, NORTH], [OUT, SOUTH])
 
@@ -116,7 +128,7 @@ andre.make_requirement(key)
 
 game.new_connection("Lab Door", step, computer, [IN, WEST], [OUT, EAST])
 
-game.new_connection("Vestibule Door Outside", step, vestibule, [IN, NORTH], [OUT, SOUTH])
+game.new_connection("Vestibule Door Outside", step, family, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("Ramp", porch, step, [IN, WEST], [OUT, EAST])
 
@@ -173,30 +185,30 @@ zombie.set_location(yard)
 zombie.set_allowed_locations([yard])
 game.add_actor(zombie)
 zombie.add_phrase("fight zombie",
-                   "you kill the zombie.")
+                   Say("you kill the zombie."))
 
 miniz = Actor("tiny zombie")
 miniz.set_location(family)
 game.add_actor(miniz)
-shield = vestibule.new_object("shield", "a shiny pair of armor")
+armor = vestibule.new_object("armor", "a shiny pair of armor")
 knife = office.new_object("knife", "a rusty old knife")
 def fight_miniz(game, thing):
-    if not "shield" in game.player.inventory:
+    if not "knife" in game.player.inventory:
         game.output("You try to stab the zombie with the knife, but it bites you.")
 
         game.output("You turn to the undead.")
     
         player.terminate()
     else:
-        game.output("Using the shield to avoid the dragon's flames you kill it with the sword.")
+        game.output("You stab the zombie and as you do he shreeks and dies.")
 
         miniz.terminate()
 
-miniz.add_phrase("fight zombie", fight_miniz)
+miniz.add_phrase("fight tiny zombie", fight_miniz)
 
 def fight_morokunda(game, thing):
     if not "ninja_sword" in game.player.inventory:
-        game.output("You try to stab the zombie with the ninja sword, but it bites you.")
+        game.output("You have nothing strong enouph to peirce it's skin.")
 
         game.output("You have died.")
     
