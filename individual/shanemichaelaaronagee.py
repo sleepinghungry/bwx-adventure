@@ -104,7 +104,7 @@ def move_chair(game,thing):
     game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
-game.new_connection("secret robin", robins_room, secretrd, [IN, NORTH], [OUT, SOUTH])
+game.new_connection("secret robin", robins_room, secretrd, [IN, EAST], [OUT, WEST])
 
 game.new_connection("Porch Top", linda_porch, blacktop, [IN, NORTH], [OUT, SOUTH])
 
@@ -159,8 +159,6 @@ def draw_on_whiteboard(game,thing):
     game.output("You write on the board without thinking, it seems you wrote some sort of spell. !ERAD TI!")
 
 marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
-
-
 
 lindas_room.add_object(marker)
 
