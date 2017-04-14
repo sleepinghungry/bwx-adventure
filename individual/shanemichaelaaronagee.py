@@ -105,6 +105,8 @@ def move_chair(game,thing):
     print("The chair has been moved.")
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
+game.player.health = 30
+
 game.new_connection("Secret lol", mazelol, secret_maze, [IN, DOWN], [OUT, UP])
 
 game.new_connection("secret robin", robins_room, secretrd, [IN, EAST], [OUT, WEST])
@@ -165,6 +167,8 @@ marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
 lindas_room.add_object(marker)
 
+def put_on_armor
+    game.player.health += 20
 armor.add_phrase(["wear armor", "put on armor", "equip armor"])
 
 morokunda = None
