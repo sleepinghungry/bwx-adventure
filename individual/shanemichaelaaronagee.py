@@ -94,15 +94,18 @@ secret_maze = game.new_location(
     "Secret Room In Maze",
     "This is a room with very nice decorations.")
 
-secret_maze.new_object(
-    "Ninja Sword",
+apple_sword = secret_maze.new_object(
+    "ninja sword",
     "ancient ninja sword")
 
 def move_chair(game,thing):
     global secretrd
     global mazelol
     game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
+    print("The chair has been moved.")
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
+
+game.new_connection("Secret lol", mazelol, secret_maze, [IN, DOWN], [OUT, UP])
 
 game.new_connection("secret robin", robins_room, secretrd, [IN, EAST], [OUT, WEST])
 
@@ -183,7 +186,7 @@ zombie.set_location(yard)
 zombie.set_allowed_locations([yard])
 game.add_actor(zombie)
 zombie.add_phrase("fight zombie",
-                   Say("you kill the zombie."))
+                   Say("you kill the zombie with a massive stab through the heart."))
 
 miniz = Actor("tiny zombie")
 miniz.set_location(family)
@@ -205,16 +208,17 @@ def fight_miniz(game, thing):
 miniz.add_phrase("fight tiny zombie", fight_miniz)
 
 def fight_morokunda(game, thing):
-    if not "ninja_sword" in game.player.inventory:
+    if "ninja sword" in game.player.inventory:
+        game.output("Using the ninja sword to avoid it's giant tenticles, and stab the giant beast.")
+
+        morokunda.terminate()
+
+    else:
         game.output("You have nothing strong enouph to peirce it's skin.")
 
         game.output("You have died.")
     
         player.terminate()
-    else:
-        game.output("Using the ninja sword to avoid it's giant tenticles, and stab the giant beast.")
-
-        morokunda.terminate()
 
 game.add_actor(player)
 game.add_actor(dog)
