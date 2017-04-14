@@ -165,6 +165,8 @@ marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
 lindas_room.add_object(marker)
 
+armor.add_phrase(["wear armor", "put on armor", "equip armor"])
+
 morokunda = None
 
 def read_board(game,thing):
