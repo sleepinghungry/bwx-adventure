@@ -98,14 +98,21 @@ apple_sword = secret_maze.new_object(
     "ninja sword",
     "ancient ninja sword")
 
-def move_chair(game,thing):
-    global secretrd
-    global mazelol
-    game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
-    print("The chair has been moved.")
+bathroom1 = game.new_location(
+    "Bathroom 1",
+    "Small bathroom with a toilet and a sink.")
+
+def move_chair(game, thing):
+     global secretrd 
+     global mazelol
+     game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
+     game.output("The chair has been moved.")
+
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
+
+game.new_connection("Bathroom Door", family, bathroom1, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Secret lol", mazelol, secret_maze, [IN, DOWN], [OUT, UP])
 
@@ -154,6 +161,9 @@ yard.add_object(Drink("vial",
                           Die("choking violently and collapsing onto the floor..."),
                           Object("empty vial", "an empty vial with an acrid odor")))
 
+bathroom1.new_object("pile of toilet paper",
+                         "soggy pile of toilet paper on floor.")
+
 whiteboard_markedup = False
 
 marker = Object("marker", "small red marker")
@@ -167,9 +177,14 @@ marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
 lindas_room.add_object(marker)
 
-def put_on_armor
+armor = vestibule.new_object("armor", "a shiny pair of armor")
+
+def put_on_armor(game,thing):
     game.player.health += 20
-armor.add_phrase(["wear armor", "put on armor", "equip armor"])
+    game.output("You put the armor and become more protected.")
+armor.add_phrase(["wear armor", "put on armor", "equip armor"], put_on_armor)
+
+
 
 morokunda = None
 
@@ -197,7 +212,6 @@ zombie.add_phrase("fight zombie",
 miniz = Actor("tiny zombie")
 miniz.set_location(family)
 game.add_actor(miniz)
-armor = vestibule.new_object("armor", "a shiny pair of armor")
 knife = office.new_object("knife", "a rusty old knife")
 def fight_miniz(game, thing):
     if not "knife" in game.player.inventory:
