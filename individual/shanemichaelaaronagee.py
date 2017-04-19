@@ -106,6 +106,12 @@ cellar_passage = game.new_location(
      "Cellar Passage",
      "This is a dark cold hallway that leeds north.")
 
+cellar_passage1 = game.new_location(
+     "Cellar Passage",
+     "small empty corner room with passage west, and from where you came.")
+
+#cellar_passage
+
 open_fridge = False
 
 def open_fridge(game,thing):
@@ -129,10 +135,13 @@ def move_chair(game, thing):
      global mazelol
      game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
      game.output("The chair has been moved.")
-
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
+
+#game.new_connection("Secret Cellar1", cellar_passage1, cellar_passage2, [IN, WEST], [OUT, EAST])
+
+game.new_connection("Secret Sellar", cellar_passage, cellar_passage1, [IN,NORTH], [OUT, SOUTH])
 
 game.new_connection("Bathroom Door", family, bathroom1, [IN, WEST], [OUT, EAST])
 
