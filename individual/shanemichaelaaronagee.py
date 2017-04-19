@@ -102,6 +102,28 @@ bathroom1 = game.new_location(
     "Bathroom 1",
     "Small bathroom with a toilet and a sink.")
 
+cellar_passage = game.new_location(
+     "Cellar Passage",
+     "This is a dark cold hallway that leeds north.")
+
+open_fridge = False
+
+def open_fridge(game,thing):
+     global family
+     open_fridge = True
+     print("The fridge is open revealing a botle of Dr.Pepper on the bottom shelf.")
+family.add_phrase("open fridge", open_fridge)
+
+pull_soda = False
+
+def pull_soda(game,thing):
+     global family
+     global cellar_passage
+     pull_soda = True
+     print("The Dr.Pepper was a lever and you pulled it. A secret passage has apeared from inside the fridge.")
+     game.new_connection("Secret Fridge Passage", family, cellar_passage, [IN, EAST], [OUT, WEST])
+family.add_phrase(["take soda", "take dr.pepper", "take Dr.Pepper"], pull_soda)
+
 def move_chair(game, thing):
      global secretrd 
      global mazelol
@@ -175,7 +197,7 @@ def draw_on_whiteboard(game,thing):
 
 marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
-lindas_room.add_object(marker)
+storage_room1.add_object(marker)
 
 armor = vestibule.new_object("armor", "a shiny pair of armor")
 
