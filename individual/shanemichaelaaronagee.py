@@ -110,7 +110,9 @@ cellar_passage1 = game.new_location(
      "Cellar Passage",
      "small empty corner room with passage west, and from where you came.")
 
-#cellar_passage
+cellar_passage2 = game.new_location(
+     "Cellar Passage",
+     "cold empty hallway leading west.")
 
 open_fridge = False
 
@@ -139,7 +141,7 @@ secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
 
-#game.new_connection("Secret Cellar1", cellar_passage1, cellar_passage2, [IN, WEST], [OUT, EAST])
+game.new_connection("Secret Cellar1", cellar_passage1, cellar_passage2, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Secret Sellar", cellar_passage, cellar_passage1, [IN,NORTH], [OUT, SOUTH])
 
