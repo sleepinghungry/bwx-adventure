@@ -157,7 +157,7 @@ secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
 
-game.new_connection("Mini Barn", stage, barn_water, [IN, WETS], [OUT, EAST])
+#game.new_connection("Mini Barn", stage, barn_water, [IN, WETS], [OUT, EAST])
 
 game.new_connection("Stage Way", barn, stage, [IN, NORTH], [OUT, SOUTH])
 
