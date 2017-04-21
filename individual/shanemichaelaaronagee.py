@@ -114,6 +114,21 @@ cellar_passage2 = game.new_location(
      "Cellar Passage",
      "cold empty hallway leading west.")
 
+cellar_barn = game.new_location(
+     "Cellar Passage",
+     "This is a small area with a ladder leading to a trap door.")
+
+barn = game.new_location(
+     "Barn",
+     "This is a lardge barn with a stage to the north, and a door to the south.")
+
+bkey = lacys_room.new_object(
+     "Key",
+     "Small barn shaped key.")
+
+#stage = game.new_location(
+#     "Stage",
+#     "Large stage with wordrobe.")
 open_fridge = False
 
 def open_fridge(game,thing):
@@ -140,6 +155,12 @@ def move_chair(game, thing):
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
+
+araya = game.new_connection("Trap Barn Door", cellar_barn, barn, [IN, UP], [OUT, DOWN])
+
+araya.make_requirement(bkey)
+
+game.new_connection("Cellar to Cellar Barn", cellar_passage2, cellar_barn, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Secret Cellar1", cellar_passage1, cellar_passage2, [IN, WEST], [OUT, EAST])
 
