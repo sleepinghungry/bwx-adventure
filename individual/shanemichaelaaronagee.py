@@ -137,16 +137,22 @@ barn_water = game.new_location(
 barn_house_on_shore = game.new_location(
      "Barn House",
      "Dirty old cabin. There is only one exit to the north.")
+
+drink_water = False
+
 def drink_water(game,thing):
      global barn_water
      global barn_house_on_shore
-     
+     drink_water = True
+     player.goto(barn_house_on_shore)
+barn_water.add_phrase("drink water", drink_water)
+
 open_fridge = False
 
 def open_fridge(game,thing):
      global family
      open_fridge = True
-     
+     print("You open the fridge, revealing a bottle of soda.")
 family.add_phrase("open fridge", open_fridge)
 
 pull_soda = False
@@ -168,7 +174,7 @@ secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
 
-game.new_connection("Mini Barn", stage, barn_water, [IN, WETS], [OUT, EAST])
+game.new_connection("Mini Barn", stage, barn_water, [IN, WEST], [OUT, EAST])
 
 game.new_connection("Stage Way", barn, stage, [IN, NORTH], [OUT, SOUTH])
 
