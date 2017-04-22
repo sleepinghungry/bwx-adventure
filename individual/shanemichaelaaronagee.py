@@ -128,8 +128,19 @@ bkey = lacys_room.new_object(
 
 stage = game.new_location(
      "Stage",
-     "Large stage with wordrobe.")
+     "Large stage with a wordrobe, and a passage to the west.")
 
+barn_water = game.new_location(
+     "Barn House",
+     "Small barn area, there is a water fountain here.")
+
+barn_house_on_shore = game.new_location(
+     "Barn House",
+     "Dirty old cabin. There is only one exit to the north.")
+def drink_water(game,thing):
+     global barn_water
+     global barn_house_on_shore
+     
 open_fridge = False
 
 def open_fridge(game,thing):
@@ -157,7 +168,7 @@ secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
 
-#game.new_connection("Mini Barn", stage, barn_water, [IN, WETS], [OUT, EAST])
+game.new_connection("Mini Barn", stage, barn_water, [IN, WETS], [OUT, EAST])
 
 game.new_connection("Stage Way", barn, stage, [IN, NORTH], [OUT, SOUTH])
 
