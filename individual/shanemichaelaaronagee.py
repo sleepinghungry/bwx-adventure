@@ -123,7 +123,7 @@ barn = game.new_location(
      "This is a lardge barn with a stage to the north, and a door to the south.")
 
 bkey = lacys_room.new_object(
-     "Key",
+     "skull key",
      "Small barn shaped key.")
 
 stage = game.new_location(
@@ -137,6 +137,14 @@ barn_water = game.new_location(
 barn_house_on_shore = game.new_location(
      "Barn House",
      "Dirty old cabin. There is only one exit to the north.")
+
+lake_shore = game.new_location(
+    "Lake Shore",
+    "This is the shore of Emigrant Lake. Emigrant Lake has been turned into acid.")
+
+old_hut = game.new_location(
+    "Old Hut",
+    "This is an old hut on the shore.")
 
 drink_water = False
 
@@ -175,6 +183,10 @@ def move_chair(game, thing):
 secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.player.health = 30
+
+game.new_connection("What2", lake_shore, old_hut, [IN, SOUTH], [OUT, NORTH])
+
+game.new_connection("What", barn_house_on_shore, lake_shore, [IN, EAST], [OUT, WEST])
 
 game.new_connection("Mini Barn", stage, barn_water, [IN, WEST], [OUT, EAST])
 
@@ -262,7 +274,9 @@ def put_on_armor(game,thing):
     game.output("You put the armor and become more protected.")
 armor.add_phrase(["wear armor", "put on armor", "equip armor"], put_on_armor)
 
-
+old_fisherman = Actor("Old skinny fisherman")
+old_fisherman.set+location(old_hut)
+old_man.add_phrase(["talk to man", "talk to old man"], talk_to_old_man)
 
 morokunda = None
 
