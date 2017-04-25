@@ -143,8 +143,10 @@ drink_water = False
 def drink_water(game,thing):
      global barn_water
      global barn_house_on_shore
+     global drink_water
      drink_water = True
-     player.goto(barn_house_on_shore)
+     player.set_location(barn_house_on_shore)
+     game.output("When drinking the water you telaport to a new place. Have a look around.")
 barn_water.add_phrase("drink water", drink_water)
 
 open_fridge = False
