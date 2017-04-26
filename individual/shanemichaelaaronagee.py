@@ -140,7 +140,7 @@ barn_house_on_shore = game.new_location(
 
 lake_shore = game.new_location(
     "Lake Shore",
-    "This is the shore of Emigrant Lake. Emigrant Lake has been turned into acid.")
+    "This is the shore of Emigrant Lake. Emigrant Lake has been turned into acid. There is a hut to the south, and a pathway to the east.")
 
 old_hut = game.new_location(
     "Old Hut",
@@ -274,9 +274,21 @@ def put_on_armor(game,thing):
     game.output("You put the armor and become more protected.")
 armor.add_phrase(["wear armor", "put on armor", "equip armor"], put_on_armor)
 
+talk_to_man = False
+
 old_fisherman = Actor("Old skinny fisherman")
-old_fisherman.set+location(old_hut)
-old_man.add_phrase(["talk to man", "talk to old man"], talk_to_old_man)
+old_fisherman.set_location(old_hut)
+
+def talk_to_man(game,thing):
+     global old_hut
+     global talk_to_man
+     talk_to_man = True
+     print("The old fisherman says he will trade you a fish, for a boat that will"
+           "lead you back to the school. There is a fishing pole in the cellar of"
+           "the cabin on the northern side of the island. Here are the keys, he sets down the keys.""")
+     old_hut.add_object("small keys")
+     player.add_to_inventory(ckey)
+old_fisherman.add_phrase(["talk to man", "talk to old man", "talk to old fisherman"], talk_to_man)
 
 morokunda = None
 
