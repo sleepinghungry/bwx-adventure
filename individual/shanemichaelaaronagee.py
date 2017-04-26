@@ -287,7 +287,6 @@ def talk_to_man(game,thing):
            "lead you back to the school. There is a fishing pole in the cellar of"
            "the cabin on the northern side of the island. Here are the keys, he sets down the keys.""")
      old_hut.add_object("small keys")
-     player.add_to_inventory(ckey)
 old_fisherman.add_phrase(["talk to man", "talk to old man", "talk to old fisherman"], talk_to_man)
 
 morokunda = None
