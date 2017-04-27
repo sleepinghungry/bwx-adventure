@@ -140,53 +140,27 @@ barn_house_on_shore = game.new_location(
 
 lake_shore = game.new_location(
     "Lake Shore",
-    "This is the shore of Emigrant Lake. Emigrant Lake has been turned into acid. There is a hut to the south, and a pathway to the east.")
+    "This is the shore of Emigrant Lake. Emigrant Lake has been turned into acid. There is a hut to the west, and a pathway to the east.")
 
 old_hut = game.new_location(
     "Old Hut",
     "This is an old hut on the shore.")
 
-drink_water = False
+lake_shore1 = game.new_location(
+     "lake Shore",
+     "This is another part of the lake shore. There is a pathway to the east and south. !ON'TD OG OUHST! says a sighn in mysterios letters.")
 
-def drink_water(game,thing):
-     global barn_water
-     global barn_house_on_shore
-     global drink_water
-     drink_water = True
-     player.set_location(barn_house_on_shore)
-     game.output("When drinking the water you telaport to a new place. Have a look around.")
-barn_water.add_phrase("drink water", drink_water)
+terrorrized = game.new_location(
+     "You Die Here",
+     "The END!!!:)")
 
-open_fridge = False
-
-def open_fridge(game,thing):
-     global family
-     open_fridge = True
-     print("You open the fridge, revealing a bottle of soda.")
-family.add_phrase("open fridge", open_fridge)
-
-pull_soda = False
-
-def pull_soda(game,thing):
-     global family
-     global cellar_passage
-     pull_soda = True
-     print("The Dr.Pepper was a lever and you pulled it. A secret passage has apeared from inside the fridge.")
-     game.new_connection("Secret Fridge Passage", family, cellar_passage, [IN, EAST], [OUT, WEST])
-family.add_phrase(["take soda", "take dr.pepper", "take Dr.Pepper"], pull_soda)
-
-def move_chair(game, thing):
-     global secretrd 
-     global mazelol
-     game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
-     game.output("The chair has been moved.")
-secretrd.add_phrase(["move chair", "pull chair"], move_chair)
+game.new_connection("What3", lake_shore1, terrorrized, [IN, SOUTH], [OUT, NORTH])
 
 game.player.health = 30
 
-game.new_connection("What2", lake_shore, old_hut, [IN, SOUTH], [OUT, NORTH])
+game.new_connection("What2", lake_shore, old_hut, [IN, WEST], [OUT, EAST])
 
-game.new_connection("What", barn_house_on_shore, lake_shore, [IN, EAST], [OUT, WEST])
+game.new_connection("What", barn_house_on_shore, lake_shore, [IN, NORTH], [OUT, SOUTH])
 
 game.new_connection("Mini Barn", stage, barn_water, [IN, WEST], [OUT, EAST])
 
@@ -257,13 +231,17 @@ bathroom1.new_object("pile of toilet paper",
 whiteboard_markedup = False
 
 marker = Object("marker", "small red marker")
-
+keys = Object("pair of keys", "small pair of keys")
 def draw_on_whiteboard(game,thing):
     global whiteboard_markedup
     whiteboard_markedup = True
     game.output("You write on the board without thinking, it seems you wrote some sort of spell. !ERAD TI!")
 
 marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
+
+if player.location = (terrorrized)
+     player.terminate()
+     game.output("U R DED GOODBY")
 
 storage_room1.add_object(marker)
 
@@ -281,12 +259,11 @@ old_fisherman.set_location(old_hut)
 
 def talk_to_man(game,thing):
      global old_hut
-     global talk_to_man
      talk_to_man = True
-     print("The old fisherman says he will trade you a fish, for a boat that will"
+     game.output("The old fisherman says he will trade you a fish, for a boat that will"
            "lead you back to the school. There is a fishing pole in the cellar of"
            "the cabin on the northern side of the island. Here are the keys, he sets down the keys.""")
-     old_hut.add_object("small keys")
+     old_hut.add_object(keys)
 old_fisherman.add_phrase(["talk to man", "talk to old man", "talk to old fisherman"], talk_to_man)
 
 morokunda = None
@@ -342,6 +319,42 @@ def fight_morokunda(game, thing):
         game.output("You have died.")
     
         player.terminate()
+
+drink_water = False
+
+def drink_water(game,thing):
+     global barn_water
+     global barn_house_on_shore
+     global drink_water
+     drink_water = True
+     player.set_location(barn_house_on_shore)
+     game.output("When drinking the water you telaport to a new place. Have a look around.")
+barn_water.add_phrase("drink water", drink_water)
+
+open_fridge = False
+
+def open_fridge(game,thing):
+     global family
+     open_fridge = True
+     print("You open the fridge, revealing a bottle of soda.")
+family.add_phrase("open fridge", open_fridge)
+
+pull_soda = False
+
+def pull_soda(game,thing):
+     global family
+     global cellar_passage
+     pull_soda = True
+     print("The Dr.Pepper was a lever and you pulled it. A secret passage has apeared from inside the fridge.")
+     game.new_connection("Secret Fridge Passage", family, cellar_passage, [IN, EAST], [OUT, WEST])
+family.add_phrase(["take soda", "take dr.pepper", "take Dr.Pepper"], pull_soda)
+
+def move_chair(game, thing):
+     global secretrd 
+     global mazelol
+     game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
+     game.output("The chair has been moved.")
+secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.add_actor(player)
 game.add_actor(dog)
