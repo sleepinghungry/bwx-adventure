@@ -164,9 +164,13 @@ lake_shore2 = game.new_location(
 
 game.new_connection("What3", lake_shore1, terrorrized, [IN, SOUTH], [OUT, NORTH])
 
+game.new_connection("Wall", lake_shore1, lake_shorewall, [IN, EAST], [OUT, WEST])
+
+game.new_connection("What2", lake_shore, lake_shore1, [IN, EAST], [OUT,SOUTH])
+
 game.player.health = 30
 
-game.new_connection("What2", lake_shore, old_hut, [IN, WEST], [OUT, EAST])
+game.new_connection("What1", lake_shore, old_hut, [IN, WEST], [OUT, EAST])
 
 game.new_connection("What", barn_house_on_shore, lake_shore, [IN, NORTH], [OUT, SOUTH])
 
@@ -224,11 +228,20 @@ game.new_connection("Vestibule Door", porch, vestibule, [IN, NORTH], [OUT, SOUTH
 
 game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 
+ropecoil = Object("rope", "long coil of rope")
+
+pickaxe = Object("pickaxe", "smallish iron pickaxe")
+
 open_wardrobe = False
+
+cellar_barn.add_object(pickaxe)
 
 def open_wardrobe(game,thing):
     global stage
-    open
+    open_wardrobe = True
+    game.output("You open the wardrobe revealing a coil of rope")
+    stage.add_object(ropecoil)
+stage.add_phrase("open wardrobe", open_wardrobe)
 
 dog = Pet("Dog")
 dog.set_location(porch)
@@ -257,16 +270,16 @@ marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
 def climb_wall(game,thing):
     global lake_shorewall
-    if not [rope, pickaxe] in game.player.inventory:
+    if not ([ropecoil, pickaxe]) in game.player.inventory:
         game.output("You cannot climb this without something sharp that hooks to a rope, and a rope of course.")
     else:
         game.output("Uising the pickaxe and the rope you climb the wall.")
         player.set_location(lake_shore2)
-lake_shorewall.add_phrase("climb wall")
+lake_shorewall.add_phrase("climb wall", climb_wall)
 
-#if player.location == (terrorrized)
-#        player.terminate()
-#        game.output("U R DED GOODBY")
+if player.location == (terrorrized):
+        player.terminate()
+        game.output("U R DED GOODBY")
 
 storage_room1.add_object(marker)
 
