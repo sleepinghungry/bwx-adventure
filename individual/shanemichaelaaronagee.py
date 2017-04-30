@@ -154,6 +154,14 @@ terrorrized = game.new_location(
      "You Die Here",
      "The END!!!:)")
 
+lake_shorewall = game.new_location(
+    "Lake Shore",
+    "This is a lake shore with a wall in front of you. There is no way around.")
+
+lake_shore2 = game.new_location(
+    "Lake Shore",
+    "There is now a wall behind you that is un climable. But there is a passage to the north.")
+
 game.new_connection("What3", lake_shore1, terrorrized, [IN, SOUTH], [OUT, NORTH])
 
 game.player.health = 30
@@ -216,6 +224,12 @@ game.new_connection("Vestibule Door", porch, vestibule, [IN, NORTH], [OUT, SOUTH
 
 game.new_connection("Office Door", vestibule, office, [IN, WEST], [OUT, EAST])
 
+open_wardrobe = False
+
+def open_wardrobe(game,thing):
+    global stage
+    open
+
 dog = Pet("Dog")
 dog.set_location(porch)
 dog.set_allowed_locations([porch])
@@ -231,7 +245,9 @@ bathroom1.new_object("pile of toilet paper",
 whiteboard_markedup = False
 
 marker = Object("marker", "small red marker")
+
 keys = Object("pair of keys", "small pair of keys")
+
 def draw_on_whiteboard(game,thing):
     global whiteboard_markedup
     whiteboard_markedup = True
@@ -239,9 +255,18 @@ def draw_on_whiteboard(game,thing):
 
 marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
-if player.location = (terrorrized)
-     player.terminate()
-     game.output("U R DED GOODBY")
+def climb_wall(game,thing):
+    global lake_shorewall
+    if not [rope, pickaxe] in game.player.inventory:
+        game.output("You cannot climb this without something sharp that hooks to a rope, and a rope of course.")
+    else:
+        game.output("Uising the pickaxe and the rope you climb the wall.")
+        player.set_location(lake_shore2)
+lake_shorewall.add_phrase("climb wall")
+
+#if player.location == (terrorrized)
+#        player.terminate()
+#        game.output("U R DED GOODBY")
 
 storage_room1.add_object(marker)
 
