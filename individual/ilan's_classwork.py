@@ -1,24 +1,11 @@
-while True:
-    import random
-    response = [ "It is certain",
-                "It is decidedly so",
-                " Without a doubt",
-                "Yes definitely",
-                "You may rely on it",
-                "As I see it, yes",
-                "Most likely",
-                "Outlook good",
-                "Yes",
-                "Signs point to yes",
-                "Reply hazy try again",
-                "Ask again later",
-                "Better not tell you now",
-                "Cannot predict now",
-                "Concentrate and ask again",
-                "Don't count on it",
-                "My reply is no",
-                "My sources say no",
-                "Outlook not so good",
-                "Very doubtful"]
-    input ("Ask a yes or no question")
-    print (random.choice(response))
+dif = float (input("Welcome to the diving score calculator. Please enter a difficulty:"))
+score1 = float (input("Enter a score:"))
+score2 = float (input("Enter a score:"))
+score3 = float (input("Enter a score:"))
+score4 = float (input("Enter a score:"))
+score5 = float (input("Enter a score:"))
+scores = [score1, score2, score3, score4, score5]
+scores.remove(max(scores))
+scores.remove(min(scores))
+total = scores[0] + scores[1] + scores[2]
+print (total*dif)
