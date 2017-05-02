@@ -154,6 +154,10 @@ terrorrized = game.new_location(
      "You Die Here",
      "The END!!!:)")
 
+game_over_location = game.new_location(
+    "You Are Dead",
+    "Sorry, you have died.  There's nowhere to go except to exit the program.")
+
 lake_shorewall = game.new_location(
     "Lake Shore",
     "This is a lake shore with a wall in front of you. There is no way around.")
@@ -161,6 +165,8 @@ lake_shorewall = game.new_location(
 lake_shore2 = game.new_location(
     "Lake Shore",
     "There is now a wall behind you that is un climable. But there is a passage to the north.")
+
+game.new_connection("Game Over", terrorized, game_over_location, [IN, OUT, NORTH, EAST, WEST, SOUTH, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST], [NOT_DIRECTION]) 
 
 game.new_connection("What3", lake_shore1, terrorrized, [IN, SOUTH], [OUT, NORTH])
 
@@ -270,16 +276,12 @@ marker.add_phrase(["draw on whiteboard", "draw on board"], draw_on_whiteboard)
 
 def climb_wall(game,thing):
     global lake_shorewall
-    if not ([ropecoil, pickaxe]) in game.player.inventory:
+    if not "ropecoil" and "pickaxe" in game.player.inventory:
         game.output("You cannot climb this without something sharp that hooks to a rope, and a rope of course.")
     else:
         game.output("Uising the pickaxe and the rope you climb the wall.")
         player.set_location(lake_shore2)
 lake_shorewall.add_phrase("climb wall", climb_wall)
-
-if player.location == (terrorrized):
-        player.terminate()
-        game.output("U R DED GOODBY")
 
 storage_room1.add_object(marker)
 
