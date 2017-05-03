@@ -166,7 +166,7 @@ lake_shore2 = game.new_location(
     "Lake Shore",
     "There is now a wall behind you that is un climable. But there is a passage to the north.")
 
-game.new_connection("Game Over", terrorized, game_over_location, [IN, OUT, NORTH, EAST, WEST, SOUTH, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST], [NOT_DIRECTION]) 
+game.new_connection("Game Over", terrorrized, game_over_location, [IN, OUT, NORTH, EAST, WEST, SOUTH, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST], [NOT_DIRECTION]) 
 
 game.new_connection("What3", lake_shore1, terrorrized, [IN, SOUTH], [OUT, NORTH])
 
