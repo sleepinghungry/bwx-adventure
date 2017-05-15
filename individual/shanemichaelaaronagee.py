@@ -7,6 +7,10 @@ from bwx_adventure.advent_devtools import *
 
 game = Game("Willow Of Death")
 
+playername = input("What is your name???")
+print("Well", playername, "it's nice to see someone is alive, you are one of few survivers of the zombie apacolypse."
+      " But you are blind, don't worry I am your guardian angel, I will explain everything as you go... good luck...")
+
 porch = game.new_location(
   "Porch",
   "You are on a porch. It is raining. To the North is an office door to the west is a ramp.")
@@ -122,9 +126,7 @@ barn = game.new_location(
      "Barn",
      "This is a lardge barn with a stage to the north, and a door to the south.")
 
-bkey = lacys_room.new_object(
-     "skull key",
-     "Small barn shaped key.")
+bkey = Object("skull key", "Small barn shaped key.")
 
 stage = game.new_location(
      "Stage",
@@ -172,7 +174,7 @@ game.new_connection("What3", lake_shore1, terrorrized, [IN, SOUTH], [OUT, NORTH]
 
 game.new_connection("Wall", lake_shore1, lake_shorewall, [IN, EAST], [OUT, WEST])
 
-game.new_connection("What2", lake_shore, lake_shore1, [IN, EAST], [OUT,SOUTH])
+game.new_connection("What2", lake_shore, lake_shore1, [IN, EAST], [OUT, WEST])
 
 game.player.health = 30
 
@@ -300,11 +302,28 @@ old_fisherman.set_location(old_hut)
 def talk_to_man(game,thing):
      global old_hut
      talk_to_man = True
-     game.output("The old fisherman says he will trade you a fish, for a boat that will"
-           "lead you back to the school. There is a fishing pole in the cellar of"
-           "the cabin on the northern side of the island. Here are the keys, he sets down the keys.""")
+     game.output("The old fisherman says he will trade you a fish, for a boat that will "
+           "lead you back to the school. There is a fishing pole in the cellar of "
+           "the cabin on the northern side of the island. Here are the keys, he sets down a pair of keys.""")
      old_hut.add_object(keys)
 old_fisherman.add_phrase(["talk to man", "talk to old man", "talk to old fisherman"], talk_to_man)
+
+talk_to_ft = False
+
+fortune_teller = Actor("Fortune teller")
+fortune_teller.set_location(terrorrized)
+
+def talk_to_ft(game,thing):
+    global terrorrized
+    talk_to_ft = True
+    playerftanswer = input("Would you like me to tell you your fortune...?")
+    if playerftanswer == "yes":
+        game.output("Your future is that you are stuck in this room forever..."
+                    "you will either quit... or restart...(:")
+    else:
+        game.output("Yor loss... tell me when you want to know...")
+
+fortune_teller.add_phrase(["talk to fortune teller", "talk to ft"], talk_to_ft)
 
 morokunda = None
 
@@ -351,11 +370,15 @@ def fight_morokunda(game, thing):
     if "ninja sword" in game.player.inventory:
         game.output("Using the ninja sword to avoid it's giant tenticles, and stab the giant beast.")
 
+        game.output("the monster drops a skull key")
+
+        lindas_room.add_object(bkey)
+
         morokunda.terminate()
 
     else:
         game.output("You have nothing strong enouph to peirce it's skin.")
-
+        
         game.output("You have died.")
     
         player.terminate()
