@@ -1,24 +1,12 @@
 #!/user/bin/python
-# vim: et sw=2 ts=2 sts=2
-#
-# This is the second tutorial for writing Interactive Fiction with the BWX Adventure Game Engine.
-#
-
-# Allows access to the bwx_adventure module
 import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 sys.path.insert(1, os.path.join(sys.path[0], '../bwx_adventure'))
-
 from bwx_adventure.advent import *
-# for cloud9
 from bwx_adventure.advent import Game, Location, Connection, Object, Animal, Robot, Pet, Player, Say
 from bwx_adventure.advent import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, OUT, FORWARD, BACK, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, NOT_DIRECTION
-
-# import devtools for helpers you can use when running locally (not in trinket.io)
 import bwx_adventure.advent_devtools
-
-# import random module for random numbers
 import random
 
 # Let's start with the code from the first tutorial:
