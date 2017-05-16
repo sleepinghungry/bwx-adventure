@@ -168,6 +168,8 @@ lake_shore2 = game.new_location(
     "Lake Shore",
     "There is now a wall behind you that is un climable. But there is a passage to the north.")
 
+
+
 game.new_connection("Game Over", terrorrized, game_over_location, [IN, OUT, NORTH, EAST, WEST, SOUTH, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST], [NOT_DIRECTION]) 
 
 game.new_connection("What3", lake_shore1, terrorrized, [IN, SOUTH], [OUT, NORTH])
@@ -315,11 +317,12 @@ fortune_teller.set_location(terrorrized)
 
 def talk_to_ft(game,thing):
     global terrorrized
+    global playername
     talk_to_ft = True
     playerftanswer = input("Would you like me to tell you your fortune...?")
     if playerftanswer == "yes":
         game.output("Your future is that you are stuck in this room forever..."
-                    "you will either quit... or restart...(:")
+                    "you will either quit... or restart...(: Good Bye", playername)
     else:
         game.output("Yor loss... tell me when you want to know...")
 
@@ -421,16 +424,5 @@ secretrd.add_phrase(["move chair", "pull chair"], move_chair)
 
 game.add_actor(player)
 game.add_actor(dog)
-test_script = Script("test",
-"""
-> look
-> take vial
-> give dog vial
-> tell dog drink vial
-> look
-> end
-""")
-
-player.add_script(test_script)
 
 game.run()
