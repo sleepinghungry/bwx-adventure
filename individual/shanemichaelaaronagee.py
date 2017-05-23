@@ -166,7 +166,7 @@ lake_shorewall = game.new_location(
 
 lake_shore2 = game.new_location(
     "Lake Shore",
-    "There is now a wall behind you that is un climable. But there is a passage to the north.")
+    "There is now a wall behind you that is non climable. But there is a passage to the north.")
 
 
 
