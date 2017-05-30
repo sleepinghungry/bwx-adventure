@@ -7,8 +7,8 @@ from bwx_adventure.advent_devtools import *
 
 game = Game("Willow Of Death")
 
-playername = input("What is your name???")
-print("Well", playername, "it's nice to see someone is alive, you are one of few survivers of the zombie apacolypse."
+playername = input("GUARDIAN ANGEL: What is your name???")
+print("GUARDIAN ANGEL: Well", playername, "it's nice to see someone is alive, you are one of few survivers of the zombie apacolypse."
       " But you are blind, don't worry I am your guardian angel, I will explain everything as you go... good luck...")
 
 porch = game.new_location(
@@ -44,11 +44,11 @@ step = game.new_location(
 
 computer = game.new_location(
   "Computer Lab",
-  "This is a small room with tables spread out in the room.")
+  "This is a small room with tables spread out in the room, and a door to the south.")
 
 lindas_room = game.new_location(
   "Room Four",
-  "This is a skinny but tall room. There is a whitebourd here.")
+  "This is a skinny but tall room. There is a whitebourd here, and a door to the west.")
 
 storage_room1 = game.new_location(
   "Storage Room 1",
@@ -166,7 +166,7 @@ lake_shorewall = game.new_location(
 
 lake_shore2 = game.new_location(
     "Lake Shore",
-    "There is now a wall behind you that is non climable. But there is a passage to the north.")
+    "There is now a wall behind you that is non climable. But there is a passage to the north.", game.output(")
 
 
 
@@ -321,7 +321,7 @@ def talk_to_ft(game,thing):
     talk_to_ft = True
     playerftanswer = input("Would you like me to tell you your fortune...?")
     if playerftanswer == "yes":
-        game.output("Your future is that you are stuck in this room forever..."
+        game.output(playername, "Your future is that you are stuck in this room forever..."
                     "you will either quit... or restart...(: Good Bye", playername)
     else:
         game.output("Yor loss... tell me when you want to know...")
