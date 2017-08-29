@@ -29,13 +29,23 @@ To date (Jan 2017), 0 students over 0 years and 0 classes have added
   
 0 locations  
 0 items  
-0 verbs  
+0 custom actions
 0 characters  
 0 endings  
   
 to the game.
 
 Note that the current version of the game in [dist](https://github.com/sleepinghungry/wwif/tree/master/dist) is simply a test.
+
+#### shanemichaelaaronagee (Willow of Death)
+
+Started during January workshop in 2017 and finished by the end of spring semester 2017, this is the first completed completely student-made game using the bwx-adventure game engine.  This game contains
+
+36 locations  
+11 items  
+13 custom actions  
+4 characters  
+1 endings  
 
 Detailed instructions for downloading can be found in the wwif wiki at https://github.com/sleepinghungry/wwif/wiki/Finding-and-Playing-a-Game.
 
