@@ -1,0 +1,1 @@
+input (print("hello world")
