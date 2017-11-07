@@ -1,7 +1,7 @@
 from basic_game.writer import CONTENTS, DESCRIPTION, ConsoleWriter
 from basic_game.language import proper_list_from_dict
 from basic_game.base import Base
-from basic_game.actors import Actor, Player, Robot, Animal, Pet
+from basic_game.actors import Actor, Player, Animal, Pet
 from basic_game.interfaces import Lockable
 from basic_game.directions import opposite_direction
 from basic_game.objects import Object
@@ -11,14 +11,13 @@ class BasicGameWorld(Base):
     Base.__init__(self, "basic game world")
     self.objects = {}
     self.location_list = []
-    self.robots = {}
     self.animals = {}
 
     # automatically create the player
     self.player = Player()
     self.player.game = self
-    self.robots[self.player.name] = self.player
 
+    # FIXME: Should ConsoleWriter be part of the GameWorld or the GameEngine?
     self.writer = ConsoleWriter()
     
   def create_location(self, *args):
@@ -60,12 +59,6 @@ class BasicGameWorld(Base):
     actor.game = self
     return actor
   
-  def create_robot(self, name, location):
-    robot = Robot(name, location)
-    robot.game = self
-    self.robots[name] = robot
-    return robot
-
   def create_animal(self, name, location):
     animal = Animal(name, location)
     animal.game = self
@@ -75,7 +68,6 @@ class BasicGameWorld(Base):
   def create_pet(self, name, location):
     pet = Pet(name, location)
     pet.game = self
-    self.robots[name] = pet
     self.animals[name] = pet
     return pet
 
@@ -111,12 +103,8 @@ class Location(Base, Lockable):
     obj.game = self.game
     return obj
 
-  def title(self, actor):
+  def title(self):
     preamble = ""
-    if not actor.is_player:
-      preamble = "{} {} {} the ".format(actor.name.capitalize(),
-                                        actor.isare,
-                                        self.inonat)
     room_name = self.name
     return "        --=( {}{} )=--        ".format(preamble, room_name)
 
@@ -132,11 +120,11 @@ class Location(Base, Lockable):
       else:
         return self.description_str(d(self))
 
-  def describe(self, observer, force=False):
+  def describe(self, force_look=False):
     desc = ""   # start with a blank string
 
     # add the description
-    if self.first_time or force:
+    if self.first_time or force_look:
       desc += self.description_str(self.description)
       self.first_time = False
 
@@ -162,8 +150,8 @@ class Location(Base, Lockable):
           deadornot = "lying here dead as a doornail"
         else:
           deadornot = "here"
-        if a != observer:
-          desc += self.game.writer.style_text("\n" + add_article(a.describe(a)).capitalize() + \
+        if a != self.game.player:
+          desc += self.game.writer.style_text("\n" + add_article(a.describe()).capitalize() + \
                                        " " + a.isare + " " + deadornot + ".", CONTENTS)
 
     return desc

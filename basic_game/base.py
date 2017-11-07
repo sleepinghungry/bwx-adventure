@@ -1,8 +1,10 @@
 from basic_game.verbs import BaseVerb
 
-# Base is a place to put default inplementations of methods that everything
-# in the game should support (eg save/restore, how to respond to verbs etc)
 class Base(object):
+  """ Contains default implmenetations of methods that everything in the 
+      game should support (eg save/restore, how to respond to verbs, etc.)
+  """
+
   def __init__(self, name):
     self.game = None
     self.name = name
