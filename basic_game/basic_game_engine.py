@@ -1,6 +1,7 @@
 from basic_game.directions import directions
-from basic_game.language import list_prefix, normalize_input
+from basic_game.language import list_prefix, normalize_input, get_noun
 from basic_game.writer import DEBUG, TITLE, ConsoleWriter
+from basic_game.objects import Container
 
 class BasicGameEngine(object):
   """Given a completed GameWorld, can be used to start a game or write text

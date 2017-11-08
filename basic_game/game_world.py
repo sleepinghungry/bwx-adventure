@@ -4,7 +4,7 @@ from basic_game.base import Base
 from basic_game.actors import Actor, Player, Animal, Pet
 from basic_game.interfaces import Lockable
 from basic_game.directions import opposite_direction
-from basic_game.objects import Object
+from basic_game.objects import Object, Container
 
 class BasicGameWorld(Base):
   def __init__(self):

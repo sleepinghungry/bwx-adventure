@@ -13,5 +13,7 @@ There is a glass door to the west.""")
 
 world.create_connection("Glass Door", front_of_office, vestibule, [IN, EAST], [OUT, WEST])
 
+vestibule.create_object("pen", "a black plastic bic pen")
+
 game = BasicGameEngine(world)
-game.start()
+game.run()

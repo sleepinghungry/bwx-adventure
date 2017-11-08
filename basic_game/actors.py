@@ -1,6 +1,7 @@
 from basic_game.base import Base
 from basic_game.verbs import BaseVerb
 from basic_game.directions import directions
+from basic_game.language import proper_list_from_dict
 
 # An actor in the game
 class Actor(Base):
