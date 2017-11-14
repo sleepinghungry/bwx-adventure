@@ -13,9 +13,7 @@ vestibule = world.create_location(
 There is a glass door to the west.""")
 
 
-
 vestibule.create_object("lollipop", "a rainbow swirly lollipop the size of your face")
-
 
 
 world.create_connection("Bubblegum", front_of_office, vestibule, [IN, EAST], [OUT, WEST])

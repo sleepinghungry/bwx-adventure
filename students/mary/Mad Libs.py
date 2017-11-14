@@ -10,6 +10,6 @@ input("Animal:"),
       ".",
       "It was also very", 
 input("adjective:"),
-      "After apoligies were made they made some deep eye countact and new they were ment to be friends. THE END.")
+      "After apoligies were made they made some deep eye contact and new they were ment to be friends. THE END.")
 
        

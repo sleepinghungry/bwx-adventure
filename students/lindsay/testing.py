@@ -1,4 +1,13 @@
+import random
 
-#print(len(input("type word")))
-input("hi ", "you") 
+
+a = random.randint(1,400)
+
+b = int(input("guess a number"))
+
+
+
+
+
+
 

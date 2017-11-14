@@ -1,6 +1,8 @@
-word = input("give me a word: ")
+import random
 
+rando_number = random.randint(1,101)
 
-lenth = len(word)
+a = random.randint(1,101)
+b = random.randint(1,101)
 
-print ("there are " , lenth , " leters in; " + word) 
+print (a*b)

@@ -5,7 +5,6 @@ from basic_context import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, O
 world = BasicGameWorld()
 
 front_of_office = world.create_location("Front of Office","You are standing in front of a bright yellow building.")
-
 candyland = world.create_location("candyland","everything is made out of candy")
 school = world.create_location("school", "a sunny red building with a swing set")
 home = world.create_location("home", "a cozy wooden cottage")
