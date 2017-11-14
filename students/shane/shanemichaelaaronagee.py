@@ -168,7 +168,13 @@ lake_shore2 = game.new_location(
     "Lake Shore",
     "There is now a wall behind you that is non climable. But there is a passage to the north.")
 
+barn_porch = game.new_location(
+    "Barn Entree",
+    "Small porch with a pathway leading south.")
 
+
+
+game.new_connection("barn_entree", stage, barn_porch, [IN, WEST], [OUT])
 
 game.new_connection("Game Over", terrorrized, game_over_location, [IN, OUT, NORTH, EAST, WEST, SOUTH, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST], [NOT_DIRECTION]) 
 
@@ -416,7 +422,7 @@ def pull_soda(game,thing):
 family.add_phrase(["take soda", "take dr.pepper", "take Dr.Pepper"], pull_soda)
 
 def move_chair(game, thing):
-     global secretrd 
+     global secretrd
      global mazelol
      game.new_connection("Trap door RR", secretrd, mazelol, [IN, DOWN], [OUT, UP])
      game.output("The chair has been moved.")
