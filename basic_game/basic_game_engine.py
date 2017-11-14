@@ -1,24 +1,23 @@
+from basic_game.descriptors import Descriptor
 from basic_game.directions import directions
 from basic_game.language import list_prefix, normalize_input, get_noun
-from basic_game.writer import DEBUG, TITLE, ConsoleWriter
 from basic_game.objects import Container
+from basic_game.writer import DEBUG, ConsoleWriter
+from basic_game.verbs import BaseVerb
 
 class BasicGameEngine(object):
-  """Given a completed GameWorld, can be used to start a game or write text
-  to standard output.
-  """
+  """Given a completed GameWorld, starts a game."""
   
   def __init__(self, basic_game_world, writer=ConsoleWriter()):
     self.writer = writer
+    self.game = basic_game_world
     self.player = basic_game_world.player
     self.animals = basic_game_world.animals
     self.done = False
 
-
-  def output(self, text, message_type = 0):
-    """Writes formatted game descriptions to the user. """
-    self.writer.output(text, message_type)
-
+    # Descriptors
+    self.descriptor = basic_game_world.descriptor
+    
 
   def run(self):
     """Run the main loop until game is done.
@@ -28,7 +27,7 @@ class BasicGameEngine(object):
       self._describe_setting()
 
       if self.player.health < 0:
-        self.output ("Better luck next time!")
+        self.writer.output("Better luck next time!")
         break
 
       command = self._get_input()
@@ -38,7 +37,7 @@ class BasicGameEngine(object):
       
       self._do_action(command)
       
-    self.output("\ngoodbye!\n")
+    self.writer.output("\ngoodbye!\n")
 
 
   def _describe_setting(self):
@@ -47,13 +46,8 @@ class BasicGameEngine(object):
     actor = self.player
     # if the actor moved, describe the room
     if actor.check_if_moved():
-      self.output(actor.location.title(), TITLE)
-      
-      where = actor.location.describe()
-      if where:
-        self.output("")
-        self.output(where)
-        self.output("")
+      self.descriptor.output_title(actor.location)
+      self.descriptor.output_location_description(actor.location)
       
     # See if the animals want to do anything
     for animal in self.animals.values():
@@ -65,7 +59,7 @@ class BasicGameEngine(object):
   def _get_input(self):
     """ Request and parse out player input."""
     self.writer.clear_text()
-    self.output("")
+    self.writer.output("")
 
     user_input = input("> ")
 
@@ -129,7 +123,7 @@ class BasicGameEngine(object):
           if f.act(actor, noun, words):
             return
         else:
-          f(self, thing)
+          f(self.game, thing)
           return
 
     # if we have an INDIRECT object, try it's handle first
@@ -185,6 +179,6 @@ class BasicGameEngine(object):
         return
 
     # not understood
-    self.output("Huh?")
+    self.writer.output("Huh?")
     return
 

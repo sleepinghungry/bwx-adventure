@@ -5,33 +5,36 @@ from basic_game.actors import Actor, Player, Animal, Pet
 from basic_game.interfaces import Lockable
 from basic_game.directions import opposite_direction
 from basic_game.objects import Object, Container
+from basic_game.descriptors import Descriptor
 
 class BasicGameWorld(Base):
+  """Contains both the physical layout of the game world and methods for
+  creating and expanding it.
+  """
   def __init__(self):
     Base.__init__(self, "basic game world")
-    self.objects = {}
     self.location_list = []
     self.animals = {}
-
-    # automatically create the player
-    self.player = Player()
-    self.player.game = self
-
+    self.player = None
+    
     # FIXME: Should ConsoleWriter be part of the GameWorld or the GameEngine?
     self.writer = ConsoleWriter()
+    self.descriptor = Descriptor(self.writer)
     
   def create_location(self, *args):
+    """Creates a location and stores it in the location_list."""
     location = Location(*args)
     location.game = self
     self.location_list.append(location)
 
     # automatically start player in the first location created.
     if len(self.location_list) == 1:
-      self.player.set_location(location)
+      self.player = Player(location)
 
     return location
 
   def create_connection(self, *args):
+    """Creates a connnection between two locations."""
     connection = Connection(*args)
     connection.game = self
     if isinstance(connection.way_ab, (list, tuple)):
@@ -54,38 +57,44 @@ class BasicGameWorld(Base):
       connection.point_b.add_exit(reverse_connection, connection.way_ba)
     return connection
 
+  def set_start_location(self, location):
+    """Changes the player's start location."""
+    self.player.location = location
+
   def create_actor(self, name, location):
+    """Creates an actor at a specific location."""
     actor = Actor(name, location)
-    actor.game = self
+    location.actors[name] = actor
     return actor
   
   def create_animal(self, name, location):
+    """Creates and animal at a specific location and stores the animal in
+    the animals list.
+    """
     animal = Animal(name, location)
-    animal.game = self
     self.animals[name] = animal
+    location.actors[name] = animal
     return animal
   
   def create_pet(self, name, location):
+    """Creates a pet at a specific location and stores the pet in the animals
+    list.
+    """
     pet = Pet(name, location)
-    pet.game = self
     self.animals[name] = pet
+    location.actors[name] = pet
     return pet
 
-  def set_name(self, name):
-    self.name = name
 
-  def set_start_location(self, location):
-    self.player.location = location
-
-
-# A "location" is a place in the game.
 class Location(Base, Lockable):
-  # name: short name of this location
-  # description: full description
-  # contents: things that are in a location
-  # exits: ways to get out of a location
-  # first_time: is it the first time here?
-  # actors: other actors in the location
+  """A location is a place in the game world.
+  name: short name of this location
+  description: full description
+  contents: things that are in a location
+  exits: ways to get out of a location
+  first_time: is it the first time here?
+  actors: other actors in the location
+  """
 
   def __init__(self, name, description, inonat="in"):
     Base.__init__(self, name)
@@ -102,59 +111,6 @@ class Location(Base, Lockable):
     self.contents[name] = obj
     obj.game = self.game
     return obj
-
-  def title(self):
-    preamble = ""
-    room_name = self.name
-    return "        --=( {}{} )=--        ".format(preamble, room_name)
-
-  def description_str(self, d):
-    if isinstance(d, (list, tuple)):
-      desc = ""
-      for dd in d:
-        desc += self.description_str(dd)  # recursion!
-      return desc
-    else:
-      if isinstance(d, str):
-        return self.game.writer.style_text(d, DESCRIPTION)
-      else:
-        return self.description_str(d(self))
-
-  def describe(self, force_look=False):
-    desc = ""   # start with a blank string
-
-    # add the description
-    if self.first_time or force_look:
-      desc += self.description_str(self.description)
-      self.first_time = False
-
-    if self.contents:
-      # try to make a readable list of the things
-      contents_description = proper_list_from_dict(self.contents)
-      # is it just one thing?
-      if len(self.contents) == 1:
-        desc += self.game.writer.style_text("\nThere is {} here.".
-                                  format(contents_description), CONTENTS)
-      else:
-        desc += self.game.writer.style_text("\nThere are a few things here: {}.".
-                                     format(contents_description), CONTENTS)
-      for k in sorted(self.contents.keys()):
-        c = self.contents[k]
-        if isinstance(c, Container) and c.is_open():
-          desc += c.describe_contents()
-                                     
-    if self.actors:
-      for k in sorted(self.actors.keys()):
-        a = self.actors[k]
-        if a.health < 0:
-          deadornot = "lying here dead as a doornail"
-        else:
-          deadornot = "here"
-        if a != self.game.player:
-          desc += self.game.writer.style_text("\n" + add_article(a.describe()).capitalize() + \
-                                       " " + a.isare + " " + deadornot + ".", CONTENTS)
-
-    return desc
 
   def find_object(self, actor, name):
     if not name:
@@ -200,10 +156,6 @@ class Location(Base, Lockable):
 
     return c.point_b
 
-  def debug(self):
-    for key in self.exits:
-      print("exit: %s" % key)
-
   def try_unlock(self, actor, writer):
     # first see if the actor is whitelisted
     if actor.allowed_locs:
@@ -212,12 +164,11 @@ class Location(Base, Lockable):
 
     return super().try_unlock(actor, writer)
   
-# A "connection" connects point A to point B. Connections are
-# always described from the point of view of point A.
+ 
 class Connection(Base, Lockable):
-  # name
-  # point_a
-  # point_b
+  """A "connection" connects point A to point B. Connections are
+  always described from the point of view of point A.
+  """
 
   def __init__(self, name, pa, pb, way_ab, way_ba=None):
     Base.__init__(self, name)

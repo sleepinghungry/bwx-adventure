@@ -28,9 +28,9 @@ class Die(BaseVerb):
     self.string = string
 
   def act(self, actor, noun, words):
-    self.bound_to.game.output("{} {} {}".format(actor.name.capitalize(),
+    self.bound_to.game.writer.output("{} {} {}".format(actor.name.capitalize(),
                                             actor.isare, self.string))
-    self.bound_to.game.output("{} {} dead.".format(actor.name.capitalize(),
+    self.bound_to.game.writer.output("{} {} dead.".format(actor.name.capitalize(),
                                                    actor.isare))
     actor.terminate()
     return True
@@ -49,7 +49,7 @@ class Say(BaseVerb):
         self.index += 1
       else:
         result = self.string[-1]
-    self.bound_to.game.output(result)
+    self.bound_to.game.writer.output(result)
     return True
 
 class SayOnNoun(Say):    
@@ -60,7 +60,7 @@ class SayOnNoun(Say):
   def act(self, actor, noun, words):
     if self.noun != noun:
       return False
-    self.bound_to.game.output(self.string)
+    self.bound_to.game.writer.output(self.string)
     return True
 
 class SayOnSelf(SayOnNoun):

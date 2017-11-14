@@ -13,7 +13,8 @@ class Actor(Base):
   def __init__(self, name, location):
     Base.__init__(self, name)
     self.health = 0
-    self.location = None
+    self.location = location
+    self.game = location.game
     self.allowed_locs = None
     self.inventory = {}
     self.cap_name = name.capitalize()
@@ -38,9 +39,6 @@ class Actor(Base):
     self.add_verb(BaseVerb(self.act_open, 'open'))
     self.add_verb(BaseVerb(self.act_list_verbs, 'verbs'))
     self.add_verb(BaseVerb(self.act_list_verbs, 'commands'))
-
-    if location:
-      location.actors[name] = self
     
   # terminate
   def terminate(self):
@@ -141,7 +139,7 @@ class Actor(Base):
       return False
 
   def act_look(self, actor, noun, words):
-    self.game.writer.output(self.location.describe(True))
+    self.game.descriptor.output_location_description(self.location, True)
     return True
 
   # examine a thing in our inventory or location
@@ -296,12 +294,13 @@ class Robot(Actor):
 
 # Player derives from Robot so that we can record and run scripts as the player
 class Player(Robot):
-  def __init__(self):
-    Robot.__init__(self, "you", None)
+  def __init__(self, location):
+    Robot.__init__(self, "you", location)
     self.is_player = True
     self.isare = "are"
     self.verborverbs = ""
-
+    self.moved = True
+    
 # Animals are actors which may act autonomously each turn
 class Animal(Actor):
   def __init__(self, name, location):

@@ -8,3 +8,4 @@ from basic_game.directions import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEF
 from basic_game.objects import Object, Food, Drink, Light, Container
 from basic_game.actors import Actor, Player, Animal, Pet
 from basic_game.verbs import BaseVerb, Die, Say, SayOnNoun, SayOnSelf, Verb
+from basic_game.descriptors import Descriptor
