@@ -24,6 +24,7 @@ globe_room = world.create_location("globe room", "there is a big globe in the mi
 
 
 
+
 # - - -
 
 world.create_connection("door", mine_enter, mine_tunnle0, [IN, NORTH], [OUT, SOUTH]) 

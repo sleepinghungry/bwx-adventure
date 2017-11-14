@@ -21,6 +21,8 @@ knife = top_of_stairs.create_object("bloody knife on a table", "knife")
 
 key = top_of_stairs.create_object("key", "key")
 
+top_of_stairs.create_object("key", "key")
+
 world.create_connection ("stairs",vestibule, top_of_stairs, [UP], [DOWN])
 
 locked_room = world.create_location(
