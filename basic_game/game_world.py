@@ -112,6 +112,12 @@ class Location(Base, Lockable):
     obj.game = self.game
     return obj
 
+  def create_container(self, name, desc, fixed=False):
+    container = Container(name, desc, fixed)
+    self.contents[name] = container
+    container.game = self.game
+    return container
+
   def find_object(self, actor, name):
     if not name:
       return None

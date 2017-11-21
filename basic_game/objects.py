@@ -1,5 +1,7 @@
 from basic_game.base import Base
 from basic_game.interfaces import Consumable, Lightable, Lockable
+from basic_game.language import proper_list_from_dict
+from basic_game.writer import FEEDBACK, CONTENTS
 
 class Object(Base):
   # name: short name of this thing
@@ -35,21 +37,21 @@ class Light(Object, Lightable):
     Lightable.__init__(self, name, Lightable.SWITCH_YES, Lightable.OFF)
 
         
-class Container(Lockable):
-  def __init__(self, name, description):
-    Lockable.__init__(self, name)
-    self.description = description
+class Container(Object, Lockable):
+  def __init__(self, name, description, fixed=False):
+    Object.__init__(self, name, description, fixed)
+    Lockable.__init__(self)
     self.first_time = True
     self.contents = {}
     self.close()
 
-  def add_object(self, obj):
+  def insert(self, obj):
     self.contents[obj.name] = obj
     obj.game = self.game
     return obj
 
-  def new_object(self, name, desc, fixed=False):
-    return self.add_object(Object(name, desc, fixed))
+  def create_object(self, name, desc, fixed=False):
+    return self.insert(Object(name, desc, fixed))
 
   def describe(self, observer, force=False):
     desc = ""   # start with a blank string
@@ -73,27 +75,29 @@ class Container(Lockable):
     desc = ""
     if not self.contents:
       return desc
-    
+
+    writer = self.game.writer
     # try to make a readable list of the things
     contents_description = proper_list_from_dict(self.contents)
     # is it just one thing?
     if len(self.contents) == 1:
-      desc += self.game.style_text("\nThere is %s in the %s." % \
+      desc += writer.style_text("\nThere is %s in the %s." % \
                                    (contents_description, self.name), CONTENTS)
     else:
-      desc += self.game.style_text("\nThere are a few things in the %s: %s." % \
+      desc += writer.style_text("\nThere are a few things in the %s: %s." % \
                                    (self.name, contents_description), CONTENTS)
 
     return desc
 
   def open(self, actor):
+    writer = actor.game.writer
     if self.is_open():
-      self.output("The %s is already open." % self.name)
+      writer.output("The %s is already open." % self.name)
       return True
-    if not self.try_unlock(actor):
+    if not self.try_unlock(actor, writer):
       return False
-    self.output("The %s opens." % self.name, FEEDBACK)
-    self.output(self.describe_contents(), CONTENTS)
+    writer.output("The %s opens." % self.name, FEEDBACK)
+    writer.output(self.describe_contents(), CONTENTS)
     self.unset_flag('closed')
 
   def close(self):
