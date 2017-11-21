@@ -1,6 +1,6 @@
 from basic_game.descriptors import Descriptor
 from basic_game.directions import directions
-from basic_game.language import list_prefix, normalize_input, get_noun
+from basic_game.language import list_prefix, normalize_input, get_noun, prepositions
 from basic_game.objects import Container
 from basic_game.writer import DEBUG, ConsoleWriter
 from basic_game.verbs import BaseVerb

@@ -4,8 +4,10 @@ from basic_context import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, O
 
 world = BasicGameWorld()
 
-dungeon = world.create_location("Virgonia Isle, in the dungeon")
-  
+# Hi Parker, Eping here.  I added quotes in this line of code so it would work:
+#dungeon = world.create_location("Virgonia Isle, in the dungeon")
+dungeon = world.create_location("Virgonia Isle", "in the dungeon")
+
 Espilcen = world.create_location ("Espilcen dungeon cell", " you are standing in a dark, musty dungeonn cell. you musty get out!")
 
 world.create_connection("dungeon cell", dungeon, Espilcen, [IN, EAST], [OUT, WEST])
@@ -14,7 +16,9 @@ air_vent = dungeon.create_object("air vent", "there is a air vent in the stone c
 
 metal = dungeon.create_object("metal", "you see a piece of metal on the ground")
 
-air_vent.make_requirement(key)
+# So...your key can only be a requirement for a location or a connection.  It can't
+# be a requirement for another object.  I'd recommend making your air_vent a
+# connection between Espilcen and a new location.
 
 game = BasicGameEngine(world)
 game.run()

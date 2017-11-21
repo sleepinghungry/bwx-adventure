@@ -11,6 +11,9 @@ home = world.create_location("home", "a cozy wooden cottage")
 world.create_connection("tunnel", front_of_office, school, [IN, DOWN], [OUT, UP]) 
 world.create_connection("Glass Door", front_of_office, candyland, [IN, EAST], [OUT, WEST])
 world.create_connection("stairs", school, home, [IN, NORTH], [OUT, SOUTH])
+
+# Hi Aurora, Eping here. FORWARD and BACK aren't directions that are recognized by the game
+# engine.  You'll have to use EAST/WEST or NORTH/SOUTH.
 world.create_connection("portal", home,candyland, [IN, BACK], [OUT, FORWARED])
 game = BasicGameEngine(world)
 game.run()
