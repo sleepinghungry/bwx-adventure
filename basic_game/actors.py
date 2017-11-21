@@ -15,7 +15,10 @@ class Actor(Base):
     Base.__init__(self, name)
     self.health = 0
     self.location = location
-    self.game = location.game
+    # kluge here, in order to let end users set a player's health before any
+    #  locations have been created.
+    if location:
+      self.game = location.game
     self.allowed_locs = None
     self.inventory = {}
     self.cap_name = name.capitalize()
@@ -295,8 +298,9 @@ class Robot(Actor):
 
 # Player derives from Robot so that we can record and run scripts as the player
 class Player(Robot):
-  def __init__(self, location):
-    Robot.__init__(self, "you", location)
+  def __init__(self, game):
+    Robot.__init__(self, "you", None)
+    self.game = game
     self.is_player = True
     self.isare = "are"
     self.verborverbs = ""

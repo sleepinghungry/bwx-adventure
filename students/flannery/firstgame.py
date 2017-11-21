@@ -14,12 +14,19 @@ gray_rain_cloud = world.create_location(
 
 world.create_connection("ladder", puffy_cloud, gray_rain_cloud, [IN, UP], [OUT, DOWN])
 
-# Hi Flannery--Eping here.  I mistakenly merged an old version of your game with your most recent version...
-# so these next two lines of code may not have been here when you last worked on this file.
-# I left them in just in case. Sorry!  
-museum = world.create_location("museum", "the rain takes you down as the cloud falls apart. you fall and fall untill you are sucked through a chimney leading into a museum. You climb out and find yourself in a huge room with dinosaur skeletons everywhere. There's a hallway to your right, door to your left, and a flight of stairs leading up")
+museum = world.create_location("museum", "the rain takes you down as the cloud falls apart. you fall and fall untill you are sucked through a chimney leading into a museum. You climb out ad find yourself in a huge room with dinosaur skeletons everywhere. There's a hallway to your right, door to your left, and a flight of stairs leading up")
 
-world.create_connection("rain", gray_rain_cloud, museum, [IN, DOWN], [NOT_DIRECTION]) 
+world.create_connection("rain", gray_rain_cloud, museum, [IN, DOWN], [NOT_DIRECTION])
+
+
+hallway = world.create_location ("hallway", "a long and dark hallway. You are not sure what it leads to.")
+
+dark_room = world.create_location("dark room", "a small dark room. You can't see anything.")
+world.create_connection("spacebetweenroomandhallway", museum, hallway, [IN, RIGHT], [OUT, LEFT])
+
+
+world.create_connection("door", museum, dark_room, [IN, LEFT], [OUT, RIGHT])
+
 
 game = BasicGameEngine(world)
 game.run()

@@ -15,7 +15,7 @@ class BasicGameWorld(Base):
     Base.__init__(self, "basic game world")
     self.location_list = []
     self.animals = {}
-    self.player = None
+    self.player = Player(self)
     
     # FIXME: Should ConsoleWriter be part of the GameWorld or the GameEngine?
     self.writer = ConsoleWriter()
@@ -29,7 +29,8 @@ class BasicGameWorld(Base):
 
     # automatically start player in the first location created.
     if len(self.location_list) == 1:
-      self.player = Player(location)
+      self.player.set_location(location)
+      self.player.game = location.game
 
     return location
 

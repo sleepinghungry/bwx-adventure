@@ -46,5 +46,12 @@ world.create_connection("drop", generator_room, globe_room, [IN, DOWN], [OUT, NO
 
 
 
+# - - -
+
+
+
+
+
+
 game = BasicGameEngine(world)
 game.run()
