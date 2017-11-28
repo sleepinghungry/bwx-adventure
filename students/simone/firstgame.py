@@ -1,22 +1,17 @@
 from basic_context import BasicGameWorld
 from basic_context import BasicGameEngine
 from basic_context import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, OUT, FORWARD, BACK, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, NOT_DIRECTION
-from basic_context import Object, Food, Drink, Container
+from basic_context import Object
 
 world = BasicGameWorld()
 
-front_of_office = world.create_location("Candyland","You are standing in front of a huge gingerbread house complete with a wafer roof, butterscotch windows, and candy cane trim.")
+candyland = world.create_location("candyland","You are standing in front of a huge gingerbread house complete with a wafer roof, butterscotch windows, and candy cane trim.")
 
-vestibule = world.create_location(
-  "Candyland",
-    """A small area at the bottom of a flight of stairs.
-There is a glass door to the west.""")
+candyland.create_object("key", "large brown key made of chocolate")
+healthyland = world.create_location(
+    "healthyland"
+    """a bigger land full of gross healthy foods like broccoli trees and lakes full of steaming carrot stew. It is snowing large clumps of squash now, and there is no other way to go but down with the snow """)
 
+world.create_connection("bridge", candyland, healthyland, [IN, UP], [OUT, DOWN])
 
-vestibule.create_object("lollipop", "a rainbow swirly lollipop the size of your face")
-
-
-world.create_connection("Bubblegum", front_of_office, vestibule, [IN, EAST], [OUT, WEST])
-
-game = BasicGameEngine(world)
-game.run()
+canned_liver_palace = world.create_location("canned liver palace", "the squash snow takes you down just as a broccoli tree slams to the ground inches from your body. You begin falling an

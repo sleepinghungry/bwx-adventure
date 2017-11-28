@@ -18,7 +18,7 @@ world.create_connection("Glass Door", front_of_office, vestibule, [IN, EAST], [O
                       
 elevator = world.create_location("elevator","you are in the elevator.")
 
-door = world.create_connection("elevator door", elevator, [IN, SOUTH], [OUT, NORTH])
+door = world.create_connection("elevatordoor", elevator,frontoffice [IN, SOUTH], [OUT, NORTH])
 
 print ("theres a key")
                                                            

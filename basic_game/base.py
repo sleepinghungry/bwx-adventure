@@ -1,5 +1,19 @@
 from basic_game.verbs import BaseVerb
 
+class GameEnding(object):
+  """Contains text and a custom function to see if the game has reached an
+  end point or not."""
+  def __init__(self):
+    self.text = None
+    self.check = None
+    
+  def reached(self):
+    if self.run_check:
+      return self.check()
+    else:
+      return True
+
+
 class Base(object):
   """ Contains default implmenetations of methods that everything in the 
       game should support (eg save/restore, how to respond to verbs, etc.)
@@ -8,6 +22,7 @@ class Base(object):
   def __init__(self, name):
     self.game = None
     self.name = name
+    self.game_end = None
     self.verbs = {}
     self.phrases = {}
     self.vars = {}
@@ -70,3 +85,15 @@ class Base(object):
       return p[0]
     return None
 
+  def end(self, text):
+    """Marks this location as a game ending location."""
+    self.game_end = GameEnding()
+    self.game_end.text = text
+    def f():
+      return True
+    self.game_end.check = f
+
+  def cond_end(self, f, text):
+    self.game_end = GameEnding()
+    self.game_end.text = text
+    self.game_end.check = f

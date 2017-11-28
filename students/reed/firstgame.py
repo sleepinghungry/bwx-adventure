@@ -3,17 +3,16 @@ from basic_context import BasicGameEngine
 from basic_context import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, OUT, FORWARD, BACK, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, NOT_DIRECTION
 
 world = BasicGameWorld()
-
-front_of_office = world.create_location("Front of Office","You are standing in front of a bright yellow building.")
-up_stairs = world.create_location("upstairs","Spooky atic, filled with dusty boxs and a small broken window to the east.")
+Train_seat = world.create_location("train","Outside rushes by as the train slows down, door north of you")
 
 vestibule = world.create_location(    
   "Vestibule",
-    """A small area at the bottom of a flight of stairs.
-There is a ladder going up.""")
-world.create_connection("Glass Door", front_of_office, vestibule, [IN, EAST], [OUT, WEST])
+    """Its PARTY TIME""")
 
-world.create_connection("Ladder", up_stairs, vestibule, [UP, SOUTH])
+world.create_connection = ("Place1", vestibule, Train_seat, [NORTH, OUT], [SOUTH, IN])
+
+
+
 
 
 game = BasicGameEngine(world)

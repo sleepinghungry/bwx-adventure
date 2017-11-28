@@ -55,7 +55,7 @@ class Consumable(object):
                                          self.replacement):
       return False
     
-    self.output("%s %s%s %s." % (actor.name.capitalize(), self.consume_term,
+    actor.game.writer.output("%s %s%s %s." % (actor.name.capitalize(), self.consume_term,
                                  actor.verborverbs, self.parent.description))
     self.verb.act(actor, noun, words)
     return True

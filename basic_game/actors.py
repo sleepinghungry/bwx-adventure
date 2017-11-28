@@ -1,5 +1,5 @@
 from basic_game.base import Base
-from basic_game.objects import Container
+from basic_game.objects import Container, Food
 from basic_game.verbs import BaseVerb
 from basic_game.directions import directions
 from basic_game.language import proper_list_from_dict

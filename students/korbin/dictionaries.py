@@ -4,7 +4,7 @@ from basic_context import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, O
 
 world = BasicGameWorld()
 
-# - - -
+# - - - ROOM - - - 
 
 mine_enter = world.create_location("mine entrance", "you stand infront of a mine,the mine entrace faces NORTH. ")
 
@@ -25,7 +25,7 @@ globe_room = world.create_location("globe room", "there is a big globe in the mi
 
 
 
-# - - -
+# - - - CONNECTION - - -
 
 world.create_connection("door", mine_enter, mine_tunnle0, [IN, NORTH], [OUT, SOUTH]) 
 
@@ -39,16 +39,26 @@ world.create_connection("door", monster_room, wet_room, [IN, NORTH_EAST], [OUT, 
 
 world.create_connection("door", mine_tunnle1, wet_room, [IN, NORTH_WEST], [OUT, SOUTH_EAST])
 
-world.create_connection("crawl way", light_room, generator_room, [IN, NORTH], [OUT, SOUTH])
+crawl_way = world.create_connection("crawl_way", light_room, generator_room, [IN, NORTH], [OUT, SOUTH])
 
 world.create_connection("drop", generator_room, globe_room, [IN, DOWN], [OUT, NOT_DIRECTION])
 
 
 
 
-# - - -
+# - - - KEYS - - -
+
+key0 = wet_room.create_object("rusty key", "a rusty damp key")
 
 
+
+# - - - OBJECTS - - -
+
+
+
+# - - - requirements - - -
+
+crawl_way.make_requirement
 
 
 

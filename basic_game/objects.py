@@ -22,7 +22,7 @@ class Object(Base):
 class Food(Object, Consumable):
   def __init__(self, name, desc, verb, replacement = None):
     Object.__init__(self, name, desc)
-    Consumable.__init__(self, verb, replacement)
+    Consumable.__init__(self, self, verb, replacement)
     self.consume_term = "eat"
     
 class Drink(Object, Consumable):

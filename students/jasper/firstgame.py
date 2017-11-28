@@ -5,36 +5,25 @@ from basic_context import Object, Food, Drink, Container
 
 world = BasicGameWorld()
 
-bedroom = world.create_location("Bedroom", "a typical messy 41-year old's room")
+hospital_room_105 = world.create_location("hospital room 105", "a dark hospital room #105 with a fliker of light and a dead corps rotting in the corner")
+a_dead_corps = hospital_room_105.create_container("a dead corps", "a rotting dead corps sitting in the corner")
 
-street = world.create_location("street", "a dark gloomey street")
+long_hospital_hallway = world.create_location("long hospital hallway", "dark long hallway with a flikering light to the west and nothing but silence to the east")
+world.create_connection("hard oak door", hospital_room_105,long_hospital_hallway, SOUTH, NORTH)
 
-hallway = world.create_location("hallway", "a dark long lonely hallway")
-
-cellar = world.create_location("cellar", "a dark moist musty cellar")
-
-fals_panel = world.create_location("false_panel", "dark and creepy")
-door = world.create_connection("cellar DOOR", false_panel, cellar, SOUTH, NORTH)
-
-door = world.create_connection("Bedroom Door", bedroom, hallway, SOUTH, NORTH)
+janetors_closet = world.create_location("janetors closet", "dark quiet and looks like thier might be a secret panel at the end of he room")
+sergins_glove = janetors_closet.create_object("sergins glove", "sergins glove a dark read wall it drips its read blood slowlly onto the floor")
 
 
 
 
-door = world.create_connection("false_panel",false_panel,bedroom,SOUTH, NORTH)
-
-door = world.create_connection("front door", hallway, street, WEST, EAST)
-
-key = bedroom.create_object("key", "a heavy shiny gold key")
-
-door.make_requirement(key)
-
-mom = world.create_actor("mom", hallway)
-
-key = hallway.create_object("key", "a light shiny silver key")
-
-key = street.create_object("key", "a dark brown from the 60s key")
 
 
+
+
+
+
+
+a_dead_corps.make_requirement([sergins_glove, scalpal])
 game = BasicGameEngine(world)
 game.run()

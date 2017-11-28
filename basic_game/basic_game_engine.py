@@ -14,6 +14,8 @@ class BasicGameEngine(object):
     self.player = basic_game_world.player
     self.animals = basic_game_world.animals
     self.done = False
+    self.turn_count = 0
+    self.points = 0
 
     # Descriptors
     self.descriptor = basic_game_world.descriptor
@@ -25,6 +27,16 @@ class BasicGameEngine(object):
     while not self.done:
       
       self._describe_setting()
+
+      if self.player.location.game_end:
+        if self.player.location.game_end.check(self.game, self.player.location):
+          self.writer.output(self.player.location.game_end.text)
+          break
+
+      if self.player.game_end:
+        if self.player.game_end.check(self.game, self.player):
+          self.writer.output(self.player.game_end.text)
+          break
 
       if self.player.health < 0:
         self.writer.output("Better luck next time!")
@@ -47,6 +59,7 @@ class BasicGameEngine(object):
     # if the actor moved, describe the room
     if actor.check_if_moved():
       self.descriptor.output_title(actor.location)
+      self.descriptor.output_stats(self.turn_count, self.points)
       self.descriptor.output_location_description(actor.location)
       
     # See if the animals want to do anything
@@ -115,6 +128,8 @@ class BasicGameEngine(object):
     if len(words) > 1 and words[0].lower() in prepositions:
       (indirect, words) = get_noun(words[1:], things)
 
+    self.turn_count += 1
+
     # first check phrases
     for thing in things:
       f = thing.get_phrase(command, things)
@@ -180,5 +195,7 @@ class BasicGameEngine(object):
 
     # not understood
     self.writer.output("Huh?")
+    self.turn_count -= 1
+    
     return
 

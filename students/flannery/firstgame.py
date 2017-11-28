@@ -27,6 +27,12 @@ world.create_connection("spacebetweenroomandhallway", museum, hallway, [IN, RIGH
 
 world.create_connection("door", museum, dark_room, [IN, LEFT], [OUT, RIGHT])
 
+end_of_hallway = world.create_location("end of hallway", "the hallway ends")
+
+world.create_connection("spacebetweenhandeoh", hallway, end_of_hallway, [IN, FORWARD], [OUT, BACK])
+
+world.create_container("small wooden box", "a box at the end of the hallway. its a dead end. there is a lock on it.")           
+
 
 game = BasicGameEngine(world)
 game.run()

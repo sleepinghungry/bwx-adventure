@@ -106,6 +106,7 @@ class Location(Base, Lockable):
     self.exits = {}
     self.first_time = True
     self.actors = {}
+    self.game_end = None
     
   def create_object(self, name, desc, fixed=False):
     obj = Object(name, desc, fixed)
@@ -170,7 +171,8 @@ class Location(Base, Lockable):
         return False
 
     return super().try_unlock(actor, writer)
-  
+
+
  
 class Connection(Base, Lockable):
   """A "connection" connects point A to point B. Connections are

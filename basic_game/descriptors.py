@@ -13,6 +13,9 @@ class Descriptor():
     self.writer.output("        --=( {} )=--        ".format(location.name),
                        TITLE)
 
+  def output_stats(self, turns, points):
+    self.writer.output("     turns: {}     points: {}".format(turns, points))
+
   def output_location_description(self, location, force_look=False):
     """Return a nicely formatted description of the location and its contents.
     """
