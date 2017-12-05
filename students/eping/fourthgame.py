@@ -30,15 +30,38 @@ world.player.health = 50
 key = control_room.create_object("silver key", "a small silver key")
 box = engine_room.create_container("Silver Lock Box", "a breadbox sized silver box that looks important.") 
 
+
+
+
+ball = control_room.create_object("red ball", "a bouncy red ball")
+
+ball.add_phrase("bounce ball", Say(["This is fun!",
+                                    "This is really fun!",
+                                    "This is unbelievably fun!",
+                                    "This is no longer fun.",
+                                    "Stop bouncing the ball!",
+                                    "I swear, you've got to stop.",
+                                    "Don't you have anything better to do?"]))
+
+
 def mark_consumed(twizzler, actor, noun, words):
     actor.game.writer.output("That was yummy!")
     actor.set_flag("ate twizzler")
 
-twizzler = Food("twizzler","a yummy red twizzler", Verb(mark_consumed, "blahblah"))
+twizzler = Food("twizzler",
+                "a yummy red twizzler",
+                Verb(mark_consumed, "blahblah"))
 box.insert(twizzler)
 
+
+
+
+book = box.create_object("book", "a small book")
+
+
+
 def ending_check(world, location):
-    if player.flag("ate twizzler") and location.name == "Freedom":
+    if world.player.flag("ate twizzler") and location.name == "Freedom":
         return True
     else:
         return False
@@ -47,7 +70,6 @@ def ending_check(world, location):
 freedom.cond_end(ending_check, "Congratulations on making it out and eating the twizzler!")
 
 # REQUIREMENTS
-
 box.make_requirement(key)
 locked_door.make_requirement(twizzler)
 

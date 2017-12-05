@@ -17,9 +17,9 @@ class BasicGameWorld(Base):
     self.animals = {}
     self.player = Player(self)
     
-    # FIXME: Should ConsoleWriter be part of the GameWorld or the GameEngine?
-    self.writer = ConsoleWriter()
-    self.descriptor = Descriptor(self.writer)
+    # ConsoleWriter to be passed in by the game engine.
+    self.writer = None
+    self.engine = None
     
   def create_location(self, *args):
     """Creates a location and stores it in the location_list."""
@@ -155,22 +155,22 @@ class Location(Base, Lockable):
     c = self.exits[ way ]
 
     # first check if the connection is locked
-    if not c.try_unlock(actor, self.game.writer):
+    if not c.try_unlock(actor):
       return None
 
     # check if the room on the other side is locked        
-    if not c.point_b.try_unlock(actor, self.game.writer):
+    if not c.point_b.try_unlock(actor):
       return None
 
     return c.point_b
 
-  def try_unlock(self, actor, writer):
+  def try_unlock(self, actor):
     # first see if the actor is whitelisted
     if actor.allowed_locs:
       if not self in actor.allowed_locs:
         return False
 
-    return super().try_unlock(actor, writer)
+    return super().try_unlock(actor)
 
 
  

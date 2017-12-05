@@ -23,8 +23,6 @@ generator_room = world.create_location("generator room", "there is a huge gerato
 globe_room = world.create_location("globe room", "there is a big globe in the middle of the room.")
 
 
-
-
 # - - - CONNECTION - - -
 
 world.create_connection("door", mine_enter, mine_tunnle0, [IN, NORTH], [OUT, SOUTH]) 
@@ -58,7 +56,7 @@ key0 = wet_room.create_object("rusty key", "a rusty damp key")
 
 # - - - requirements - - -
 
-crawl_way.make_requirement
+crawl_way.make_requirement(key0)
 
 
 

@@ -19,25 +19,25 @@ class Lockable(object):
   def is_locked(self):
     return self.locked
     
-  def try_unlock(self, actor, writer):
+  def try_unlock(self, actor):
     # now check if we're locked
     if not self.locked:
       return True
     
     # check if there are any implicit requirements for this object
     if len(self.requirements) == 0:
-      writer.output("It's locked!")
+      actor.output("It's locked!")
       return False
 
     # check to see if the requirements are in the inventory
     if set(self.requirements).issubset(set(actor.inventory)):
-      writer.output("You use the {}, the {} unlocks".
+      actor.output("You use the {}, the {} unlocks".
                          format(proper_list_from_dict(self.requirements),
                                 self.name))
       self.unlock()
       return True
 
-    writer.output("It's locked! You will need {}.".
+    actor.output("It's locked! You will need {}.".
                        format(proper_list_from_dict(self.requirements)))
     return False
 
@@ -55,7 +55,7 @@ class Consumable(object):
                                          self.replacement):
       return False
     
-    actor.game.writer.output("%s %s%s %s." % (actor.name.capitalize(), self.consume_term,
+    actor.output("%s %s%s %s." % (actor.name.capitalize(), self.consume_term,
                                  actor.verborverbs, self.parent.description))
     self.verb.act(actor, noun, words)
     return True

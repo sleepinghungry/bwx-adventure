@@ -23,13 +23,17 @@ dungeon.create_object("metal", "you see a piece of metal on the ground")
 
 door.make_requirement(metal)
                                 
-world.create_connection("trapdoor", hallway, room [])
+world.create_connection("trapdoor", hallway, room [IN, DOWN], [OUT, UP])
+
+hallway.create_container("box", "there is a box on the ground next to the trapdoor.")
+
+box.make_requirement(metal)
+
+hallway.create_object ("key", "the key to the trapdoor is inside the box")
 
 trapdoor.make_requirement(key)
 
-world.create_location("room", "a dimly lit room is on the other side of the trapdoor")                                
-
-hallway.create_container("box", "there is a box on the ground next to the trapdoor. inside is the key for the trapdoor!")
+world.create_location ("room", "a dimly lit room is on the other side of the trapdoor")
 
 hallway.create_object("key", "you take the key out of the box and unlock the trapdoor")                             
                                 

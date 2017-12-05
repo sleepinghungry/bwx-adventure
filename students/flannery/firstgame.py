@@ -3,11 +3,14 @@ from basic_context import BasicGameEngine
 from basic_context import NORTH, SOUTH, EAST, WEST, UP, DOWN, RIGHT, LEFT, IN, OUT, FORWARD, BACK, NORTH_WEST, NORTH_EAST, SOUTH_WEST, SOUTH_EAST, NOT_DIRECTION
 from basic_context import Object
 
+
 world = BasicGameWorld()
 
 puffy_cloud = world.create_location("puffy cloud","a cloud with a tall ladder reaching up to more clouds.")
 
-puffy_cloud.create_object("key", "small rubbed-down silver key") 
+puffy_cloud.create_object("key", "small rubbed-down silver key")
+key = puffy_cloud.create_object("key", "small rubbed-down silver key") 
+
 gray_rain_cloud = world.create_location(
   "gray rain cloud",
     """a larger cloud that looks gray and sad. small raindrops are falling. It starts raining hard now, and there is no other way to go but down with the rain""")
@@ -31,7 +34,13 @@ end_of_hallway = world.create_location("end of hallway", "the hallway ends")
 
 world.create_connection("spacebetweenhandeoh", hallway, end_of_hallway, [IN, FORWARD], [OUT, BACK])
 
-world.create_container("small wooden box", "a box at the end of the hallway. its a dead end. there is a lock on it.")           
+end_of_hallway.create_container("small wooden box", "a box at the end of the hallway. its a dead end. there is a lock on it.")           
+small_wooden_box = end_of_hallway.create_container("small wooden box", "a box at the end of the hallway. its a dead end. there is a lock on it.")
+small_wooden_box.make_requirement(key)
+
+end_of_hallway.create_object("carrot", "an orange carrot")
+
+insert
 
 
 game = BasicGameEngine(world)

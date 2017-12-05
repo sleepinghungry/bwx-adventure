@@ -8,8 +8,9 @@ from basic_game.verbs import BaseVerb
 class BasicGameEngine(object):
   """Given a completed GameWorld, starts a game."""
   
-  def __init__(self, basic_game_world, writer=ConsoleWriter()):
-    self.writer = writer
+  def __init__(self, basic_game_world):
+    self.writer = ConsoleWriter()
+    self.descriptor = Descriptor(self.writer)
     self.game = basic_game_world
     self.player = basic_game_world.player
     self.animals = basic_game_world.animals
@@ -17,9 +18,9 @@ class BasicGameEngine(object):
     self.turn_count = 0
     self.points = 0
 
-    # Descriptors
-    self.descriptor = basic_game_world.descriptor
-    
+    basic_game_world.writer = self.writer
+    basic_game_world.engine = self
+
 
   def run(self):
     """Run the main loop until game is done.

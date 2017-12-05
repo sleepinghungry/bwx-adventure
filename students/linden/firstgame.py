@@ -15,7 +15,7 @@ vestibule = world.create_location(
   "entry room",
     """A small area at the top of a long flight of stairs. Writing on one wall says BEWARE ALL  WHO ENTER THIS ACCURSED PLACE. THOSE WHO DO NOT HEED THIS WARNING SHALL DIE.""")
 
-world.create_connection("Glass_Door", front_of_office, vestibule, [IN], [OUT])
+world.create_connection("Glass_Door", front_of_office, vestibule,NORTH ,SOUTH)
 
 top_of_stairs = world.create_location(
     "bottom of stairs",
@@ -25,7 +25,7 @@ knife = top_of_stairs.create_object("knife", "bloody knife on a table")
 
 key = top_of_stairs.create_object("key", "heavy-looking key shaped like a stylized sword")
 
-world.create_connection ("stairs",vestibule, top_of_stairs, DOWN,UP)
+world.create_connection ("stairs",vestibule, top_of_stairs, EAST,WEST)
 
 locked_room = world.create_location(
     "locked room",
@@ -69,13 +69,13 @@ world.create_connection("passageway", locked_room, skeleton_room, SOUTH,NORTH)
 def describe_bobroom(game):
     game.writer.output("this world will now print 'bob' 7000000000 times. \n gameplay will resume when this objective has been completed")
     time.sleep(10)
-    for i in range (1,7000000000):
+    for i in range (1,100000):
         game.writer.output("bob")
 
 bobroom = world.create_location(
     "bob room",
     describe_bobroom)
-world.create_connection("down", bobroom, skeleton_room, OUT, IN)
+world.create_connection("down", bobroom, skeleton_room, EAST, WEST )
 
 
 

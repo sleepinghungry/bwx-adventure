@@ -64,9 +64,9 @@ class Container(Object, Lockable):
       desc += add_article(self.name)
 
     if not self.is_open():
-      desc += " The %s is closed." % self.name
+      desc += " The {} is closed.".format(self.name)
     else:
-      desc += " The %s is open." % self.name
+      desc += " The {} is open.".format(self.name)
       # it's open so describe the contents
       desc += self.describe_contents()
     return desc
@@ -81,23 +81,22 @@ class Container(Object, Lockable):
     contents_description = proper_list_from_dict(self.contents)
     # is it just one thing?
     if len(self.contents) == 1:
-      desc += writer.style_text("\nThere is %s in the %s." % \
-                                   (contents_description, self.name), CONTENTS)
+      desc += writer.style_text("\nThere is {} in the {}.".format(contents_description, self.name),
+                                CONTENTS)
     else:
-      desc += writer.style_text("\nThere are a few things in the %s: %s." % \
-                                   (self.name, contents_description), CONTENTS)
+      desc += writer.style_text("\nThere are a few things in the {}: {}.".format(self.name, contents_description),
+                                CONTENTS)
 
     return desc
 
   def open(self, actor):
-    writer = actor.game.writer
     if self.is_open():
-      writer.output("The %s is already open." % self.name)
+      self.output("The {} is already open.".format(self.name))
       return True
-    if not self.try_unlock(actor, writer):
+    if not self.try_unlock(actor):
       return False
-    writer.output("The %s opens." % self.name, FEEDBACK)
-    writer.output(self.describe_contents(), CONTENTS)
+    self.output("The {} opens.".format(self.name), FEEDBACK)
+    self.output(self.describe_contents(), CONTENTS)
     self.unset_flag('closed')
 
   def close(self):

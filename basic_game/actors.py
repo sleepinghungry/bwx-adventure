@@ -2,7 +2,7 @@ from basic_game.base import Base
 from basic_game.objects import Container, Food
 from basic_game.verbs import BaseVerb
 from basic_game.directions import directions
-from basic_game.language import proper_list_from_dict
+from basic_game.language import proper_list_from_dict, add_article
 
 # An actor in the game
 class Actor(Base):
@@ -120,12 +120,12 @@ class Actor(Base):
           t = c.contents.pop(noun, None)      
     if t:
       self.inventory[noun] = t
-      self.game.writer.output("%s take%s the %s." % (actor.cap_name,
+      self.output("{} take{} the {}.".format(actor.cap_name,
                                          actor.verborverbs,
                                          t.name))
       return True
     else:
-      self.game.writer.output("%s can't take the %s." % (actor.cap_name, noun))
+      self.output("{} can't take the {}.".format(actor.cap_name, noun))
       return False
 
   # move a thing from our inventory to the current location
@@ -135,15 +135,18 @@ class Actor(Base):
     t = self.inventory.pop(noun, None)
     if t:
       self.location.contents[noun] = t
+      self.output("{} drop{} the {}.".format(self.cap_name,
+                                             actor.verborverbs,
+                                             t.name))
       return True
     else:
-      self.game.writer.output("{} {} not carrying {}.".format(self.cap_name,
+      self.output("{} {} not carrying {}.".format(self.cap_name,
                                                   self.isare,
                                                   add_article(noun)))
       return False
 
   def act_look(self, actor, noun, words):
-    self.game.descriptor.output_location_description(self.location, True)
+    self.game.engine.descriptor.output_location_description(self.location, True)
     return True
 
   # examine a thing in our inventory or location
@@ -161,7 +164,7 @@ class Actor(Base):
           n = c.contents[noun]
     if not n:
       return False
-    self.game.writer.output("You see " + n.describe(self) + ".")
+    self.output("You see " + n.describe(self) + ".")
     return True
 
   # list the things we're carrying
@@ -172,7 +175,7 @@ class Actor(Base):
     else:
       msg += 'nothing'
     msg += '.'
-    self.game.writer.output(msg)
+    self.output(msg)
     return True
 
   # check/clear moved status
@@ -184,11 +187,11 @@ class Actor(Base):
   # try to go in a given direction
   def act_go1(self, actor, noun, words):
     if not noun in directions:
-      self.game.writer.output("Don't know how to go '{}'.".format(noun))
+      self.output("Don't know how to go '{}'.".format(noun))
       return False
     loc = self.location.go(actor, directions[noun])
     if loc == None:
-      self.game.writer.output("Bonk! {} can't seem to go that way.".format(self.name))
+      self.output("Bonk! {} can't seem to go that way.".format(self.name))
       return False
     else:
       # update where we are
@@ -205,7 +208,7 @@ class Actor(Base):
     if isinstance(t, Food):
       t.consume(actor, noun, words)
     else:
-      self.game.writer.output("%s can't eat the %s." % (actor.name.capitalize(), noun))
+      self.output("%s can't eat the %s." % (actor.name.capitalize(), noun))
 
     return True
 
@@ -219,7 +222,7 @@ class Actor(Base):
     if isinstance(t, Drink):
       t.consume(actor, noun, words)
     else:
-      self.game.writer.output("%s can't drink the %s." % (actor.name.capitalize(), noun))
+      self.output("%s can't drink the %s." % (actor.name.capitalize(), noun))
 
     return True
 
@@ -234,7 +237,7 @@ class Actor(Base):
     if isinstance(t, Container):
       t.open(actor)
     else:
-      self.game.writer.output("%s can't open the %s." % (actor.name.capitalize(), noun))
+      self.output("%s can't open the %s." % (actor.name.capitalize(), noun))
 
     return True
 
@@ -255,7 +258,7 @@ class Actor(Base):
           result.add('"' + v + '"')
         else:
           result.add(v);
-    self.game.writer.output(textwrap.fill(" ".join(sorted(result))))
+    self.output(textwrap.fill(" ".join(sorted(result))))
     return True
 
   def lights(self, on):
@@ -284,13 +287,13 @@ class Robot(Actor):
       self.leader = self.game.robots[noun]
     elif noun in self.game.animals:
       self.leader = self.game.animals[noun]
-    self.game.writer.output("{} obediently begins following {}".format(self.name,
+    self.output("{} obediently begins following {}".format(self.name,
                                                            self.leader.name))
     return True
 
   def act_stay(self, actor, noun, words=None):
     if self.leader:
-      self.game.writer.output("{} obediently stops following {}".format(self.name,
+      self.output("{} obediently stops following {}".format(self.name,
                                                             self.leader.name))
     self.leader = None
     return True
@@ -337,13 +340,13 @@ class Animal(Actor):
     if self.game.current_actor.flag('verbose'):
       quiet = False
     if not quiet and self.location == observer_loc:
-      self.game.writer.output("{} leaves the {}, heading {}.".
+      self.output("{} leaves the {}, heading {}.".
                   format(add_article(self.name).capitalize(),
                          observer_loc.name,
                          direction_names[exitDir].lower()))
     self.act_go1(self, direction_names[exitDir], None)
     if not quiet and self.location == observer_loc:
-      self.game.writer.output("{} enters the {} via the {}.".
+      self.output("{} enters the {} via the {}.".
                   format(add_article(self.name).capitalize(),
                          observer_loc.name,
                          exitConn.name))

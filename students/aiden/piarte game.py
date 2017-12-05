@@ -25,26 +25,28 @@ room = world.create_location("Room", "Here is a chest with a lock. there is a do
 
 hallway = world.create_location("Hallway", "There is a empty hallway with a key on the ground. you can go East.")
 
-feast_hall = world.create_location("Feast Hall", "There are a bunch of pirates here laughing and having a good time. there is an exit south.")
+feast_hall = world.create_location("Feast Hall", "There are a bunch of pirates here laughing and having a good time. there is an exit west.")
 
-Armor_room = world.create_location("Armor room","Here is a dark room with swords and armor.")
+Armor_room = world.create_location("Armor room","Here is a dark room with swords and armor.you can go west.")
 
 Staircase= world.create_location("stair case","this is a rickety old staircase.")
 
 Deck= world.create_location("Deck","this is an old deck with creaking floor boards.")
 
-Main_deck= world.create_location("Main deck","you can see pirates all around and caring big jugs of mead.")
+Main_deck= world.create_location("Main deck","you can see pirates all around and caring big jugs of mead.you can go west.")
 
 Captains_room= world.create_location("Captains room","No one is in here but you")
+
+Kitchen= world.create_location("Kitchen","there are a bunch of cooking tools")
 
 world.create_connection("Door1", vestibule, room, [IN, EAST], [OUT, NORTH])
 world.create_connection("Door2", room, hallway, [IN, WEST], [OUT, WEST])
 world.create_connection("Door3", hallway, feast_hall, [IN, EAST], [OUT,NORTH])
-world.create_connection("Door4", feast_hall, Armor_room, [IN, WEST], [OUT, SOUTH,])
-world.create_connection("Door5", Armor_room,Staircase , [IN,WEST], [OUT, UP])
-world.create_connection("Door6", Staircase,, Deck, [IN,EAST], [OUT,EAST])
-world.create_connection("Door7", Deck,Main_deck ,[IN,EAST,], [OUT,WEST,])
-world.create_connection("Door8",Captains_room, ,[IN,EAST,], [OUT,WEST,])
+world.create_connection("Door4", feast_hall, Armor_room, [IN, WEST], [OUT, EAST,])
+world.create_connection("Door5", Armor_room,Staircase, [IN,WEST], [OUT, WEST])
+world.create_connection("Door6", Staircase, Deck, [IN,UP], [OUT,DOWN])
+world.create_connection("Door7", Deck,Main_deck, [IN,UP,], [OUT,WEST,])
+world.create_connection("Door8",Captains_room,Kitchen, [IN,EAST,], [OUT,WEST,])
 
 Key = hallway.create_object ("key","a heavy shiny gold key")
 Sword = Armor_room.create_object ("sword","a nice big sword with jewels ")

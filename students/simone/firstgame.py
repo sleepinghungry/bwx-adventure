@@ -14,4 +14,4 @@ healthyland = world.create_location(
 
 world.create_connection("bridge", candyland, healthyland, [IN, UP], [OUT, DOWN])
 
-canned_liver_palace = world.create_location("canned liver palace", "the squash snow takes you down just as a broccoli tree slams to the ground inches from your body. You begin falling an
+canned_liver_palace = world.create_location("canned liver palace", "the squash snow takes you down just as a broccoli tree slams to the ground inches from your body. You begin falling into blackneness

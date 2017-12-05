@@ -1,4 +1,5 @@
 from basic_game.verbs import BaseVerb
+from basic_game.writer import DESCRIPTION
 
 class GameEnding(object):
   """Contains text and a custom function to see if the game has reached an
@@ -84,6 +85,10 @@ class Base(object):
     if things_present.issuperset(p[1]):
       return p[0]
     return None
+
+  def output(self, text, text_type=DESCRIPTION):
+    """Convenience method for outputting text."""
+    self.game.writer.output(text, text_type)
 
   def end(self, text):
     """Marks this location as a game ending location."""

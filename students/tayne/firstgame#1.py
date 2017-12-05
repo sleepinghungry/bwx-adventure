@@ -12,20 +12,14 @@ vestibule = world.create_location(
 There is a glass door to the west.""")
 
 print ("steve: you are clone trooper 3 in an abandoned hotel. its abandoned because there was a blast on the top floor. all we know is that the bad guys are all here. can you go and find them don't worry your not alone.")
-
-
+\
 world.create_connection("Glass Door", front_of_office, vestibule, [IN, EAST], [OUT, WEST])
                       
 elevator = world.create_location("elevator","you are in the elevator.")
 
-door = world.create_connection("elevatordoor", elevator,frontoffice [IN, SOUTH], [OUT, NORTH])
-
-print ("theres a key")
-                                                           
-
+door = world.create_connection("elevatordoor", elevator,front _of_office, [IN, SOUTH], [OUT, NORTH])
+                                                         
 key = elevator.create("key","a heavy shiny gold key")
-
-print ("steve:press a floor number")
 
 print  ("controles are space= shoot, e=east, s=south, n=north,w=west, p=pickup key")
 game = BasicGameEngine(world)
@@ -38,3 +32,4 @@ game.run()
 
 
 
+    
